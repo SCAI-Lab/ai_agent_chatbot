@@ -25,13 +25,12 @@ Backend memory management system providing robust infrastructure for conversatio
 ### [memobase-inspector/](memobase-inspector/)
 Web-based frontend for visualizing and managing the memory database, offering intuitive tools for inspection and interaction.
 
-**Documentation:** https://github.com/memodb-io/memobase
+**Documentation:** https://github.com/memodb-io/memobase-inspector
 
 ## Getting Started
 
 ### Prerequisites
-- Nvidia Orin 64GB (for chatbot deployment)
-- Python 3.8+
+- Python 3.10
 - Required dependencies (see individual component READMEs)
 
 ### Installation
@@ -47,7 +46,7 @@ Web-based frontend for visualizing and managing the memory database, offering in
 
    For memory visualization and management interface:
    ```
-   https://github.com/memodb-io/memobase
+   https://github.com/memodb-io/memobase-inspector
    ```
 
 3. **Deploy the Chatbot**
