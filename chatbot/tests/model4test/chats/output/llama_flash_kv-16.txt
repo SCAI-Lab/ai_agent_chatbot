@@ -1,0 +1,92 @@
+File: ./chats/mock_user/1.json
+
+Cost time(s) 307.85645365715027
+* basic_info: age - 20
+* basic_info: gender - male [mentioned on None]
+* basic_info: name - Ethan
+* interests: immersive_experiences - prefers immersive experiences like music and film that pull him into a different headspace
+* interests: motivation - solving complex problems and seeing an idea turn into a functional app
+* interests: music - Chopin's Nocturne in E-flat major, instrumental electronic music; Chopin's Nocturne in E-flat major
+* mental_state: mood - anxious [mentioned 2025/10/22]; anxious
+* mental_state: stress_management - has a plan to manage his focus and relaxation
+* work: company - Memobase [mentioned 2025/10/22]; software engineer [mentioned 2025/10/22]
+* work: title - software engineer
+File: ./chats/mock_user/2.json
+
+Cost time(s) 398.40629267692566
+* basic_info: age - 20;20
+* basic_info: gender - male [mentioned on None]
+* basic_info: name - Ethan;Ethan
+* career_goals: goals - working towards a tangible career goal; working towards a tangible career goal
+* career_goals: internship - software engineering internship focusing on backend systems or cloud infrastructure; software engineering internship focusing on backend systems or cloud infrastructure
+* interests: hobby - hiking [mentioned 2025/10/22]; video_games [mentioned 2025/10/22]
+* interests: immersive_experiences - prefers immersive experiences like games (implied by playing Stardew Valley)
+* interests: motivation - solving complex problems and seeing an idea turn into a functional app
+* interests: music - Chopin's Nocturne in E-flat major, instrumental electronic music; Chopin's Nocturne in E-flat major
+* mental_state: mood - anxious [mentioned 2025/10/22]; anxious
+* mental_state: stress_management - has a plan to manage stress (not explicitly mentioned in this conversation, but inferred from previous topics) [mentioned 2025/10/22]
+* stress_management: strategies - writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+* work: company - Memobase [mentioned 2025/10/22]; software engineer [mentioned 2025/10/22]
+* work: skill - willingness to learn frontend skills for simple projects [mentioned 2025/10/22]
+* work: title - software engineer; software engineer
+File: ./chats/mock_user/3.json
+
+Cost time(s) 332.05425095558167
+* basic_info: age - 20;
+* basic_info: gender - male [mentioned on None]
+* basic_info: name - Ethan;Ethan
+* career_goals: goals - working towards a tangible career goal;
+* career_goals: internship - software engineering internship focusing on backend systems or cloud infrastructure; software engineering internship focusing on backend systems or cloud infrastructure;software engineering internship focusing on backend roles (implied by planning to apply for backend-focused roles)
+* interests: genre - hard sci-fi
+* interests: hobby - hiking [mentioned 2025/10/22]; video_games [mentioned 2025/10/22]
+* interests: immersive_experiences - prefers immersive experiences like sci-fi;
+* interests: motivation - solving complex problems and seeing an idea turn into a functional app
+* interests: music - Chopin's Nocturne in E-flat major, instrumental electronic music; Chopin's Nocturne in E-flat major;Chopin's Nocturne (previously mentioned)
+* mental_state: mood - has a stressful but well-managed few weeks ahead of him;
+* mental_state: stress_management - using 'small wins' strategy;
+* stress_management: strategies - writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+* work: company - Memobase [mentioned 2025/10/22]; software engineer [mentioned 2025/10/22]
+* work: skill - willingness to learn frontend skills for simple projects [mentioned 2025/10/22];willingness to learn and adapt (implied by implementing keyboard shortcuts)
+* work: title - software engineer; software engineer;software engineer
+File: ./chats/mock_user/4.json
+
+Cost time(s) 703.4256608486176
+* basic_info: age - 20;
+* basic_info: gender - male [mentioned on None]
+* basic_info: name - Ethan;Ethan;Ethan;Ethan
+* career_goals: goals - working towards a tangible career goal of becoming a software engineer at LogiCore.[mention 2025/10/22]
+* career_goals: internship - software engineering internship focusing on PostgreSQL and keyboard shortcuts in note app.[mention 2025/10/23, plan in 2025/10/22]
+* interests: genre - hard sci-fi
+* interests: hobby - hiking [mentioned 2025/10/22]; video_games [mentioned 2025/10/22]
+* interests: immersive_experiences - prefers immersive experiences like sci-fi;
+* interests: motivation - solving complex problems and improving communication skills through practice and preparation.[mention 2025/10/22]
+* interests: music - Chopin's Nocturne in E-flat major, instrumental electronic music; Chopin's Nocturne in E-flat major;Chopin's Nocturne (previously mentioned)
+* mental_state: mood - has a stressful but well-managed mood;
+* mental_state: motivation - solving complex problems and enjoying immersive experiences like algorithm practice
+* mental_state: stress_management - using "small wins" approach, may need to adapt for this specific situation.[mention 2025/10/22]
+* mental_state: stress_triggers - waiting for a week or so before hearing back from the interviewer after facing a huge stressor
+* stress_management: strategies - writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles);
+* work: company - Memobase [mentioned 2025/10/22]; software engineer at LogiCore [mentioned 2025/10/22];
+* work: skill - willingness to learn frontend skills for simple projects [mentioned 2025/10/22];willingness to learn and adapt (implied by implementing keyboard shortcuts)
+* work: title - software engineer; software engineer;software engineer
+File: ./chats/mock_user/5.json
+
+Cost time(s) 560.3295872211456
+* basic_info: age - 20;;20;
+* basic_info: gender - male [mentioned on None]
+* basic_info: name - Ethan;
+* career_goals: goals - working towards a tangible career in software engineering at LogiCore.[mention 2025/10/22]
+* career_goals: internship - software engineering internship focusing on PostgreSQL and keyboard shortcuts in note app.[mention 2025/10/23, plan in 2025/10/22]
+* interests: genre - hard sci-fi;hard sci-fi [mentioned on 2025/10/22]
+* interests: hobby - hiking [mentioned 2025/10/22]; video_games [mentioned 2025/10/22]
+* interests: immersive_experiences - prefers immersive experiences like reading 'The Three-Body Problem' trilogy, which is mind-bending and intellectually engaging[mention 2025/10/22]
+* interests: motivation - solving complex problems and improving communication skills through practice and preparation.[mention 2025/10/22]
+* interests: music - Chopin's Nocturne in E-flat major, instrumental electronic music; Chopin's Nocturne in E-flat major;Chopin's Nocturne (previously mentioned)
+* mental_state: mood - has a stressful but well-managed mood[mention 2025/10/22];
+* mental_state: motivation - solving complex problems and working on his final project for the advanced algorithms class[mention 2025/10/22]
+* mental_state: stress_management - using "small wins" to manage stress, quiet walks with ambient music have been helping to lower the background noise in his head[mention 2025/10/22]
+* mental_state: stress_triggers - waiting for a week or more since the interview[mention 2025/10/22]
+* stress_management: strategies - writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles);
+* work: company - software engineer at LogiCore [mentioned 2025/10/22];;Logi... [mentioned 2025/10/22]
+* work: skill - willingness to learn frontend skills for simple projects [mentioned 2025/10/22];willingness to learn and adapt (implied by implementing keyboard shortcuts);willingness to learn...
+* work: title - software engineer [mentioned 2025/10/22];

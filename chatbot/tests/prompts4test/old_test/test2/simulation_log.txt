@@ -1,0 +1,307 @@
+=== Ollama Multi-Stage Simulation ===
+
+Summary input tokens (system prompt + chat):
+- easy: 821 tokens
+- medium: 1795 tokens
+- hard: 2757 tokens
+
+[MODEL] mistral:7b-instruct
+  Load time (empty prompt warm-up): 25.33s
+  Difficulty: easy (10 rounds)
+    Summary time: 49.02s
+    Summary input tokens: 821
+    Summary output:
+       ```
+      - User name: Stella
+      - User age: 26
+      - User gender: female
+      - User likes sushi hamburger and running
+      - User mentioned feeling depressed and wanting to hurt herself.[2025/10/09]
+      - User job is in financial analysis.[2025/10/09]
+      - User's Q4 at work is demanding.[2025/10/09]
+      - User stopped early morning routine of going for a run and making breakfast.[2025/10/09, 2025/10/10]
+      - User craves comfort food, such as a double cheeseburger with fries.[2025/10/09]
+      - User unwinds by watching crime documentaries.[2025/10/09]
+      - User finished a series and had trouble sleeping, waking up with a tension headache.[2025/10/10]
+      - User soothes tension headaches with herbal tea and darkness (when possible), but at work can only have water and ibuprofen.[2025/10/10]
+      ```
+    Extract time: 44.79s
+    Extract input tokens: 460
+    Extract output:
+       ```
+      - User name: Stella
+      - User age: 26
+      - User gender: female
+      - User likes sushi, hamburger, running
+      - User job is in financial analysis. [2025/10/09]
+      - User's Q4 at work is demanding. [2025/10/09]
+      - User stopped early morning routine of going for a run and making breakfast. [2025/10/09, 2025/10/10]
+      - User craves comfort food, such as double cheeseburger with fries. [2025/10/09]
+      - User unwinds by watching crime documentaries. [2025/10/09]
+      - User mentioned feeling depressed and wanting to hurt herself. [2025/10/09]
+      - User had trouble sleeping, waking up with a tension headache. [2025/10/10]
+      - User soothes tension headaches with herbal tea and darkness (when possible), but at work can only have water and ibuprofen. [2025/10/10]
+      ```
+    Summary + Extract total tokens: 1281
+    Summary + Extract total time: 93.81s
+
+  Difficulty: medium (30 rounds)
+    Summary time: 200.58s
+    Summary input tokens: 1795
+    Summary output:
+       ```
+      - User name is Stella. [mention 2025/10/09] // basic_info, name
+      - User age is 26 years old. [mention 2025/10/09] // basic_info, age
+      - User gender is female. [mention 2025/10/09] // basic_info, gender
+      - User likes sushi hamburger and running. [mention 2025/10/09] // mental_state, interest
+      - User feels depressed. [mention 2025/10/09] // mental_state, mood
+      - User wants to hurt herself. [mention 2025/10/09] // mental_state, self harm
+      - User job is in financial analysis. [mention 2025/10/09] // basic_info, work
+      - User's Q4 is brutal due to the never-ending cycle of deadlines and late nights. [mention 2025/10/09] // mental_state, stress
+      - User stopped early morning routine. [mention 2025/10/09] // mental_state, habit change
+      - User skips fresh air and proper breakfast now. [mention 2025/10/09] // mental_state, habit change
+      - User craves comfort food when feeling down. [mention 2025/10/09] // mental_state, craving
+      - User watches crime documentaries for distraction. [mention 2025/10/09] // mental_state, coping mechanism
+      - User finished a series and didn't sleep well with tension headache. [mention 2025/10/10] // mental_state, health
+      - User has a tension headache due to poor sleep. [mention 2025/10/10] // mental_state, health
+      - User has an ibuprofen at office for tension headaches. [mention 2025/10/10] // mental_state, medicine
+      - User schedules a mini break after project review. [mention 2025/10/10] // schedule
+      - User feels worse focus compared to yesterday. [mention 2025/10/10] // mental_state, focus
+      - User prioritizes getting enough water throughout the rest of afternoon. [mention 2025/10/10] // mental_state, hydration
+      - User feels exhausted but hopeful on Friday. [mention 2025/10/11] // mental_state, mood
+      - User needs to move body and plans long run tomorrow morning. [mention 2025/10/11] // mental_state, exercise
+      - User ordered poke bowls for dinner and did a 12 km run but knee feels twingey. [mention 2025/10/12] // mental_state, health
+      - User's usual protocol for managing a minor running discomfort is ice, elevation, and foam rolling. [mention 2025/10/12] // mental_state, injury care
+      - User plans to sign up for a half-marathon next year. [mention 2025/10/12] // mental_state, goal
+      - User is terrible at stretching which is probably why knee hurts. [mention 2025/10/12] // mental_state, habit change
+      - User plans to try 15 minutes of yoga videos before bed. [mention 2025/10/13] // mental_state, exercise
+      - User feels mentally prepared for the week. [mention 2025/10/13] // mental_state, mood
+      - User has a presentation to executive committee on Wednesday. [mention 2025/10/13] // basic_info, work
+      - User hates presenting and voice shakes. [mention 2025/10/13] // mental_state, fear
+      - User books a room to practice presentation twice before standing up. [mention 2025/10/14] // mental_state, practice
+      - User plans dinner out with best friend after presentation. [mention 2025/10/16] // mental_state, celebration
+      - User and best friend love talking about travel plans. [mention 2025/10/17] // mental_state, interest
+      - User is obsessed with Southeast Asia travel plans. [mention 2025/10/17] // mental_state, travel
+      - User wants to explore Hanoi and Hoi An in Vietnam. [mention 2025/10/17] // mental_state, travel destination
+      ```
+    Extract time: 164.13s
+    Extract input tokens: 829
+    Extract output:
+       Here's the structured output based on the provided memo:
+      
+      ```
+      basic_info::name::Stella
+      basic_info::age::26 years old
+      basic_info::gender::female
+      mental_state::mood::depressed [mention 2025/10/09]
+      mental_state::self harm::user wants to hurt herself [mention 2025/10/09]
+      mental_state::stress::User's Q4 is brutal due to the never-ending cycle of deadlines and late nights. [mention 2025/10/09]
+      mental_state::habit change::User stopped early morning routine. [mention 2025/10/09]
+      mental_state::habit change::User skips fresh air and proper breakfast now. [mention 2025/10/09]
+      mental_state::craving::User craves comfort food when feeling down. [mention 2025/10/09]
+      mental_state::coping mechanism::User watches crime documentaries for distraction. [mention 2025/10/09]
+      mental_state::health::User has a tension headache due to poor sleep. [mention 2025/10/10]
+      mental_state::medicine::User has an ibuprofen at office for tension headaches. [mention 2025/10/10]
+      schedule::User schedules a mini break after project review. [mention 2025/10/10]
+      mental_state::focus::User feels worse focus compared to yesterday. [mention 2025/10/10]
+      mental_state::hydration::User prioritizes getting enough water throughout the rest of afternoon. [mention 2025/10/10]
+      mental_state::mood::User feels exhausted but hopeful on Friday. [mention 2025/10/11]
+      mental_state::exercise::User needs to move body and plans long run tomorrow morning. [mention 2025/10/11]
+      mental_state::health::User ordered poke bowls for dinner and did a 12 km run but knee feels twingey. [mention 2025/10/12]
+      mental_state::injury care::User's usual protocol for managing a minor running discomfort is ice, elevation, and foam rolling. [mention 2025/10/12]
+      mental_state::goal::User plans to sign up for a half-marathon next year. [mention 2025/10/12]
+      mental_state::habit change::User is terrible at stretching which is probably why knee hurts. [mention 2025/10/12]
+      mental_state::exercise::User plans to try 15 minutes of yoga videos before bed. [mention 2025/10/13]
+      mental_state::mood::User feels mentally prepared for the week. [mention 2025/10/13]
+      basic_info::work::financial analysis
+      basic_info::work::User has a presentation to executive committee on Wednesday. [mention 2025/10/13]
+      mental_state::fear::User hates presenting and voice shakes. [mention 2025/10/13]
+      mental_state::practice::User books a room to practice presentation twice before standing up. [mention 2025/10/14]
+      mental_state::celebration::User plans dinner out with best friend after presentation. [mention 2025/10/16]
+      mental_state::interest::User and best friend love talking about travel plans. [mention 2025/10/17]
+      mental_state::travel::User is obsessed with Southeast Asia travel plans. [mention 2025/10/17]
+      mental_state::travel destination::User wants to explore Hanoi and Hoi An in Vietnam. [mention 2025/10/17]
+      ```
+    Summary + Extract total tokens: 2624
+    Summary + Extract total time: 364.71s
+
+  Difficulty: hard (50 rounds)
+    Summary time: 52.38s
+    Summary input tokens: 2757
+    Summary output:
+       It sounds like Stella has been making positive changes in her life, focusing on physical health through running and yoga, mental well-being through reading and volunteering, and social connections through meeting new people and reconnecting with friends. She's also addressing financial stress by updating her budget spreadsheet.
+      
+      In the next two hours, Stella chooses total stillness to rest and recover after a long work week. She enjoys a bath with Epsom salts and orders takeout, indulging in her favorite sushi.
+      
+      For future social connections, it seems she's leaning towards joining a local running group or cooking class based on shared interests. This approach will help make those first steps easier. It's great that Stella is taking action to expand her social circle and continue improving her quality of life in various aspects.
+    Extract time: 20.52s
+    Extract input tokens: 477
+    Extract output:
+       ```
+      basic_info::name::Stella
+      health::exercise::running, yoga
+      health::self_care::bath (with Epsom salts)
+      leisure::food::sushi
+      finance::budgeting::spreadsheet
+      social::activities::meeting_new_people, reconnecting_with_friends
+      social::interests::running_group, cooking_class
+      mental_state::relaxation::rest (two hours of stillness)
+      ```
+    Summary + Extract total tokens: 3234
+    Summary + Extract total time: 72.89s
+
+------------------------------------------------------------
+[MODEL] qwen2.5:7b-instruct
+  Load time (empty prompt warm-up): 9.70s
+  Difficulty: easy (10 rounds)
+    Summary time: 54.99s
+    Summary input tokens: 821
+    Summary output:
+      - Stella is 26 years old female. [mention 2025/10/09]
+      - Stella likes sushi hamburger and running. [mention 2025/10/09]
+      - Stella feels depressed and wants to hurt herself. [mention 2025/10/09, event in 2025/10/09]
+      - Stella's job is financial analysis, and Q4 is stressful with deadlines and late nights. [mention 2025/10/09]
+      - Stella stopped her early morning routine of running and having a proper breakfast to hit snooze until the last second. [mention 2025/10/09, event in 2025/10/09]
+      - Stella craves a big, cheesy meal like a double cheeseburger with fries for comfort today. [mention 2025/10/09]
+      - Watching crime documentaries helps Stella unwind after work. [mention 2025/10/09]
+      - Stella finished a series last night and woke up with a tension headache. [mention 2025/10/10, event in 2025/10/09]
+      - Stella soothes her tension headache with herbal tea and darkness when at home; otherwise, she has water and ibuprofen at the office. [mention 2025/10/10]
+    Extract time: 34.82s
+    Extract input tokens: 493
+    Extract output:
+      ```
+      basic_info::name::Stella
+      basic_info::age::26
+      basic_info::gender::female
+      interest::food::sushi hamburger
+      interest::exercise::running
+      mental_state::mood::depressed [mention 2025/10/09, event in 2025/10/09]
+      work::title::financial analysis
+      work::stressor::Q4 deadlines and late nights
+      behavior::routine::stopped early morning running and proper breakfast [mention 2025/10/09, event in 2025/10/09]
+      interest::comfort_food::double cheeseburger with fries
+      leisure::activity::watching crime documentaries
+      health::headache_relief::herbal tea at home, water and ibuprofen at office [mention 2025/10/10, event in 2025/10/09]
+      ```
+    Summary + Extract total tokens: 1314
+    Summary + Extract total time: 89.81s
+
+  Difficulty: medium (30 rounds)
+    Summary time: 175.75s
+    Summary input tokens: 1795
+    Summary output:
+      - Stella is 26 years old female. [mention 2025/10/09]
+      - Stella likes sushi hamburger and running. [mention 2025/10/09]
+      - Stella feels depressed and wants to hurt herself. [mention 2025/10/09]
+      - Stella's job is in financial analysis, with demanding Q4 deadlines. [mention 2025/10/09, mention 2025/10/16]
+      - Stella stopped her early morning routine of running and making a proper breakfast due to work stress. [mention 2025/10/09]
+      - Stella is craving comfort food, specifically a double cheeseburger with fries. [mention 2025/10/09]
+      - Stella watches crime documentaries to unwind after work. [mention 2025/10/09]
+      - Stella woke up with a tension headache due to poor sleep the previous night. [mention 2025/10/10, mention 2025/10/09]
+      - Stella drinks herbal tea and stays in darkness for headache relief at home. [mention 2025/10/10, mention 2025/10/09]
+      - Stella has a project review at 2 PM and plans to walk to the furthest bathroom after it. [mention 2025/10/10, mention 2025/10/09]
+      - Stella feels exhausted but hopeful on Friday. [mention 2025/10/11, mention 2025/10/16]
+      - Stella is considering a long run the next morning to move her body. [mention 2025/10/11, mention 2025/10/16]
+      - Stella orders in and watches a comedy for Friday night plans. [mention 2025/10/11]
+      - Stella does 12 km run the next day but feels knee twinge. [mention 2025/10/12, mention 2025/10/16]
+      - Stella uses ice, elevation, and foam rolling for knee pain management. [mention 2025/10/12, mention 2025/10/16]
+      - Stella wants to sign up for a half-marathon next year. [mention 2025/10/12, mention 2025/10/16]
+      - Stella plans to do yoga videos before bed for stretching discipline. [mention 2025/10/13]
+      - Stella feels anxious about presenting to the executive committee on Wednesday. [mention 2025/10/13, mention 2025/10/16]
+      - Stella practices her intro and conclusion out loud twice in a book room. [mention 2025/10/14, mention 2025/10/16]
+      - Stella wants to get a cat for company but needs time to research and plan. [mention 2025/10/13, mention 2025/10/17]
+      - Stella considers adding vertical space like cat trees or shelves in her small apartment. [mention 2025/10/15]
+      - Stella feels surprisingly calm before the presentation due to preparation. [mention 2025/10/16, mention 2025/10/13]
+      - Stella plans a hearty salad with lean protein for lunch before the meeting. [mention 2025/10/16, mention 2025/10/13]
+      - Stella's presentation went well and received good feedback. [mention 2025/10/16, mention 2025/10/13]
+      - Stella plans to celebrate with dinner out at a new Italian place downtown. [mention 2025/10/16, mention 2025/10/17]
+      - Stella and her best friend talk about travel plans for Southeast Asia. [mention 2025/10/17, mention 2025/10/16]
+      - Stella is most excited about exploring Vietnam's culture and food. [mention 2025/10/17, mention 2025/10/16]
+    Extract time: 41.24s
+    Extract input tokens: 767
+    Extract output:
+      ```
+      basic_info::name::Stella
+      basic_info::age::26
+      basic_info::gender::female
+      mental_state::mood::depressed [mention 2025/10/09]
+      mental_state::stress_triggers::work stress, poor sleep [mention 2025/10/09, mention 2025/10/10]
+      mental_state::support_network::best friend [mention 2025/10/17]
+      mental_state::motivation::hopeful [mention 2025/10/11]
+      interest::food::sushi hamburger, double cheeseburger with fries
+      interest::exercise::running, yoga
+      interest::relaxation::crime documentaries, watching comedy movies, herbal tea, darkness for headache relief
+      work::title::financial analysis
+      work::stress::Q4 deadlines [mention 2025/10/09, mention 2025/10/16]
+      ```
+    Summary + Extract total tokens: 2562
+    Summary + Extract total time: 216.99s
+
+  Difficulty: hard (50 rounds)
+    Summary time: 119.77s
+    Summary input tokens: 2757
+    Summary output:
+      That sounds like a great plan! Starting with something that aligns with your hobbies can indeed make it more enjoyable and less intimidating. Here are some steps you could take to get started:
+      
+      ### For the Running Group:
+      1. **Research Local Groups:**
+         - Use online platforms like Meetup.com or social media groups to find running clubs in your area.
+         - Check if there are any meetups happening soon that you can join as a guest.
+      
+      2. **Explore Events:**
+         - Look for local races, runs, or group activities where you can participate and see the community in action.
+         - This could help you gauge the vibe and decide if it’s something you want to commit to long-term.
+      
+      3. **Reach Out to Members:**
+         - If there are active groups on social media, consider sending a friendly message expressing your interest in joining.
+         - Joining group chats or forums can also be helpful for getting tips and advice from other members.
+      
+      ### For the Cooking Class:
+      1. **Check Local Options:**
+         - Look up local cooking classes offered by community centers, culinary schools, or online platforms like Udemy or Skillshare.
+         - Some classes might even have a guest session where you can observe and ask questions before committing to full sessions.
+      
+      2. **Look for Community Events:**
+         - Sometimes local food festivals or markets offer workshops or tasting events that are free or inexpensive.
+         - Attending these events can give you an opportunity to meet others who share your interest in cooking.
+      
+      3. **Engage Online:**
+         - Join online communities like Reddit or Facebook groups dedicated to cooking or running.
+         - Participating in discussions and asking for recommendations from other members can also help you find suitable options.
+      
+      ### General Tips:
+      - **Start Small:** You don’t have to jump into a full group or class right away. Observing first, asking questions, or participating in smaller events can be less daunting.
+      - **Bring Friends Along:** If you feel more comfortable with familiar faces, consider bringing Sarah along for the first few meetings or classes.
+      - **Set Realistic Goals:** Define what you want to achieve from these activities (e.g., making new friends, improving your running technique) and set small, manageable goals.
+      
+      ### Example Steps:
+      1. **Today:**
+         - Spend some time browsing local events or class offerings online.
+         - Reach out to the groups on social media platforms to ask if they have any upcoming events you can join as a guest.
+         - Plan which activity feels most appealing and start researching more about it.
+      
+      2. **Tomorrow:**
+         - Attend a guest session of your chosen group or class, if possible.
+         - Reflect on the experience and decide if it’s something you want to continue with.
+      
+      3. **Next Week:**
+         - Enroll in a full course or join a regular running group.
+         - Continue building connections within these communities.
+      
+      Taking things step-by-step will help you build your social circle gradually and ensure that the process feels manageable and enjoyable.
+    Extract time: 15.21s
+    Extract input tokens: 833
+    Extract output:
+      ```
+      basic_info::name::Sarah
+      interest::hobby::running, cooking
+      social_activity::group::local running groups, community cooking classes
+      planning::steps::research local groups, check events, reach out to members
+      motivation::reason::build social circle, improve skills
+      ```
+    Summary + Extract total tokens: 3590
+    Summary + Extract total time: 134.97s
+
+------------------------------------------------------------
+
+Simulation complete.

@@ -1,0 +1,91 @@
+File: ./chats/mock_user/1.json
+
+Cost time(s) 310.63163566589355
+* basic_info: age - 20
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* education: motivation - main motivation is solving complex problems and seeing ideas turn into functional apps
+* education: study_group - studies with Sarah since 2025/10/22
+* interests: activities - listening to classical music for about 30 minutes every evening to decompress, listening to electronic music for logical thinking and staying in a flow state; enjoys re-watching 'Blade Runner 2049' for its cinematography and world-building; a fan of Denis Villeneuve's work due to the atmosphere in his films;
+* interests: hobbies - enjoys classical music for disconnecting and feeling something different, still making time for immersive content as an escape;
+* mental_state: stress_triggers - anxious about upcoming pre-midterm period [mention 2025/10/22];
+* mental_state: support_network - planning a study schedule to avoid overwhelming pressure
+* work: future_plans - plans to add full-text search functionality later for the web app
+* work: project - working on a Python note web app with backend logic for creating, editing, and deleting notes since 2025/10/22
+* work: technology - uses PostgreSQL as the database technology for the web app
+File: ./chats/mock_user/2.json
+
+Cost time(s) 212.9181206226349
+* basic_info: age - 20
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* education: motivation - main motivation is solving complex problems and seeing ideas turn into functional apps
+* education: study_group - studies with Sarah since 2025/10/22
+* interests: activities - listening to classical music for about 30 minutes every evening to decompress, listening to electronic music for logical thinking and staying in a flow state; enjoys re-watching 'Blade Runner 2049' for its cinematography and world-building; a fan of Denis Villeneuve's work due to the atmosphere in his films; plans to go for a hike this weekend [mention 2025/10/23];;enjoying a brief period of calm after his busy work and study schedule [mention 2025/10/22]
+* interests: hobbies - enjoys classical music for disconnecting and feeling something different, still making time for immersive content as an escape; planning to play 'Stardew Valley' [mention 2025/10/22];
+* mental_state: mood - feeling relieved after midterms [mention 2025/10/22]
+* mental_state: motivation - thinking about motivation for the next half of the semester [mention 2025/10/22]
+* mental_state: stress_triggers - anxious about upcoming pre-midterm period [mention 2025/10/22]; feeling relieved after midterms [mention 2025/10/22];
+* mental_state: support_network - planning a study schedule to avoid overwhelming pressure
+* work: future_plans - plans to add full-text search functionality later for the web app; plans to add full-text search capabilities to his note-taking app as part of his personal projects [mention 2025/10/22, plan in 2025/10/22];
+* work: project - working on a Python note web app with backend logic for creating, editing, and deleting notes since 2025/10/22
+* work: technology - uses PostgreSQL as the database technology for the web app
+File: ./chats/mock_user/3.json
+
+Cost time(s) 287.628702878952
+* basic_info: age - 20
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* education: motivation - main motivation is solving complex problems and seeing ideas turn into functional apps
+* education: study_group - studies with Sarah since 2025/10/22
+* interests: activities - hiking for mental health [mention 2025/10/22]; plans a weekend trip to the mountains [mention 2025/10/23, plan in 2025/10/23];
+* interests: hobbies - enjoys reading 'The Expanse' book series [mention 2025/10/22]; prefers hard sci-fi with grounded science over fantasy [mention 2025/10/22];
+* mental_state: mood - feeling relieved after midterms [mention 2025/10/22];
+* mental_state: motivation - feels his motivation is tied to solving complex problems [mention 2025/10/22];
+* mental_state: stress_triggers - anxious about sending applications and final projects [mention 2025/10/22, stress trigger in 2025/10/22];
+* mental_state: support_network - planning a study schedule to avoid overwhelming pressure
+* work: future_plans - planning an end-of-finals celebration with friends [mention 2025/10/22, planning for 2025/11/3];
+* work: project - working on a note-taking app (added keyboard shortcuts as a new feature) [mention 2025/10/22];;working on a note-taking project [mention 2025/10/22, work in progress]; has final projects ahead [mention 2025/10/22]
+* work: technology - uses PostgreSQL as the database technology for the web app
+File: ./chats/mock_user/4.json
+
+Cost time(s) 545.0706486701965
+* basic_info: age - 20
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* education: motivation - main motivation is solving complex problems and seeing ideas turn into functional apps
+* education: study_group - studies with Sarah since 2025/10/22
+* interests: activities - takes short walks to get away from the screen [mention 2025/10/22, plan in 2025/10/23]; plans to spend time at the piano this week [mention 2025/10/22, plan in 2025/10/23];;takes long walks for rest and recovery [mention 2025/10/22, plan in 2025/10/22 after the interview]
+* interests: hobbies - enjoys reading 'The Expanse' book series [mention 2025/10/22]; prefers hard sci-fi with grounded science over fantasy [mention 2025/10/22];
+* interests: music - listens to Boards of Canada for algorithm practice [mention 2025/10/22, plan in 2025/10/23]; plays Chopin Nocturne to relax before the interview [mention 2025/10/22, plan in 2025/10/22]
+* mental_state: mood - feels relieved after the interview [mention 2025/10/22, event in 2025/10/23 morning]; feels numb after the interview [mention 2025/10/22, event in 2025/10/23 morning]
+* mental_state: motivation - feels his motivation is high to prepare for the interview [mention 2025/10/22];
+* mental_state: stress_triggers - nervous about the interview but prepared on paper [mention 2025/10/22, plan in 2025/10/23]; anxious about sending out his resume and cover letter [mention 2025/10/22, plan in 2025/10/29];nervous about the coding interview with behavioral questions and a graph problem [mention 2025/10/22, event in 2025/10/22]
+* mental_state: support_network - planning a study schedule to avoid overwhelming pressure;planning a study schedule to prepare for the interview with support from his study group [mention 2025/10/22]
+* work: future_plans - planning an end-of-finals party with Sarah since they have been studying together [mention 2025/10/22]; planning a study schedule to prepare for the interview [mention 2025/10/22]; waiting for the result of the coding interview for about a week [mention 2025/10/22, event in 2025/10/29 or later]
+* work: project - working on a note-taking app (added keyboard shortcuts as a new feature) [mention 2025/10/22]; working on a note-taking project [mention 2025/10/22, work in progress]; has final projects ahead [mention 2025/10/22];
+* work: technology - uses PostgreSQL as the database technology for the web app; uses PostgreSQL as the database for his project [mention 2025/10/22]
+File: ./chats/mock_user/5.json
+
+Cost time(s) 393.2180988788605
+* basic_info: age - 20
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* education: motivation - main motivation is solving complex problems and seeing ideas turn into functional apps
+* education: study_group - studies with Sarah since 2025/10/22
+* interests: activities - User prefers short walks to get away from screens and desks.
+* interests: hobbies - enjoys reading the 'Three-Body Problem' trilogy for distraction [mention 2025/10/22, started in 2025/10/22]; prefers hard sci-fi with grounded science over fantasy [mention 2025/10/22]
+* interests: music - listens to Boards of Canada while walking [mention 2025/10/22, started in 2025/10/22]
+* mental_state: mood - feels relieved and validated after getting the internship offer [mention 2025/10/22]; feels his motivation is high now [mention 2025/10/22, plan in 2025/10/23];
+* mental_state: motivation - feels his motivation is high now [mention 2025/10/22, plan in 2025/10/23];
+* mental_state: stress_triggers - nervous about the interview but prepared on paper [mention 2025/10/22, plan in 2025/10/23]; anxious about sending out his resume and cover letter [mention 2025/10/22, plan in 2025/10/29];nervous about the coding interview with behavioral questions and a graph problem [mention 2025/10/22, event in 2025/10/22]
+* mental_state: support_network - planning a study schedule to avoid overwhelming pressure;planning a study schedule to prepare for the interview with support from his study group [mention 2025/10/22]
+* work: future_plans - User is planning and prioritizing projects related to studies and personal relationships.
+* work: internship - got an internship offer from LogiCore as a backend engineering intern for the summer [mention 2025/10/22, get offer in 2025/10/23]
+* work: project - working on a note-taking project (implementing an indoor navigation system using the A* search algorithm) [mention 2025/10/22, started in 2025/10/22]; working on a note-taking application [mention 2025/10/22, plan in 2025/10/23];
+* work: technology - uses PostgreSQL as the database technology for the web app; uses PostgreSQL as the database for his project [mention 2025/10/22]; using PostgreSQL as the database technology [mention 2025/10/22, plan in 2025/10/23];

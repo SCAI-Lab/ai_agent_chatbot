@@ -1,0 +1,111 @@
+User ID is 94bfbfbf-5f0a-4cfb-87b4-9dc2c155992f
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:51
+Cost time(s) 291.53414249420166
+* basic_info: age - 20 years old[mention 2025/10/17];
+* basic_info: name - user
+* interests: activities - plays classical music for about 30 minutes every evening to decompress [mention 2025/10/17, event in 2025/10/17]
+* interests: music - listens to electronic music like Aphex Twin and Boards of Canada for focus during studying and coding [mention 2025/10/17, music: electronic instrumental]; enjoys playing Chopin's Nocturne in E-flat major [mention 2025/10/17].
+* mental_state: mood - feeling anxious about upcoming midterms [mention 2025/10/17, stress_triggers: midterms]
+* mental_state: motivation - high motivation in solving complex problems and creating functional apps [mention 2025/10/17, motivation level high]
+* support_network: sarah - study group with Sarah [mention 2025/10/17]
+* work: project - Python note web app backend logic for creating, editing, and deleting notes [mention 2025/10/18, plan in 2025/10/17];
+* work: subject - Computer Science
+* work: technology_stack - PostgreSQL database technology[mention 2025/10/17];
+* work: title - student (second-year)
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:03:13
+Cost time(s) 338.62131118774414
+* basic_info: age - 20 years old[mention 2025/10/17];
+* basic_info: name - user
+* interests: activities - plays video games for relaxation, specifically 'Stardew Valley' [mention 2025/10/17]; hobbies are expanding to include video gaming [mention 2025/10/17]; plans to go hiking this weekend [mention 2025/10/17, plan in 2025/10/20 or 2025/10/21]; plays classical music for about an hour daily [mention 2025/10/17];
+* interests: music - listens to electronic music like Aphex Twin and Boards of Canada for focus during studying and coding [mention 2025/10/17, music: electronic instrumental]; enjoys playing Chopin's Nocturne in E-flat major [mention 2025/10/17].
+* mental_state: mood - feeling anxious and drained after midterms [mention 2025/10/17]; mood improved significantly after the break [mention 2025/10/17];
+* mental_state: motivation - high motivation in solving complex problems and working on the project [mention 2025/10/17]; motivated by career goals and internships [mention 2025/10/17];
+* support_network: sarah - study group with Sarah [mention 2025/10/17]
+* work: project - Python note web app backend logic for creating, editing, and deleting notes [mention 2025/10/18, plan in 2025/10/17];
+* work: subject - Computer Science
+* work: technology_stack - PostgreSQL database technology[mention 2025/10/17];
+* work: title - student (second-year)
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:50
+Cost time(s) 502.17198157310486
+* basic_info: age - 20 years old[mention 2025/10/17];
+* basic_info: name - user
+* interests: activities - hiking for relaxation and unplug [mention 2025/10/17, plan in 2025/10/19]; identified hiking as an important activity for mental health [mention 2025/10/17];
+* interests: books - The Expanse book series [mention 2025/10/17], found it grounded in science [mention 2025/10/17]; prefers hard sci-fi over fantasy with dragons and magic [mention 2025/10/17]
+* interests: music - listens to electronic music like Aphex Twin and Boards of Canada for focus during studying and coding, as well as practicing piano at night for stress relief [mention 2025/10/17];
+* mental_state: mood - feeling calm after the weekend trip [mention 2025/10/19];
+* mental_state: motivation - high motivation in solving complex problems and working on the project, using small wins strategy to manage tasks [mention 2025/10/17];
+* mental_state: stress_triggers - end-of-semester burnout, but currently in a stressful but well-managed period with a final sprint ahead [mention 2025/10/17]; end-of-semester burnout [mention 2025/10/17] is removed as it's redundant.
+* support_network: sarah - study group with Sarah [mention 2025/10/17]
+* work: project - Python note web app backend logic for creating, editing, and deleting notes implemented with PostgreSQL database technology [mention 2025/10/18, plan in 2025/10/17];
+* work: subject - Computer Science
+* work: technology_stack - PostgreSQL database technology[mention 2025/10/17];
+* work: title - student (second-year)
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:07:01
+Cost time(s) 421.57098865509033
+* basic_info: age - 20 years old[mention 2025/10/17];
+* basic_info: name - user
+* interests: activities - hiking for relaxation and piano playing [mention 2025/10/17, plan in 2025/10/18];
+* interests: books - The Expanse book series [mention 2025/10/17], found it grounded in science [mention 2025/10/17]; prefers hard sci-fi over fantasy with dragons and magic [mention 2025/10/17]
+* interests: music - listens to electronic music like Aphex Twin and Boards of Canada for focus during studying and coding, as well as practicing piano at night for stress relief [mention 2025/10/17];
+* mental_state: mood - feeling relieved and anxious about the upcoming interview [mention 2025/10/17];;feeling relieved and anxious[mention 2025/10/17]; feeling numb after the interview.[mention 2025/10/18, feeling on 2025/10/18]
+* mental_state: motivation - focused on preparing for the interview [mention 2025/10/17];;focused on preparing for the...[mention 2025/10/17, motivation on 2025/10/18]
+* mental_state: stress_triggers - technical interview with LogiCore [mention 2025/10/17, plan in 2025/10/24]; end-of-semester burnout, but currently in a stressful but well-managed period with a final sprint ahead [mention 2025/10/17] is removed as it's redundant.
+* support_network: sarah - study group with Sarah [mention 2025/10/17];study group with Sarah [mention 2025/10/17]
+* work: project - Python note web app backend project [mention 2025/10/17];;Python note web app backend...[mention 2025/10/17, project on 2025/10/18]
+* work: subject - Computer Science
+* work: technology_stack - PostgreSQL database technology[mention 2025/10/17];
+* work: title - student (second-year)
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:07:46
+Cost time(s) 619.5551373958588
+* basic_info: age - 20 years old[mention 2025/10/17];
+* basic_info: name - Ethan[mention 2025/10/17];
+* interests: activities - quiet walks for relaxation and... [mention 2025/10/18]; (assuming the user plans to continue with quiet walks)
+* interests: books - The Expanse book series [mention 2025/10/17], found it grounded in science [mention 2025/10/17]; prefers hard sci-fi over fantasy with dragons and magic [mention 2025/10/17]
+* interests: music - listens to electronic music like Aphex Twin and Boards of Canada for focus during studying and coding, as well as practicing piano at night for stress relief [mention 2025/10/17];;listens to ambient music like Boards of Canada[mention 2025/10/17]
+* mental_state: mood - focused on preparing for the interview; feeling validated and excited after getting the internship offer [mention 2025/10/17];
+* mental_state: motivation - feeling motivated to complete the final project and prepare for interviews after getting the internship offer [mention 2025/10/17];
+* mental_state: stress_triggers - technical interview with LogiCore [mention 2025/10/24]; end-of-semester burnout is removed as it's redundant;
+* support_network: sarah - study group with Sarah [mention 2025/10/17];
+* work: position - backend engineering intern at LogiCore[mention 2025/10/18, got offer on 2025/10/17]
+* work: project - feeling validated and excited after getting the internship offer [mention 2025/10/17];
+* work: subject - Computer Science
+* work: technology_stack - PostgreSQL database technology[mention 2025/10/17];
+* work: title - student (second-year)

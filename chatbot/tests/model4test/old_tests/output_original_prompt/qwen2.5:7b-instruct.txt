@@ -1,0 +1,100 @@
+User ID is 8bbb27a9-ddd8-4276-8243-97c1af275c30
+Warm-up skipped (no warmup model specified).
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:14
+Cost time(s) 314.91320538520813
+* basic_info: age - 20 years old
+* basic_info: name - Ethan
+* interests: activities - solving complex problems, creating functional apps, working on Python note web app with backend logic for creating, editing, and deleting notes; plays piano for about 30 minutes every evening to decompress [mention 2025/10/21];
+* interests: hobbies - still makes time for the piano [mention 2025/10/21];
+* interests: music - listens to electronic music, especially Aphex Twin and Boards of Canada, for focus during studying and coding; [mention 2025/10/21]
+* mental_state: mood - feeling anxious about upcoming midterms and planning a study schedule [mention 2025/10/21];
+* mental_state: stress_triggers - midterms [mention 2025/10/21];
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:14
+Cost time(s) 358.28901076316833
+* basic_info: age - 20 years old
+* basic_info: name - Ethan
+* interest: activities - Ethan feels motivated by the idea of tangible career goals and personal projects as a portfolio piece.
+* interest: hobbies - Ethan plans to enjoy some personal time, including hiking and playing Stardew Valley.
+* interests: activities - writing articles on his tech blog to demonstrate deep understanding and communication skills.
+* interests: hobbies - still makes time for the piano [mention 2025/10/21]; playing 'Stardew Valley' [mention 2025/10/21];
+* interests: music - listens to electronic music, especially Aphex Twin and Boards of Canada, for focus during studying and coding; [mention 2025/10/21]
+* mental_state: mood - feeling anxious about upcoming midterms and planning a study schedule [mention 2025/10/21]; improved significantly after midterms [mention 2025/10/21, event in 2025/10/21];
+* mental_state: stress_triggers - midterms [mention 2025/10/21];
+* work: internship_planning - Ethan is planning for summer internships, focusing on backend systems or cloud infrastructure. [mention 2025/10/21, plan in 2026/04/01]
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:39
+Cost time(s) 283.6167232990265
+* basic_info: age - 20 years old
+* basic_info: name - Ethan
+* interest: activities - Ethan feels motivated by hiking for mental health [mention 2025/10/21];
+* interest: hobbies - Ethan plans to enjoy a weekend trip to the mountains [mention 2025/10/23, plan in 2025/10/21];
+* interests: activities - applied for backend software engineering roles [mention 2025/10/21, plan in 2025/10/21]; went on a hike and sent out internship applications [mention 2025/10/21, event in 2025/10/21]
+* interests: hobbies - still makes time for the piano to cope with stress [mention 2025/10/21, plan in 2025/10/21];still makes time for reading 'The Expanse' series based on hard sci-fi [mention 2025/10/21, finish in 2025/10/21]
+* interests: music - listens to electronic music, especially Aphex Twin and Boards of Canada, for focus during studying and coding; [mention 2025/10/21]
+* mental_state: mood - feeling anxious about upcoming midterms and planning a study schedule [mention 2025/10/21]; improved significantly after midterms [mention 2025/10/21, event in 2025/10/21]
+* mental_state: stress_triggers - experiencing end-of-term stress [mention 2025/10/21, current status]; midterms [mention 2025/10/21]
+* work: internship_planning - Ethan is planning for summer internships, focusing on backend systems or cloud infrastructure. [mention 2025/10/21, plan in 2026/04/01]
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:10:57
+Cost time(s) 657.2113015651703
+* basic_info: age - 20 years old
+* basic_info: name - Ethan
+* interest: activities - Ethan feels motivated by hiking for mental health; plans to spend time at the piano and take short walks [mention 2025/10/21, plan in 2025/10/21]; talked about his note app and PostgreSQL choice [mention 2025/10/21]; explained the keyboard shortcuts he built [mention 2025/10/21]; plans to take a long walk and not code for the rest of the day [mention 2025/10/21, plan in 2025/10/21];
+* interest: hobbies - Ethan plans to enjoy a weekend trip to the mountains [mention 2025/10/23, plan in 2025/10/21];
+* interests: activities - applied for backend software engineering roles [mention 2025/10/21, plan in 2025/10/21]; went on a hike and sent out internship applications [mention 2025/10/21, event in 2025/10/21]; plans to practice coding problems related to dynamic programming and graph algorithms; listens to Boards of Canada for algorithm practice [mention 2025/10/21];
+* interests: hobbies - still makes time for the piano to cope with stress [mention 2025/10/21, plan in 2025/10/21];still makes time for reading 'The Expanse' series based on hard sci-fi [mention 2025/10/21, finish in 2025/10/21]
+* interests: music - listens to electronic music, especially Aphex Twin and Boards of Canada, for focus during studying and coding; [mention 2025/10/21]
+* mental_state: mood - feeling anxious about upcoming technical interview with LogiCore [mention 2025/10/21]; improved significantly after midterms [mention 2025/10/21, event in 2025/10/21]; feels drained after the interview [mention 2025/10/21, event in 2025/10/21];
+* mental_state: stress_triggers - experiencing imposter syndrome before the interview [mention 2025/10/21]; waiting for feedback from interviewers for about a week [mention 2025/10/28];
+* work: coding_problem - user faced a coding problem during an interview [mention 2025/10/21, event in 2025/10/21]; made an off-by-one error and took time to fix it [mention 2025/10/21, event in 2025/10/21]
+* work: internship_planning - Ethan is planning for summer internships, focusing on backend systems or cloud infrastructure. [mention 2025/10/21, plan in 2026/04/01]
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:27
+Cost time(s) 517.5336239337921
+* basic_info: age - 20 years old
+* basic_info: name - Ethan
+* interest: activities - Ethan feels motivated by hiking for mental health; plans to spend time at the piano and take short walks [mention 2025/10/21, plan in 2025/10/21]; talked about his note app and PostgreSQL choice [mention 2025/10/21]; explained the keyboard shortcuts he built [mention 2025/10/21]; plans to take a long walk and not code for the rest of the day [mention 2025/10/21, plan in 2025/10/21];
+* interest: hobbies - Ethan plans to enjoy a weekend trip to the mountains [mention 2025/10/23, plan in 2025/10/21];
+* interest: music - listens to electronic music for quiet walks with ambient music to help manage his anxiety [mention 2025/10/21]
+* interests: activities - applied for backend software engineering roles [mention 2025/10/21, plan in 2025/10/21]; went on a hike and sent out internship applications [mention 2025/10/21, event in 2025/10/21]; plans to practice coding problems related to dynamic programming and graph algorithms; listens to Boards of Canada for algorithm practice [mention 2025/10/21];
+* interests: hobbies - still makes time for the piano to cope with stress [mention 2025/10/21, plan in 2025/10/21];still makes time for reading 'The Expanse' series based on hard sci-fi [mention 2025/10/21, finish in 2025/10/21]
+* interests: music - listens to electronic music, especially Aphex Twin and Boards of Canada, for focus during studying and coding; [mention 2025/10/21]
+* mental_state: mood - feeling validated and motivated after getting the internship offer [mention 2025/10/21, anxiety triggered by interview on 2025/10/21]; experiencing imposter syndrome during the waiting period for the interview result [mention 2025/10/21, imposter syndrome triggered by interview on 2025/10/21]; feeling anxious about internship planning [mention 2025/10/21].
+* mental_state: stress_triggers - Ethan got an offer from LogiCore as a backend engineering intern [mention 2025/10/21, got offer in 2025/10/21]; user is feeling anxious about exams and algorithm project before getting the internship offer [mention 2025/10/21, stress_triggers in 2025/10/21].
+* work: coding_problem - user faced a coding problem during an interview [mention 2025/10/21, event in 2025/10/21]; made an off-by-one error and took time to fix it [mention 2025/10/21, event in 2025/10/21]
+* work: internship_planning - Ethan got an offer from LogiCore as a backend engineering intern [mention 2025/10/21, got offer in 2025/10/21]; feeling validated and motivated after getting the internship offer [mention 2025/10/21, mood change in 2025/10/21].

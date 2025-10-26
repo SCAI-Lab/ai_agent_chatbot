@@ -1,0 +1,146 @@
+User ID is 40f8155d-7a56-4ed3-8fe7-746c798e5de3
+Warm-up skipped (no warmup model specified).
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:06:56
+Cost time(s) 416.6086916923523
+* basic_info: age - 20 years old [mention 2025/10/21];20 years old [mention 2025/10/21]
+* basic_info: name - Ethan
+* basic_info: support_network - Sarah (friend in same study group)
+* interests: hobbies - piano (still plays every evening for about 30 minutes)
+* interests: movie_director - Denis Villeneuve's work is appreciated
+* interests: music - Aphex Twin and Boards of Canada instrumental music;classical pieces (favorite music), Aphex Twin and Boards of Canada (also enjoys electronic music)
+* mental_state: stress_triggers - exams
+* motivation: drives - solving complex problems in CS
+* preferences: music_for_emotional_expression - classical music
+* preferences: music_for_focus - electronic music and classical music
+* preferences: study_system - electronic and classical music for focus and relaxation
+* schedule: social_life - mostly study sessions with group during pre-midterm crunch
+* schedule: upcoming_weeks - study plan and social activity
+* work: class - advanced algorithms class
+* work: project - Python note web app
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:58
+Cost time(s) 346.14541268348694
+* basic_info: age - 20 years old [mention 2025/10/21];20 years old [mention 2025/10/21];20 years old
+* basic_info: name - Ethan
+* basic_info: support_network - Sarah (friend in same study group)
+* interests: hobbies - piano (still plays every evening for about 30 minutes);playing 'Stardew Valley' game [mention 2025/10/21]
+* interests: movie_director - Denis Villeneuve's work is appreciated
+* interests: music - Aphex Twin and Boards of Canada instrumental music;classical pieces (favorite music), Aphex Twin and Boards of Canada (also enjoys electronic music)
+* mental_state: mood - improved a lot after midterms [mention 2025/10/21];exams [mention 2025/10/21] (no change);solving complex problems in Memobase [mention 2025/10/21] (no change)
+* mental_state: motivation - high due to prospect of software engineering internship focusing on backend systems or cloud infrastructure [mention 2025/10/21]
+* mental_state: stress_triggers - software engineer (relevant experience for internship applications) [mention 2025/10/21]; software engineer (relevant experience for internship applications) [mention 2025/10/21]
+* motivation: drives - solving complex problems in CS;solving complex problems in Memobase [mention 2025/10/21] (no change)
+* preferences: music_for_emotional_expression - classical music
+* preferences: music_for_focus - electronic music and classical music
+* preferences: study_system - electronic and classical music for focus and relaxation
+* schedule: social_life - mostly study sessions with group during pre-midterm crunch;planned hike this weekend [mention 2025/10/24]
+* schedule: upcoming_weeks - study plan and social activity
+* work: class - advanced algorithms class
+* work: position - software engineer;software engineer (relevant experience for internship applications) [mention 2025/10/21]
+* work: project - Python note web app
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:29
+Cost time(s) 511.7397623062134
+* basic_info: age - 20 years old [mention 2025/10/21];
+* basic_info: hobbies - hiking
+* basic_info: name - Ethan
+* basic_info: support_network - Sarah (friend in same study group)
+* interests: hobbies - piano (still plays every evening for about 30 minutes);playing 'Stardew Valley' game [mention 2025/10/21];piano (still plays and uses it to decompress) [mention 2025/10/21]
+* interests: movie_director - Denis Villeneuve's work is appreciated; linked to his interest in sci-fi movies (with grounded science)
+* interests: movie_genre - sci-fi (with grounded science)
+* interests: music - Aphex Twin and Boards of Canada instrumental music;classical pieces (favorite music), Aphex Twin and Boards of Canada (also enjoys electronic music)
+* mental_state: mood - improved a lot after midterms [mention 2025/10/21];exams [mention 2025/10/21] (no change);solving complex problems in Memobase [mention 2025/10/21] (no change)
+* mental_state: motivation - feeling a serious hit due to burnout [mention 2025/10/21]; replaced with solving complex problems in sci-fi
+* mental_state: stress_triggers - job hunting and end-of-semester projects
+* motivation: drives - solving complex problems in CS;solving complex problems in Memobase [mention 2025/10/21] (no change);solving complex problems in software engineering (no change mentioned)
+* preferences: music_for_emotional_expression - classical music (he finds the structured, mathematical nature of classical music helps him cope with job hunting stress);
+* preferences: music_for_focus - electronic music and classical music
+* preferences: study_system - electronic and classical music for focus and relaxation
+* schedule: social_life - mostly study sessions with group during pre-midterm crunch;planned hike this weekend [mention 2025/10/24]
+* schedule: upcoming_weeks - study plan and social activity;finals are about three weeks out [mention 2025/10/21];well-managed few weeks ahead (with stressful but manageable tasks)
+* work: class - advanced algorithms class
+* work: position - software engineer (relevant experience for internship applications) [mention 2025/10/21];
+* work: project - Python note web app
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:09:36
+Cost time(s) 576.2233874797821
+* basic_info: age - 20 years old [mention 2025/10/21];
+* basic_info: hobbies - hiking
+* basic_info: name - Ethan
+* basic_info: support_network - Sarah (friend in same study group)
+* interests: hobbies - piano (still plays every evening for about 30 minutes);playing 'Stardew Valley' game [mention 2025/10/21];piano (still plays and uses it to decompress) [mention 2025/10/21];piano (still plays piano this week)[mention 2025/10/21]
+* interests: movie_director - Denis Villeneuve's work is appreciated; linked to his interest in sci-fi movies (with grounded science)
+* interests: movie_genre - sci-fi (with grounded science)
+* interests: music - Aphex Twin and Boards of Canada instrumental music;classical pieces (favorite music), Aphex Twin and Boards of Canada (also enjoys electronic music)
+* mental_state: mood - feeling numb after interview [mention 2025/10/21];;feeling numb after interview [mention 2025/10/21]
+* mental_state: motivation - motivation hit due to interview preparation [mention 2025/10/21];
+* mental_state: stress_triggers - job hunting and end-of-semester exams;
+* motivation: drives - solving complex problems in CS;solving complex problems in Memobase [mention 2025/10/21] (no change);solving complex problems in software engineering (no change mentioned)
+* preferences: music_for_emotional_expression - classical music (he finds the structured, mathematical nature of classical music helps him cope with job hunting stress); plans to learn Chopin Nocturne [mention 2025/10/21, plan in 2025/10/21]
+* preferences: music_for_focus - electronic music and classical music
+* preferences: study_system - electronic and classical music for focus and relaxation
+* schedule: social_life - mostly study sessions with group during pre-midterm crunch;planned hike this weekend [mention 2025/10/24];
+* schedule: upcoming_weeks - study plan and social activity;finals are about three weeks out [mention 2025/10/21];well-managed few weeks ahead (with stressful but manageable tasks)
+* work: class - advanced algorithms class and Python note web app
+* work: position - software engineer (relevant experience for internship applications) [mention 2025/10/21];
+* work: project - Python note web app using PostgreSQL choice and keyboard shortcuts built [mention 2025/10/21, talk about project in 2025/10/21]
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:06:16
+Cost time(s) 509.28100776672363
+* basic_info: age - 20 years old [mention 2025/10/21];;20 years old [mention 2025/10/21];20 years old
+* basic_info: hobbies - hiking
+* basic_info: name - Ethan
+* basic_info: self_perception - feels validated and not a complete imposter
+* basic_info: support_network - Sarah (friend in same study group)
+* interests: hobbies - piano (still plays every evening for about 30 minutes);playing 'Stardew Valley' game [mention 2025/10/21];piano (still plays and uses it to decompress) [mention 2025/10/21];piano (still plays piano this week)[mention 2025/10/21]
+* interests: movie_director - Denis Villeneuve's work is appreciated; linked to his interest in sci-fi movies (with grounded science)
+* interests: movie_genre - sci-fi (with grounded science);sci-fi [mention 2025/10/21] (with Boards of Canada as ambient music)
+* interests: music - Aphex Twin and Boards of Canada instrumental music;classical pieces (favorite music), Aphex Twin and Boards of Canada (also enjoys electronic music)
+* mental_state: mood - feeling validated [mention 2025/10/21]
+* mental_state: motivation - motivation hit due to interview outcome [mention 2025/10/21];got a huge boost after receiving the internship offer from LogiCore
+* mental_state: stress_triggers - job hunting and end-of-semester stress [mention 2025/10/21]
+* mental_state: support_network - assistant (he talked through a panic attack with the assistant)
+* motivation: drives - solving complex problems in CS;solving complex problems in Memobase [mention 2025/10/21] (no change);solving complex problems in software engineering (no change mentioned)
+* preferences: music_for_emotional_expression - classical music (he finds the structured, mathematical nature of classical music helps him cope with job hunting stress; plans to learn Chopin Nocturne) [mention 2025/10/21]
+* preferences: music_for_focus - electronic music and classical music
+* preferences: study_system - electronic and classical music for focus and relaxation
+* schedule: reading_plan - 'The Three-Body Problem' trilogy [plan in 2025/10/21]
+* schedule: social_life - mostly study sessions with group but plans to celebrate on 2025/10/21 [mention 2025/10/21]
+* schedule: upcoming_weeks - filled with excitement and motivation [mention 2025/10/22]
+* work: class - advanced algorithms class and Python note web app
+* work: position - software engineer (relevant experience for internship applications) [mention 2025/10/21];
+* work: project - Python note web app using PostgreSQL choice and keyboard shortcuts built [mention 2025/10/21, talk about project in 2025/10/21]

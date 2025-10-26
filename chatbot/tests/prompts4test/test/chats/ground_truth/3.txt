@@ -1,0 +1,12 @@
+basic_info::name::Ethan
+basic_info::gender::male
+basic_info::age::20
+
+mental_state::mood::tense, nerve-wracking, low motivation (burnout), calm (when hiking)
+mental_state::stress_triggers::exams, crowded_places, midterms, internship applications, final projects
+mental_state::support_network::classmates, friends (Sarah, study group), family
+mental_state::motivation::progress, learning_by_doing, building useful applications, solving complex problems, career goals, securing a summer internship, breaking tasks into small steps, looking forward to celebrations (hiking trip)
+
+interests::activities::coding, piano, quiet_walks, hiking (important for mental health), weekend trips
+interests::music::electronic, ambient, instrumental, Aphex Twin, Boards of Canada (listen), classical (Chopin, play on piano, finds it structured)
+interests::hobbies::sci_fi_movies (Blade Runner 2049, Denis Villeneuve), reading_tech_blogs (and considering writing for them), building_web_apps (Python, PostgreSQL, vanilla JS/CSS), gaming (Stardew Valley), reading (hard sci-fi, 'The Expanse' book series)

@@ -1,0 +1,98 @@
+User ID is 8cfcc1df-ae84-4244-a893-14e324b4d17c
+Warm-up skipped (no warmup model specified).
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:03:41
+Cost time(s) 221.3840491771698
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* interests: activities - studying with a study group during pre-midterm crunch [mention 2025/10/22, start in 2025/10/22]; watching 'Blade Runner 2049' last weekend, appreciates Denis Villeneuve's work for its cinematography and world-building [mention 2025/10/22];
+* interests: hobbies - proactively managing stress through listening to music for about 30 minutes every evening [mention 2025/10/22, start in 2025/10/22];
+* interests: music - electronic music, especially Aphex Twin and Boards of Canada;classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22]; electronic music for logical thinking and flow state [mention 2025/10/22]
+* mental_state: stress_triggers - upcoming midterms, workload
+* work: technology_used - PostgreSQL as the database technology
+* work: title - Python note web app developer
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:03:01
+Cost time(s) 298.0000216960907
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* interests: activities - studying with a study group during pre-midterm crunch [mention 2025/10/22]; plans to go hiking this weekend at a state park about an hour's drive from his location [mention 2025/10/22, plan in 2025/10/29 or 30]
+* interests: hobbies - proactively managing stress through personal projects and articles for the tech blog he reads; started playing the video game 'Stardew Valley' recommended by Sarah [mention 2025/10/22]; hobbies are expanding, including playing 'Stardew Valley' [mention 2025/10/22];
+* interests: music - electronic music, especially Aphex Twin and Boards of Canada;classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22]; electronic music for logical thinking and flow state [mention 2025/10/22]
+* mental_state: mood - Ethan felt completely drained after working on a note-taking app with a focus on backend development [mention 2025/10/22]; previously felt drained after midterms but now feels more relaxed and relieved [mention 2025/10/22]
+* mental_state: stress_triggers - resumes, cover letters, and interviews for internships [mention 2025/10/22]
+* mental_state: support_network - family sent him a care package with snacks and a gift card [mention 2025/10/22, received on 2025/10/22]
+* work: technology_used - PostgreSQL as the primary database for his note-taking app [mention 2025/10/22]
+* work: title - Python note web app developer
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:46
+Cost time(s) 336.3689012527466
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* interests: activities - hiking [mention 2025/10/22, hike in 2025/10/24 to 2025/10/26]; weekend trip to the mountains [mention 2025/10/22, plan in 2025/10/23];
+* interests: hobbies - managing stress through piano practice at night [mention 2025/10/22];
+* interests: music - electronic music, especially hard sci-fi with grounded and realistic science [mention 2025/10/22, preference since 2025/10/22];
+* mental_state: mood - Ethan felt completely drained after working on a note-taking app with a focus on backend development [mention 2025/10/22]; previously felt drained after midterms but now feels more relaxed and relieved [mention 2025/10/22];calm during the hike, feeling drained after sending out applications [mention 2025/10/22];completely drained [mention 2025/10/22]
+* mental_state: motivation - taking a serious hit due to stress from internship applications [mention 2025/10/22, stress trigger in 2025/10/23 to 2025/10/26];
+* mental_state: stress_triggers - sending out internship applications [mention 2025/10/22, stress trigger in 2025/10/23 to 2025/10/26];
+* mental_state: support_network - family sent him a care package with snacks and a gift card [mention 2025/10/22, received on 2025/10/22];family sent him care [mention 2025/10/22, support from family in 2025/10/22]
+* work: technology_used - PostgreSQL as the backend for the note-taking app [mention 2025/10/22]
+* work: title - Python note web app developer;Python note web app developer
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:07:39
+Cost time(s) 459.31741857528687
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* education: major - Computer Science (CS)
+* interests: activities - hiking [mention 2025/10/22, plan in 2025/10/23]; plans to spend time at the piano and take short walks; preparing for technical interview [mention 2025/10/22, plan in 2025/10/23];
+* interests: hobbies - managing stress through playing piano [mention 2025/10/22]; previously managing stress through piano practice at night [mention 2025/10/22];
+* interests: music - electronic music, especially for managing stress and focus; previously electronic music, especially hard sci-fi with grounded and realistic science [mention 2025/10/22]; plans to play Chopin Nocturne to help relax before the interview;
+* mental_state: mood - anxious about potentially freezing up during the interview [mention 2025/10/22, event happened on 2025/10/23]; numb after the interview [mention 2025/10/22, event happened on 2025/10/23];
+* mental_state: motivation - taking a serious hit due to stress from internship applications; needs to prepare for dynamic programming and complex graph algorithms [mention 2025/10/29, plan in 2025/10/29]
+* mental_state: stress_triggers - sending out internship applications [mention 2025/10/22, stress trigger in 2025/10/23 to 2025/10/26];;live pressure during the interview [mention 2025/10/22]
+* mental_state: support_network - family sent him a care package with snacks and a gift card [mention 2025/10/22, received on 2025/10/22];family sent him care [mention 2025/10/22, support from family in 2025/10/22];family sent him care before the interview [mention 2025/10/22]
+* work: schedule - technical interview with Logi on 2025/10/22 [mention 2025/10/22, plan in 2025/10/23]; technical interview with LogiCore on 2025/10/30;
+* work: technology_used - PostgreSQL as the backend for the note-taking app [mention 2025/10/22]; PostgreSQL as the database technology and vanilla JS for projects [mention 2025/10/22];
+* work: title - Python note web app developer at LogiCore [mention 2025/10/22, plan in 2025/10/30];
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━                  60% -:--:--

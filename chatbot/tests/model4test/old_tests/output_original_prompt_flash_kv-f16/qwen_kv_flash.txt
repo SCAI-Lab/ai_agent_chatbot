@@ -1,0 +1,106 @@
+User ID is 25ca9ca4-6a8d-4079-a9d4-700abb2dffb0
+Warm-up skipped (no warmup model specified).
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:46
+Cost time(s) 286.44651985168457
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* interests: activities - plays music for about 30 minutes every evening to decompress [mention 2025/10/22, start in 2025/10/22]; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22];
+* interests: music - listens to electronic music for logical thinking and staying in a flow state [mention 2025/10/22]; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22]
+* mental_state: mood - feels anxious about midterms but is taking proactive steps;feels anxious about midterms [mention 2025/10/22]; re-watched 'Blade Runner 2049' last weekend and likes Denis Villeneuve's work for its immersive atmosphere [mention 2025/10/22]
+* mental_state: motivation - main motivation in CS is solving complex problems and creating functional apps
+* mental_state: stress_triggers - upcoming midterms;
+* mental_state: support_network - study group with Sarah;;has a study group with Sarah, but social life is limited during pre-midterm crunch [mention 2025/10/22]
+* work: title - student, major is Computer Science
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:15
+Cost time(s) 287.38854479789734
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* interests: activities - plays music for about 30 minutes every evening to decompress; working on personal projects and writing articles for a tech blog [mention 2025/10/22, start in 2025/10/22]
+* interests: music - listens to electronic music for logical thinking and staying in a flow state [mention 2025/10/22]; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22]
+* mental_state: mood - feels anxious about midterms but is taking proactive steps; mood has improved after midterms [mention 2025/10/22]; current state: feels calm
+* mental_state: motivation - main motivation in CS is solving complex problems and creating functional apps
+* mental_state: stress_triggers - upcoming midterms;
+* mental_state: support_network - study group with Sarah;;has a study group with Sarah, but social life is limited during pre-midterm crunch [mention 2025/10/22]
+* work: title - student, major is Computer Science; plans to apply for software engineering internships focusing on backend systems or cloud infrastructure [mention 2025/10/22, plan in 2026/04/01];
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:43
+Cost time(s) 308.5993094444275
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* interests: activities - hiking, plays music for about 30 minutes every evening to decompress; plans a weekend trip to the mountains [mention 2025/10/23]; reading 'The Expanse' book series [mention 2025/10/22];
+* interests: genres - hard sci-fi over fantasy with dragons and magic[mention 2025/10/22]
+* interests: hobbies - develops software, e.g., note-taking app and adds new features like keyboard shortcuts [mention 2025/10/22];develops software, reads books[mention 2025/10/22]
+* interests: music - listens to electronic music for logical thinking and staying in a flow state; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22];
+* mental_state: mood - feels calm during the hike but nervous about submitting applications; feels end-of-semester burnout [mention 2025/10/22]; current state: feels calm;
+* mental_state: motivation - main motivation in CS is solving complex problems and creating functional apps; plans to use small wins strategy for motivation [mention 2025/10/22]; main motivation is to succeed [mention 2025/10/22]
+* mental_state: stress_triggers - upcoming midterms, stress in 2025/10/29;
+* mental_state: support_network - study group with Sarah;;has a study group with Sarah, but social life is limited during pre-midterm crunch [mention 2025/10/22];
+* work: title - student, major is Computer Science; applied for backend software engineering roles [mention 2025/10/22]; plans to apply for software engineering internships focusing on backend systems or cloud infrastructure [mention 2026/04/01];
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:10:18
+Cost time(s) 618.8842587471008
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* interests: activities - User prefers outdoor activities and relaxation through music, as evidenced by plans for hiking and playing music daily; also discussed his note app and PostgreSQL choice [mention 2025/10/22].
+* interests: genres - hard sci-fi over fantasy; hard sci-fi over fantasy with dragons and magic[mention 2025/10/22].
+* interests: hobbies - develops software, e.g., a note-taking app with keyboard shortcuts [mention 2025/10/22]; develops software, reads books[mention 2025/10/22].
+* interests: music - listens to electronic music for logical thinking and staying in a flow state; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22].
+* mental_state: mood - feels calm during the hike but nervous about submitting applications; feels end-of-semester burnout; currently feels more in control after discussing with assistant; feels anxious about the interview; worries about freezing up [mention 2025/10/22].
+* mental_state: motivation - main motivation in CS is solving complex problems and creating functional apps; plans to use small wins strategy for motivation [mention 2025/10/22]; main motivation is to succeed [mention 2025/10/22].
+* mental_state: stress_triggers - upcoming midterms, stress in 2025/10/29; upcoming final projects for classes [mention 2025/10/22, project due in near future]; high stress during the interview [mention 2025/10/22, event in 2025/10/22 a few minutes before interview end].
+* mental_state: support_network - study group with Sarah;;has a study group with Sarah, but social life is limited during pre-midterm crunch [mention 2025/10/22];.
+* work: title - student, major is Computer Science; applied for backend software engineering roles [mention 2025/10/22]; plans to apply for software engineering internships focusing on backend systems or cloud infrastructure [mention 2026/04/01]; ongoing status: student;
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:04
+Cost time(s) 359.9044041633606
+* basic_info: age - 20 (turned 20 in 2025)
+* basic_info: gender - male
+* basic_info: name - Ethan
+* interests: activities - Ethan prefers outdoor activities and quiet walks as a coping mechanism [mention 2025/10/22]; user prefers outdoor activities and relaxation through music, as evidenced by plans for hiking and playing music daily; also discussed his note app and PostgreSQL choice [mention 2025/10/22].;Ethan plans to go hiking with friends after the exams [mention 2025/10/22, support_network in 2025/10/22];plans to celebrate after the talk [plan in 2025/10/22]
+* interests: genres - Ethan prefers hard sci-fi over fantasy [mention 2025/10/22]; hard sci-fi over fantasy with dragons and magic[mention 2025/10/22].
+* interests: hobbies - develops software, e.g., a note-taking app with keyboard shortcuts [mention 2025/10/22]; develops software, reads books[mention 2025/10/22].
+* interests: music - listens to electronic music as a coping mechanism [mention 2025/10/22]; listens to electronic music for logical thinking and staying in a flow state; enjoys playing classical pieces, currently learning Chopin's Nocturne in E-flat major [mention 2025/10/22].
+* mental_state: mood - feels validated and excited after receiving the internship offer [mention 2025/10/22]; feels validated and excited after the talk [mention 2025/10/22];
+* mental_state: motivation - main motivation in CS is his passion for software development and algorithmic challenges [mention 2025/10/22]; main motivation in CS is solving complex problems and creating functional apps; plans to use small wins strategy for motivation [mention 2025/10/22]; main motivation is to succeed [mention 2025/10/22].
+* mental_state: stress_triggers - upcoming exams are causing stress for Ethan [mention 2025/10/22, stress_triggers in 2025/10/29];
+* mental_state: support_network - study group with Sarah for project support [mention 2025/10/22]; study group with Sarah;;has a study group with Sarah, but social life is limited during pre-midterm crunch [mention 2025/10/22];.
+* work: title - internship at LogiCore [mention 2025/10/22, got offer in 2025/10/22];

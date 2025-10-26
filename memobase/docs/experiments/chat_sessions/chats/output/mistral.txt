@@ -1,0 +1,89 @@
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:07:11
+Cost time(s) 431.86545586586
+* interests: activities - coding, whiteboarding, debugging with Sarah. [mention 2025/10/17]
+* interests: future_plans - adding full-text search to the Python note web app later. [mention 2025/10/17, plan in 2025];
+* interests: hobbies - working on a Python note web app
+* interests: technology - implementing a more efficient database query system using PostgreSQL;
+* mental_state: mood - anxious due to midterms approaching. [mentioned on 2025/10/17];
+* mental_state: stress_triggers - exams, assignments. [mention 2025/10/17];
+* mental_state: support_network - Sarah, a friend in the same study group. [mention 2025/10/17]
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:03:10
+Cost time(s) 475.72398567199707
+* interests: activities - coding, whiteboarding, debugging with Sarah. [mention 2025/10/17]
+* interests: future_plans - adding full-text search to the Python note web app later. [mention 2025/10/17, plan in 2025];
+* interests: hobbies - working on a Python note web app
+* interests: technology - implementing a more efficient database query system using PostgreSQL;
+* mental_state: mood - anxious due to midterms approaching. [mentioned on 2025/10/17];
+* mental_state: stress_triggers - exams, assignments. [mention 2025/10/17];
+* mental_state: support_network - Sarah, a friend in the same study group. [mention 2025/10/17]
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:19
+Cost time(s) 243.98840284347534
+* interests: activities - coding, whiteboarding, debugging with Sarah. [mention 2025/10/17];piano;hiking
+* interests: future_plans - adding full-text search to the Python note web app later. [mention 2025/10/17, plan in 2025];
+* interests: hobbies - working on a Python note web app
+* interests: media_content - The Expanse (sci-fi book and series)
+* interests: technology - implementing a more efficient database query system using PostgreSQL;
+* mental_state: coping_mechanisms - Sarah's motivation is low [mention 2025/10/17]. Ethan finds hiking important for his mental health.
+* mental_state: mood - anxious due to midterms approaching. [mentioned on 2025/10/17];
+* mental_state: stress_triggers - exams, assignments. [mention 2025/10/17];
+* mental_state: support_network - Sarah, a friend in the same study group. [mention 2025/10/17];friends
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:58
+Cost time(s) 538.8287363052368
+* interests: activities - coding, whiteboarding, debugging with Sarah., listening to Boards of Canada while coding.; The Expanse (sci-fi book and series)
+* interests: future_plans - adding full-text search to the Python note web app later. [mention 2025/10/17, plan in 2025];
+* interests: hobbies - working on a Python note web app
+* interests: media_content - The Expanse (sci-fi book and series);Boards of Canada; Boards of Canada [mention 2025/10/17] - Ethan listens to Boards of Canada while coding.
+* interests: technology - implementing a more efficient database query system using PostgreSQL;
+* mental_state: coping_mechanisms - Sarah's motivation is low [mention 2025/10/17]. Ethan finds hiking important for his mental health.
+* mental_state: mood - anxious due to midterms approaching.; freaking out [mention 2025/10/17] - Ethan is anxious before his interview.; numb [mention 2025/10/17] - Ethan feels numb after the interview, possibly due to stress or relief.
+* mental_state: stress_triggers - exams, assignments. [mention 2025/10/17];
+* mental_state: support_network - Sarah, a friend in the same study group. [mention 2025/10/17];friends
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:05:10
+Cost time(s) 395.7506880760193
+* interests: activities - coding, whiteboarding, debugging with Sarah., listening to Boards of Canada while coding.; The Expanse (sci-fi book and series)
+* interests: future_plans - adding full-text search to the Python note web app later. [mention 2025/10/17, plan in 2025];
+* interests: hobbies - working on a Python note web app
+* interests: media_content - The Expanse (sci-fi book and series);Boards of Canada; Boards of Canada [mention 2025/10/17] - Ethan listens to Boards of Canada while coding.
+* interests: technology - implementing a more efficient database query system using PostgreSQL;
+* mental_state: coping_mechanisms - Sarah's motivation is low [mention 2025/10/17]. Ethan finds hiking important for his mental health.
+* mental_state: mood - anxious due to exams or assignments [mention 2025/10/17];
+* mental_state: stress_triggers - exams, assignments. [mention 2025/10/17];
+* mental_state: support_network - Sarah, a friend in the same study group. [mention 2025/10/17];friends;Assistant [mention 2025/10/17]

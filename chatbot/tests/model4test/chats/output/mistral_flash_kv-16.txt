@@ -1,0 +1,68 @@
+File: ./chats/mock_user/1.json
+
+Cost time(s) 250.36267614364624
+* interests: activities - coding, playing the piano; classical music;
+* interests: media_content - appreciates Denis Villeneuve's work (Blade Runner 2049) [mention 2025/10/22]
+* interests: music - Preparing for midterms and has limited social life during pre-midterm crunch [mentioned on 2025/10/22, plan in 2025/10/23];
+* mental_state: mood - Preparing for midterms and has started planning his study schedule. [mentioned on 2025/10/22, plan in 2025/10/23];
+* mental_state: stress_triggers - upcoming midterms;
+* support_network: friends - Sarah
+* tech_skills: backend - PostgreSQL [mention 2025/10/22]
+* work: field - computer science
+* work: specific_field - data structures and algorithms [mention 2025/10/22];
+File: ./chats/mock_user/2.json
+
+Cost time(s) 214.9018783569336
+* basic_info: name - Ethan [mentioned on 2025/10/22];
+* interests: activities - coding, improving personal projects...
+* interests: media_content - writing articles on tech blog
+* interests: music - Preparing for midterms and has limited social life during pre-midterm crunch [mentioned on 2025/10/22, plan in 2025/10/23];
+* mental_state: mood - high due to summer internships. [mention 2025/10/22];
+* mental_state: stress_triggers - upcoming midterms;
+* support_network: friends - Sarah
+* tech_skills: backend - PostgreSQL [mention 2025/10/22]
+* work: field - computer science;
+* work: specific_field - data structures and algorithms [mention 2025/10/22];;data structures and algorithms [...
+File: ./chats/mock_user/3.json
+
+Cost time(s) 186.68375182151794
+* basic_info: name - Ethan [mentioned on 2025/10/22];
+* interests: activities - coding, improving personal projects...
+* interests: books - prefers books without dragons and magic
+* interests: media_content - Writing articles on tech blog and exploring hard sci-fi books;
+* interests: music - Preparing for midterms and has limited social life during pre-midterm crunch [mentioned on 2025/10/22, plan in 2025/10/23];
+* mental_state: mood - high due to hike experience... [mention 2025/10/22]; upcoming midterms; [mentioned on...]
+* mental_state: stress_triggers - upcoming midterms;
+* support_network: friends - Sarah
+* tech_skills: backend - PostgreSQL [mention 2025/10/22]
+* work: field - computer science;
+* work: specific_field - data structures and algorithms [mention 2025/10/22];;data structures and algorithms [...
+File: ./chats/mock_user/4.json
+
+Cost time(s) 306.5425593852997
+* basic_info: name - Ethan [mentioned on 2025/10/22];
+* interests: activities - Enjoying Boards of Canada; Preparing for midterms [mentioned on 2025/10/22]
+* interests: books - prefers books without dragons and magic
+* interests: media_content - Writing articles on tech blog and exploring hard sci-fi books;
+* interests: music - Preparing for midterms and has limited social life during pre-midterm crunch [mentioned on 2025/10/22, plan in 2025/10/23];;Boards of Canada [mention 2025/10/22]
+* mental_state: mood - high due to hike experience... [mention 2025/10/22]; upcoming midterms; [mentioned on...]
+* mental_state: stress_triggers - upcoming midterms;
+* support_network: friends - Sarah
+* tech_skills: backend - PostgreSQL [mention 2025/10/22]
+* work: field - computer science;
+* work: specific_field - data structures and algorithms [mention 2025/10/22];;data structures and algorithms [...
+File: ./chats/mock_user/5.json
+
+Cost time(s) 333.44934582710266
+* basic_info: name - Ethan [mentioned on 2025/10/22];
+* interests: activities - Enjoying Boards of Canada; Preparing for midterms [mentioned on 2025/10/22]
+* interests: books - prefers books without dragons and magic
+* interests: media_content - Writing articles on tech blog and exploring hard sci-fi books;
+* interests: music - Preparing for midterms and has limited social life during pre-midterm crunch [mentioned on 2025/10/22, plan in 2025/10/23];;Boards of Canada [mention 2025/10/22]
+* mental_state: mood - nervous due to interview outcome [mentioned on...]; high due to hike experience... [mention 2025/10/22]
+* mental_state: stress_triggers - upcoming midterms, interview outcome [mentioned on...]
+* mental_state: supporting_factors - quiet walks help lower background noise in his head [mentioned on...]
+* support_network: friends - Sarah
+* tech_skills: backend - PostgreSQL [mention 2025/10/22]
+* work: field - computer science;
+* work: specific_field - data structures and algorithms [mention 2025/10/22];;data structures and algorithms [...

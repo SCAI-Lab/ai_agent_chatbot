@@ -1,0 +1,12 @@
+basic_info::name::Ethan
+basic_info::gender::male
+basic_info::age::20
+
+mental_state::mood::relaxed, relieved
+mental_state::stress_triggers::exams, crowded_places, midterms, internship applications
+mental_state::support_network::classmates, friends (Sarah, study group), family
+mental_state::motivation::progress, learning_by_doing, building useful applications, solving complex problems, career goals, securing a summer internship
+
+interests::activities::coding, piano, quiet_walks, hiking
+interests::music::electronic, ambient, instrumental, Aphex Twin, Boards of Canada (listen), classical (Chopin, play on piano)
+interests::hobbies::sci_fi_movies (Blade Runner 2049, Denis Villeneuve), reading_tech_blogs (and considering writing for them), building_web_apps (Python, PostgreSQL, vanilla JS/CSS), gaming (Stardew Valley)

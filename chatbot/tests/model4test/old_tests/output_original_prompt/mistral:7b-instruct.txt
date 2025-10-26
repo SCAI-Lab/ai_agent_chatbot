@@ -1,0 +1,101 @@
+User ID is 7daec8bb-c5fd-47c1-a90d-dd69fb45792b
+Warm-up skipped (no warmup model specified).
+File: ./chats/mock_user/1.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:55
+Cost time(s) 295.57216787338257
+* basic_info: name - Ethan
+* interests: music - classical, Chopin's Nocturne in E-flat major
+* interests: music_genre - [Blade Runner 2049, Denis Villeneuve]
+* mental_state: mood - Ethan seems to be in a relaxed state after playing music for relaxation every evening. [mentioned on 2025/10/21]
+File: ./chats/mock_user/2.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 3 user turns, 3 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:12
+Cost time(s) 285.37575697898865
+* basic_info: career_goal - Ethan is motivated but also stressed about internship applications. [mentioned on 2025/10/21]
+* basic_info: name - Ethan
+* interests: music - classical, Chopin's Nocturne in E-flat major
+* interests: music_genre - [Blade Runner 2049, Denis Villeneuve]
+* interests: personal_project - Ethan is motivated but also stressed about internship applications, and he works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* mental_state: mood - Ethan seems to be in a relaxed state after playing music for relaxation every evening. [mentioned on 2025/10/21]
+* work: field - Ethan works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+File: ./chats/mock_user/3.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 2 user turns, 2 assistant replies
+Total chats: 4
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:36
+Cost time(s) 392.7011775970459
+* basic_info: career_goal - Ethan is motivated but also stressed about internship applications. [mentioned on 2025/10/21]
+* basic_info: name - Ethan
+* interests: activities - Hiking
+* interests: music - classical, Chopin's Nocturne in E-flat major
+* interests: music_genre - [The Expanse (book series), hard sci-fi]
+* interests: personal_project - Ethan is motivated but also stressed about internship applications, and he works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* interests: sci_fi - The Expanse (book series)
+* mental_state: mood - Calm after hiking, stressed about internship applications, end-of-semester burnout alleviated by classical music; [mentioned on 2025/10/21]
+* mental_state: stress_triggers - Internship applications
+* mental_state: support_network - Personal projects (including a note-taking app) [mentioned on 2025/10/21]
+* work: field - Ethan works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* work: stressor - [Blade Runner 2049, Denis Villeneuve]
+File: ./chats/mock_user/4.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 5 user turns, 5 assistant replies
+  Chunk 6: 4 user turns, 4 assistant replies
+Total chats: 6
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:28
+Cost time(s) 508.58479714393616
+* basic_info: career_goal - Ethan is motivated but also stressed about internship applications. [mentioned on 2025/10/21];Ethan's career goal is to work on backend solutions for logistics. [mention 2025/10/21]
+* basic_info: name - Ethan
+* interests: activities - Hiking (for relaxation) [mention 2025/10/21]
+* interests: music - classical, Chopin's Nocturne in E-flat major [mentioned on 2025/10/21]
+* interests: music_genre - [The Expanse (book series), hard sci-fi]
+* interests: personal_project - Ethan is motivated but also stressed about internship applications, and he works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* interests: sci_fi - The Expanse (book series)
+* mental_state: mood - Drained and stressed after the interview [mention 2025/10/21]; Calm; Internship applications; Classical music (removed);
+* mental_state: stress_triggers - Technical interviews, internship applications [mentioned on 2025/10/21]
+* mental_state: support_network - Personal projects (including a note-taking app) [mentioned on 2025/10/21]
+* work: company - LogiCore - Ethan applied to a mid-sized tech company called 'LogiCore'. [mention 2025/10/21]
+* work: event - Ethan received a response from LogiCore and they want to schedule a technical interview. [mention 2025/10/21]
+* work: field - Ethan works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* work: stressor - [Blade Runner 2049, Denis Villeneuve]
+File: ./chats/mock_user/5.json
+  Chunks:
+  Chunk 1: 5 user turns, 5 assistant replies
+  Chunk 2: 5 user turns, 5 assistant replies
+  Chunk 3: 5 user turns, 5 assistant replies
+  Chunk 4: 5 user turns, 5 assistant replies
+  Chunk 5: 3 user turns, 3 assistant replies
+Total chats: 5
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:52
+Cost time(s) 378.0348799228668
+* basic_info: career_goal - Ethan is motivated but also stressed about internship applications. [mentioned on 2025/10/21];Ethan's career goal is to work on backend solutions for logistics. [mention 2025/10/21]
+* basic_info: name - Ethan
+* interests: activities - Hiking (for relaxation) [mention 2025/10/21]
+* interests: music - classical, Chopin's Nocturne in E-flat major [mentioned on 2025/10/21]
+* interests: music_genre - [The Expanse (book series), hard sci-fi]
+* interests: personal_project - Ethan is motivated but also stressed about internship applications, and he works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* interests: sci_fi - The Expanse (book series)
+* mental_state: mood - relieved and grateful after the conversation with the assistant. [mention 2025/10/21]; Calm; Internship applications; Classical music (removed)
+* mental_state: stress_triggers - Technical interviews, internship applications [mentioned on 2025/10/21]
+* mental_state: support_network - Personal projects (including a note-taking app) [mentioned on 2025/10/21]
+* work: company - LogiCore - Ethan applied to a mid-sized tech company called 'LogiCore'. [mention 2025/10/21]
+* work: event - Ethan received a response from LogiCore and they want to schedule a technical interview. [mention 2025/10/21];Ethan received a response or feedback from his internship application. [mention 2025/10/21]
+* work: field - Ethan works on personal projects to showcase in interviews and considers writing articles for a tech blog. [mentioned on 2025/10/21]
+* work: stressor - [Blade Runner 2049, Denis Villeneuve]

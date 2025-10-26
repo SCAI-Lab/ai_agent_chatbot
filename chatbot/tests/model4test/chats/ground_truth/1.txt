@@ -1,0 +1,12 @@
+basic_info::name::Ethan
+basic_info::gender::male
+basic_info::age::20
+
+mental_state::mood::anxious (about midterms), calm
+mental_state::stress_triggers::exams, crowded_places, midterms
+mental_state::support_network::classmates, friends (Sarah, study group)
+mental_state::motivation::progress, learning_by_doing, building useful applications, solving complex problems
+
+interests::activities::coding, piano, quiet_walks
+interests::music::electronic, ambient, instrumental, Aphex Twin, Boards of Canada (listen), classical (Chopin, play on piano)
+interests::hobbies::sci_fi_movies (Blade Runner 2049, Denis Villeneuve), reading_tech_blogs, building_web_apps (Python, PostgreSQL)
