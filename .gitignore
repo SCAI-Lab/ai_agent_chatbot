@@ -10,6 +10,7 @@ pyvenv/
 
 # Python compiled files
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -123,4 +124,5 @@ memory_cache.json
 memories.sqlite
 
 evaluate.md
-/chatbot/modules/__pycache__
+app_new.py
+memory_cache.json
