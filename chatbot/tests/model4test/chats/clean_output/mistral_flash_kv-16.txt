@@ -1,0 +1,96 @@
+File: ./chats/mock_user/1.json
+Cost time(s) 250.36267614364624
+interests::activities::coding
+interests::activities::playing the piano
+interests::activities::classical music
+interests::media_content::appreciates Denis Villeneuve's work (Blade Runner 2049)
+interests::music::Preparing for midterms
+interests::music::has limited social life during pre-midterm crunch
+mental_state::mood::Preparing for midterms
+mental_state::mood::has started planning his study schedule
+mental_state::stress_triggers::upcoming midterms
+support_network::friends::Sarah
+tech_skills::backend::PostgreSQL
+work::field::computer science
+work::specific_field::data structures
+work::specific_field::algorithms
+
+File: ./chats/mock_user/2.json
+Cost time(s) 214.9018783569336
+basic_info::name::Ethan
+interests::activities::coding
+interests::activities::improving personal projects
+interests::media_content::writing articles on tech blog
+interests::music::Preparing for midterms
+interests::music::has limited social life during pre-midterm crunch
+mental_state::mood::high due to summer internships
+mental_state::stress_triggers::upcoming midterms
+support_network::friends::Sarah
+tech_skills::backend::PostgreSQL
+work::field::computer science
+work::specific_field::data structures
+work::specific_field::algorithms
+
+File: ./chats/mock_user/3.json
+Cost time(s) 186.68375182151794
+basic_info::name::Ethan
+interests::activities::coding
+interests::activities::improving personal projects
+interests::books::prefers books without dragons
+interests::books::magic
+interests::media_content::Writing articles on tech blog
+interests::media_content::exploring hard sci-fi books
+interests::music::Preparing for midterms
+interests::music::has limited social life during pre-midterm crunch
+mental_state::mood::high due to hike experience
+mental_state::mood::upcoming midterms
+mental_state::stress_triggers::upcoming midterms
+support_network::friends::Sarah
+tech_skills::backend::PostgreSQL
+work::field::computer science
+work::specific_field::data structures
+work::specific_field::algorithms
+
+File: ./chats/mock_user/4.json
+Cost time(s) 306.5425593852997
+basic_info::name::Ethan
+interests::activities::Enjoying Boards of Canada
+interests::activities::Preparing for midterms
+interests::books::prefers books without dragons
+interests::books::magic
+interests::media_content::Writing articles on tech blog
+interests::media_content::exploring hard sci-fi books
+interests::music::Preparing for midterms
+interests::music::has limited social life during pre-midterm crunch
+interests::music::Boards of Canada
+mental_state::mood::high due to hike experience
+mental_state::mood::upcoming midterms
+mental_state::stress_triggers::upcoming midterms
+support_network::friends::Sarah
+tech_skills::backend::PostgreSQL
+work::field::computer science
+work::specific_field::data structures
+work::specific_field::algorithms
+
+File: ./chats/mock_user/5.json
+Cost time(s) 333.44934582710266
+basic_info::name::Ethan
+interests::activities::Enjoying Boards of Canada
+interests::activities::Preparing for midterms
+interests::books::prefers books without dragons
+interests::books::magic
+interests::media_content::Writing articles on tech blog
+interests::media_content::exploring hard sci-fi books
+interests::music::Preparing for midterms
+interests::music::has limited social life during pre-midterm crunch
+interests::music::Boards of Canada
+mental_state::mood::nervous due to interview outcome
+mental_state::mood::high due to hike experience
+mental_state::stress_triggers::upcoming midterms
+mental_state::stress_triggers::interview outcome
+mental_state::supporting_factors::quiet walks help lower background noise in his head
+support_network::friends::Sarah
+tech_skills::backend::PostgreSQL
+work::field::computer science
+work::specific_field::data structures
+work::specific_field::algorithms

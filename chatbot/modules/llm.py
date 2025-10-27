@@ -34,6 +34,7 @@ def chat(
     use_users: bool = True,
     stream: bool = OLLAMA_STREAM,
     model: str = OLLAMA_MODEL,
+    debug: bool = False,
 ) -> Tuple[str, Optional[str]]:
     """Chat with LLM using MemoBase long-term memory enhancement.
 
@@ -48,6 +49,11 @@ def chat(
     Returns:
         Tuple of (assistant_reply, user_uuid).
     """
+    from .timing import _record_timing
+
+    # Time: Prepare messages with MemoBase long-term memory
+    prep_start = time.perf_counter()
+
     last_user_message = ""
     for item in reversed(messages):
         if item.get("role") == "user":
@@ -74,13 +80,29 @@ def chat(
                     DEFAULT_MAX_CONTEXT_SIZE,
                     chats=chats_for_context,
                 )
+                if debug and context_text:
+                    print("\n[DEBUG] MemoBase context retrieved:")
+                    print(context_text)
+                    print("-" * 60)
             except Exception as exc:
                 logger.error(f"Failed to fetch MemoBase context for {current_speaker}: {exc}")
                 context_text = ""
 
             messages_for_llm = inject_memobase_context(messages_for_llm, context_text)
 
-    # Call Ollama LLM
+    _record_timing("llm_memory_fetch", time.perf_counter() - prep_start)
+
+    if debug:
+        print("\n[DEBUG] Final prompt sent to LLM (after memory injection):")
+        for idx, message in enumerate(messages_for_llm, start=1):
+            role = message.get("role", "unknown")
+            content = message.get("content", "")
+            print(f"[DEBUG] Message {idx} ({role}):")
+            print(content)
+            print("-" * 60)
+
+    # Send to Ollama and measure generation time
+    inference_start = time.perf_counter()
     try:
         response = client.chat.completions.create(
             messages=messages_for_llm,
@@ -96,14 +118,10 @@ def chat(
 
     assistant_reply = ""
 
-    # Import timing utilities
-    from .timing import _timings
-
     if stream:
         collected_chunks: list[str] = []
         first_token_received = False
         first_token_time = None
-        stream_start = time.perf_counter()
 
         for chunk in response:
             if not chunk.choices:
@@ -113,10 +131,10 @@ def chat(
             if not delta_text:
                 continue
 
-            # Record first token time
+            # Record time to first token
             if not first_token_received:
-                first_token_time = time.perf_counter() - stream_start
-                _timings['llm_first_token'] = first_token_time
+                first_token_time = time.perf_counter() - inference_start
+                _record_timing('llm_first_token', first_token_time)
                 first_token_received = True
 
             collected_chunks.append(delta_text)
@@ -125,10 +143,9 @@ def chat(
         print()
         assistant_reply = "".join(collected_chunks).strip()
 
-        # Record total generation time (excluding first token time)
-        if first_token_time is not None:
-            total_time = time.perf_counter() - stream_start
-            _timings['llm_generation'] = total_time - first_token_time
+        # Record total inference time
+        total_inference_time = time.perf_counter() - inference_start
+        _record_timing('llm_inference', total_inference_time)
     else:
         if response.choices:
             assistant_reply = (response.choices[0].message.content or "").strip()
@@ -136,5 +153,4 @@ def chat(
                 print(assistant_reply)
 
     return assistant_reply, user_uuid
-
 

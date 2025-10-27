@@ -1,0 +1,154 @@
+File: ./chats/mock_user/1.json
+Cost time(s) 310.63163566589355
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+education::major::Computer Science (CS)
+education::motivation::main motivation is solving complex problems
+education::motivation::seeing ideas turn into functional apps
+education::study_group::studies with Sarah since 2025/10/22
+interests::activities::listening to classical music for about 30 minutes every evening to decompress
+interests::activities::listening to electronic music for logical thinking
+interests::activities::staying in a flow state
+interests::activities::enjoys re-watching 'Blade Runner 2049' for its cinematography
+interests::activities::world-building
+interests::activities::a fan of Denis Villeneuve's work due to the atmosphere in his films
+interests::hobbies::enjoys classical music for disconnecting
+interests::hobbies::feeling something different
+interests::hobbies::still making time for immersive content as an escape
+mental_state::stress_triggers::anxious about upcoming pre-midterm period
+mental_state::support_network::planning a study schedule to avoid overwhelming pressure
+work::future_plans::plans to add full-text search functionality later for the web app
+work::project::working on a Python note web app with backend logic for creating
+work::project::editing
+work::project::deleting notes since 2025/10/22
+work::technology::uses PostgreSQL as the database technology for the web app
+
+File: ./chats/mock_user/2.json
+Cost time(s) 212.9181206226349
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+education::major::Computer Science (CS)
+education::motivation::main motivation is solving complex problems
+education::motivation::seeing ideas turn into functional apps
+education::study_group::studies with Sarah since 2025/10/22
+interests::activities::listening to classical music for about 30 minutes every evening to decompress
+interests::activities::listening to electronic music for logical thinking
+interests::activities::staying in a flow state
+interests::activities::enjoys re-watching 'Blade Runner 2049' for its cinematography
+interests::activities::world-building
+interests::activities::a fan of Denis Villeneuve's work due to the atmosphere in his films
+interests::activities::plans to go for a hike this weekend
+interests::activities::enjoying a brief period of calm after his busy work
+interests::activities::study schedule
+interests::hobbies::enjoys classical music for disconnecting
+interests::hobbies::feeling something different
+interests::hobbies::still making time for immersive content as an escape
+interests::hobbies::planning to play 'Stardew Valley'
+mental_state::mood::feeling relieved after midterms
+mental_state::motivation::thinking about motivation for the next half of the semester
+mental_state::stress_triggers::anxious about upcoming pre-midterm period
+mental_state::stress_triggers::feeling relieved after midterms
+mental_state::support_network::planning a study schedule to avoid overwhelming pressure
+work::future_plans::plans to add full-text search functionality later for the web app
+work::future_plans::plans to add full-text search capabilities to his note-taking app as part of his personal projects
+work::project::working on a Python note web app with backend logic for creating
+work::project::editing
+work::project::deleting notes since 2025/10/22
+work::technology::uses PostgreSQL as the database technology for the web app
+
+File: ./chats/mock_user/3.json
+Cost time(s) 287.628702878952
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+education::major::Computer Science (CS)
+education::motivation::main motivation is solving complex problems
+education::motivation::seeing ideas turn into functional apps
+education::study_group::studies with Sarah since 2025/10/22
+interests::activities::hiking for mental health
+interests::activities::plans a weekend trip to the mountains
+interests::hobbies::enjoys reading 'The Expanse' book series
+interests::hobbies::prefers hard sci-fi with grounded science over fantasy
+mental_state::mood::feeling relieved after midterms
+mental_state::motivation::feels his motivation is tied to solving complex problems
+mental_state::stress_triggers::anxious about sending applications
+mental_state::stress_triggers::final projects
+mental_state::support_network::planning a study schedule to avoid overwhelming pressure
+work::future_plans::planning an end-of-finals celebration with friends
+work::project::working on a note-taking app (added keyboard shortcuts as a new feature)
+work::project::working on a note-taking project
+work::project::has final projects ahead
+work::technology::uses PostgreSQL as the database technology for the web app
+
+File: ./chats/mock_user/4.json
+Cost time(s) 545.0706486701965
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+education::major::Computer Science (CS)
+education::motivation::main motivation is solving complex problems
+education::motivation::seeing ideas turn into functional apps
+education::study_group::studies with Sarah since 2025/10/22
+interests::activities::takes short walks to get away from the screen
+interests::activities::plans to spend time at the piano this week
+interests::activities::takes long walks for rest
+interests::activities::recovery
+interests::hobbies::enjoys reading 'The Expanse' book series
+interests::hobbies::prefers hard sci-fi with grounded science over fantasy
+interests::music::listens to Boards of Canada for algorithm practice
+interests::music::plays Chopin Nocturne to relax before the interview
+mental_state::mood::feels relieved after the interview
+mental_state::mood::feels numb after the interview
+mental_state::motivation::feels his motivation is high to prepare for the interview
+mental_state::stress_triggers::nervous about the interview but prepared on paper
+mental_state::stress_triggers::anxious about sending out his resume
+mental_state::stress_triggers::cover letter
+mental_state::stress_triggers::nervous about the coding interview with behavioral questions
+mental_state::stress_triggers::a graph problem
+mental_state::support_network::planning a study schedule to avoid overwhelming pressure
+mental_state::support_network::planning a study schedule to prepare for the interview with support from his study group
+work::future_plans::planning an end-of-finals party with Sarah since they have been studying together
+work::future_plans::planning a study schedule to prepare for the interview
+work::future_plans::waiting for the result of the coding interview for about a week
+work::project::working on a note-taking app (added keyboard shortcuts as a new feature)
+work::project::working on a note-taking project
+work::project::has final projects ahead
+work::technology::uses PostgreSQL as the database technology for the web app
+work::technology::uses PostgreSQL as the database for his project
+
+File: ./chats/mock_user/5.json
+Cost time(s) 393.2180988788605
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+education::major::Computer Science (CS)
+education::motivation::main motivation is solving complex problems
+education::motivation::seeing ideas turn into functional apps
+education::study_group::studies with Sarah since 2025/10/22
+interests::activities::User prefers short walks to get away from screens
+interests::activities::desks
+interests::hobbies::enjoys reading the 'Three-Body Problem' trilogy for distraction
+interests::hobbies::prefers hard sci-fi with grounded science over fantasy
+interests::music::listens to Boards of Canada while walking
+mental_state::mood::feels relieved
+mental_state::mood::validated after getting the internship offer
+mental_state::mood::feels his motivation is high now
+mental_state::motivation::feels his motivation is high now
+mental_state::stress_triggers::nervous about the interview but prepared on paper
+mental_state::stress_triggers::anxious about sending out his resume
+mental_state::stress_triggers::cover letter
+mental_state::stress_triggers::nervous about the coding interview with behavioral questions
+mental_state::stress_triggers::a graph problem
+mental_state::support_network::planning a study schedule to avoid overwhelming pressure
+mental_state::support_network::planning a study schedule to prepare for the interview with support from his study group
+work::future_plans::User is planning
+work::future_plans::prioritizing projects related to studies
+work::future_plans::personal relationships
+work::internship::got an internship offer from LogiCore as a backend engineering intern for the summer
+work::project::working on a note-taking project (implementing an indoor navigation system using the A* search algorithm)
+work::project::working on a note-taking application
+work::technology::uses PostgreSQL as the database technology for the web app
+work::technology::uses PostgreSQL as the database for his project
+work::technology::using PostgreSQL as the database technology

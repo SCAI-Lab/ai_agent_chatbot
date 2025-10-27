@@ -1,0 +1,26 @@
+cd /home/user/ai_agent/ai_agent_project/memobase/src/server && docker compose down && docker compose up
+
+cd /home/user/ai_agent/memobase
+pip install -e .
+
+sudo ss -ltnp | grep 11434
+curl -v http://localhost:11434/api/tags
+sudo journalctl -u ollama -n 30 --no-pager
+
+nohup python /home/user/ai_agent/prompts4test/prompt_test.py > /home/user/ai_agent/prompts4test/output.log 2>&1 &
+
+nohup → 防止 SSH 断开后进程被终止
+> output.log 2>&1 → 把所有输出写入日志文件
+& → 后台运行
+
+
+/home/user/ai_agent/memobase/src/server/api/memobase_server/llms/utils.py   Openai Client Time out
+/home/user/ai_agent/memobase/src/client/memobase/core/entry.py Memobase Time out
+
+sudo tegrastats
+tail -f /tmp/ollama_baseline.log
+
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+
+systemctl show ollama.service -p Environment

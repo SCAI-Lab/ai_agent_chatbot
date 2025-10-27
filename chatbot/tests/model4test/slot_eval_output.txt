@@ -1,0 +1,104 @@
+========================================================================
+MODEL: llama_flash_kv-16.txt
+========================================================================
+Slots evaluated: 50
+Precision: 0.377
+Recall:    0.580
+F1 Score:  0.457
+Exact-Match Coverage: 0.580
+
+Token-level metrics:
+  Token Precision: 0.258
+  Token Recall:    0.086
+  Token F1:        0.129
+  BLEU-1 (macro):  0.324
+  LLM Judge Score: 0.320
+
+Per-topic breakdown:
+  basic_info           P=1.000 R=1.000 F1=1.000 EM=1.000
+  interests            P=0.227 R=0.333 F1=0.270 EM=0.333
+  mental_state         P=0.643 R=0.450 F1=0.529 EM=0.450
+
+Latency (seconds):
+  Mean:   460.414
+  Median: 398.406
+  P95:    560.330
+  Total:  2302.072
+
+Additional slots without GT reference:
+  Slot count:  48
+  Value count: 77
+    career_goals: 8 slot(s), 11 value(s)
+    interests: 17 slot(s), 31 value(s)
+    mental_state: 5 slot(s), 8 value(s)
+    stress_management: 4 slot(s), 4 value(s)
+    work: 14 slot(s), 23 value(s)
+
+========================================================================
+MODEL: mistral_flash_kv-16.txt
+========================================================================
+Slots evaluated: 50
+Precision: 0.453
+Recall:    0.480
+F1 Score:  0.466
+Exact-Match Coverage: 0.480
+
+Token-level metrics:
+  Token Precision: 0.154
+  Token Recall:    0.048
+  Token F1:        0.073
+  BLEU-1 (macro):  0.115
+  LLM Judge Score: 0.100
+
+Per-topic breakdown:
+  basic_info           P=1.000 R=0.267 F1=0.421 EM=0.267
+  interests            P=0.556 R=0.667 F1=0.606 EM=0.667
+  mental_state         P=0.909 R=0.500 F1=0.645 EM=0.500
+
+Latency (seconds):
+  Mean:   258.388
+  Median: 250.363
+  P95:    306.543
+  Total:  1291.940
+
+Additional slots without GT reference:
+  Slot count:  29
+  Value count: 40
+    interests: 8 slot(s), 14 value(s)
+    mental_state: 1 slot(s), 1 value(s)
+    support_network: 5 slot(s), 5 value(s)
+    tech_skills: 5 slot(s), 5 value(s)
+    work: 10 slot(s), 15 value(s)
+
+========================================================================
+MODEL: qwen_flash_kv-16.txt
+========================================================================
+Slots evaluated: 50
+Precision: 0.592
+Recall:    0.900
+F1 Score:  0.714
+Exact-Match Coverage: 0.900
+
+Token-level metrics:
+  Token Precision: 0.166
+  Token Recall:    0.179
+  Token F1:        0.172
+  BLEU-1 (macro):  0.375
+  LLM Judge Score: 0.340
+
+Per-topic breakdown:
+  basic_info           P=1.000 R=1.000 F1=1.000 EM=1.000
+  interests            P=1.000 R=0.800 F1=0.889 EM=0.800
+  mental_state         P=1.000 R=0.900 F1=0.947 EM=0.900
+
+Latency (seconds):
+  Mean:   349.893
+  Median: 310.632
+  P95:    393.218
+  Total:  1749.467
+
+Additional slots without GT reference:
+  Slot count:  31
+  Value count: 53
+    education: 15 slot(s), 20 value(s)
+    work: 16 slot(s), 33 value(s)

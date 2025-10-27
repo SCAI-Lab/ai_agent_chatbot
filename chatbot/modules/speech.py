@@ -71,7 +71,13 @@ def load_whisper_pipeline(use_gpu: bool = None) -> Any:
             "model": WHISPER_MODEL_PATH,
             "dtype": torch_dtype,
             "device": pipeline_device,
-            "model_kwargs": {"attn_implementation": "sdpa"},
+            "model_kwargs": {
+                "attn_implementation": "sdpa",
+            },
+            "generate_kwargs": {
+                "task": "transcribe",  # Explicit task instead of forced_decoder_ids
+                "language": "en",  # English transcription
+            },
         }
         pipe = pipeline(**pipeline_kwargs)
         return pipe

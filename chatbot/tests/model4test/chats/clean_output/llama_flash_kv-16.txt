@@ -1,0 +1,130 @@
+File: ./chats/mock_user/1.json
+Cost time(s) 307.85645365715027
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+interests::immersive_experiences::prefers immersive experiences like music
+interests::immersive_experiences::film that pull him into a different headspace
+interests::motivation::solving complex problems
+interests::motivation::seeing an idea turn into a functional app
+interests::music::Chopin's Nocturne in E-flat major
+interests::music::instrumental electronic music
+mental_state::mood::anxious
+mental_state::stress_management::has a plan to manage his focus
+mental_state::stress_management::relaxation
+work::company::Memobase
+work::company::software engineer
+work::title::software engineer
+
+File: ./chats/mock_user/2.json
+Cost time(s) 398.40629267692566
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+career_goals::goals::working towards a tangible career goal
+career_goals::internship::software engineering internship focusing on backend systems or cloud infrastructure
+interests::hobby::hiking
+interests::hobby::video_games
+interests::immersive_experiences::prefers immersive experiences like games (implied by playing Stardew Valley)
+interests::motivation::solving complex problems
+interests::motivation::seeing an idea turn into a functional app
+interests::music::Chopin's Nocturne in E-flat major
+interests::music::instrumental electronic music
+mental_state::mood::anxious
+mental_state::stress_management::has a plan to manage stress (not explicitly mentioned in this conversation, but inferred from previous topics)
+stress_management::strategies::writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+work::company::Memobase
+work::company::software engineer
+work::skill::willingness to learn frontend skills for simple projects
+work::title::software engineer
+
+File: ./chats/mock_user/3.json
+Cost time(s) 332.05425095558167
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+career_goals::goals::working towards a tangible career goal
+career_goals::internship::software engineering internship focusing on backend systems or cloud infrastructure
+career_goals::internship::software engineering internship focusing on backend roles (implied by planning to apply for backend-focused roles)
+interests::genre::hard sci-fi
+interests::hobby::hiking
+interests::hobby::video_games
+interests::immersive_experiences::prefers immersive experiences like sci-fi
+interests::motivation::solving complex problems
+interests::motivation::seeing an idea turn into a functional app
+interests::music::Chopin's Nocturne in E-flat major
+interests::music::instrumental electronic music
+interests::music::Chopin's Nocturne (previously mentioned)
+mental_state::mood::has a stressful but well-managed few weeks ahead of him
+mental_state::stress_management::using 'small wins' strategy
+stress_management::strategies::writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+work::company::Memobase
+work::company::software engineer
+work::skill::willingness to learn frontend skills for simple projects
+work::skill::willingness to learn and adapt (implied by implementing keyboard shortcuts)
+work::title::software engineer
+
+File: ./chats/mock_user/4.json
+Cost time(s) 703.4256608486176
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+career_goals::goals::working towards a tangible career goal of becoming a software engineer at LogiCore
+career_goals::internship::software engineering internship focusing on PostgreSQL
+career_goals::internship::keyboard shortcuts in note app
+interests::genre::hard sci-fi
+interests::hobby::hiking
+interests::hobby::video_games
+interests::immersive_experiences::prefers immersive experiences like sci-fi
+interests::motivation::solving complex problems
+interests::motivation::improving communication skills through practice
+interests::motivation::preparation
+interests::music::Chopin's Nocturne in E-flat major
+interests::music::instrumental electronic music
+interests::music::Chopin's Nocturne (previously mentioned)
+mental_state::mood::has a stressful but well-managed mood
+mental_state::motivation::solving complex problems
+mental_state::motivation::enjoying immersive experiences like algorithm practice
+mental_state::stress_management::using "small wins" approach
+mental_state::stress_management::may need to adapt for this specific situation
+mental_state::stress_triggers::waiting for a week or so before hearing back from the interviewer after facing a huge stressor
+stress_management::strategies::writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+work::company::Memobase
+work::company::software engineer at LogiCore
+work::skill::willingness to learn frontend skills for simple projects
+work::skill::willingness to learn and adapt (implied by implementing keyboard shortcuts)
+work::title::software engineer
+
+File: ./chats/mock_user/5.json
+Cost time(s) 560.3295872211456
+basic_info::age::20
+basic_info::gender::male
+basic_info::name::Ethan
+career_goals::goals::working towards a tangible career in software engineering at LogiCore
+career_goals::internship::software engineering internship focusing on PostgreSQL
+career_goals::internship::keyboard shortcuts in note app
+interests::genre::hard sci-fi
+interests::hobby::hiking
+interests::hobby::video_games
+interests::immersive_experiences::prefers immersive experiences like reading 'The Three-Body Problem' trilogy
+interests::immersive_experiences::which is mind-bending
+interests::immersive_experiences::intellectually engaging
+interests::motivation::solving complex problems
+interests::motivation::improving communication skills through practice
+interests::motivation::preparation
+interests::music::Chopin's Nocturne in E-flat major
+interests::music::instrumental electronic music
+interests::music::Chopin's Nocturne (previously mentioned)
+mental_state::mood::has a stressful but well-managed mood
+mental_state::motivation::solving complex problems
+mental_state::motivation::working on his final project for the advanced algorithms class
+mental_state::stress_management::using "small wins" to manage stress
+mental_state::stress_management::quiet walks with ambient music have been helping to lower the background noise in his head
+mental_state::stress_triggers::waiting for a week or more since the interview
+stress_management::strategies::writing articles on a tech blog to demonstrate deep understanding and communication skills (implied by planning to write articles)
+work::company::software engineer at LogiCore
+work::company::Logi
+work::skill::willingness to learn frontend skills for simple projects
+work::skill::willingness to learn and adapt (implied by implementing keyboard shortcuts)
+work::skill::willingness to learn
+work::title::software engineer

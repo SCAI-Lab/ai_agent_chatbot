@@ -1,238 +1,61 @@
 {
-  "user-123": {
-    "user_name": "Alice",
+  "e61626a9-331d-5ea2-9a5e-615353016f49": {
+    "user_name": "test1",
     "sessions": {
-      "2025-10-23": {
-        "start_time": "2025-10-23T14:52:30Z",
+      "2025-10-27": {
+        "start_time": "2025-10-27T19:11:48Z",
         "conversations": [
           {
-            "timestamp": "2025-10-23T14:52:30Z",
+            "timestamp": "2025-10-27T19:11:48Z",
             "timings": {
-              "speech_to_text": 1.5,
-              "llm_generation": 0.8,
-              "total": 2.3
+              "speech_to_text": 0.0,
+              "llm_generation": 0.0,
+              "total": 0.0
             },
             "messages": [
               {
                 "role": "user",
-                "content": "Hello, how are you?"
+                "content": "I mean, yeah, because also we are not like..."
               },
               {
                 "role": "assistant",
-                "content": "I'm doing well, thank you!"
+                "content": "I understand. I will focus solely on the memory and avoid referencing past conversations. \n\nOkay."
               }
             ]
           },
           {
-            "timestamp": "2025-10-23T14:52:30Z",
+            "timestamp": "2025-10-27T19:14:14Z",
             "timings": {
-              "speech_to_text": 1.2,
-              "llm_generation": 0.9,
-              "total": 2.1
+              "speech_to_text": 0.0,
+              "llm_generation": 0.0,
+              "total": 0.0
             },
             "messages": [
               {
                 "role": "user",
-                "content": "What's the weather like?"
+                "content": "You have nothing from who's pouring them out."
               },
               {
                 "role": "assistant",
-                "content": "It's sunny and warm today."
+                "content": "Okay, I understand. I will remain silent and avoid referencing any previous conversation."
               }
             ]
           },
           {
-            "timestamp": "2025-10-23T14:52:51Z",
+            "timestamp": "2025-10-27T19:14:28Z",
             "timings": {
-              "speech_to_text": 1.5,
-              "llm_generation": 0.8,
-              "total": 2.3
+              "speech_to_text": 0.0,
+              "llm_generation": 0.0,
+              "total": 0.0
             },
             "messages": [
               {
                 "role": "user",
-                "content": "Hello, how are you?"
+                "content": "...of the presentation..."
               },
               {
                 "role": "assistant",
-                "content": "I'm doing well, thank you!"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:52:51Z",
-            "timings": {
-              "speech_to_text": 1.2,
-              "llm_generation": 0.9,
-              "total": 2.1
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "What's the weather like?"
-              },
-              {
-                "role": "assistant",
-                "content": "It's sunny and warm today."
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:53:04Z",
-            "timings": {
-              "speech_to_text": 1.5,
-              "llm_generation": 0.8,
-              "total": 2.3
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Hello, how are you?"
-              },
-              {
-                "role": "assistant",
-                "content": "I'm doing well, thank you!"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:53:04Z",
-            "timings": {
-              "speech_to_text": 1.2,
-              "llm_generation": 0.9,
-              "total": 2.1
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "What's the weather like?"
-              },
-              {
-                "role": "assistant",
-                "content": "It's sunny and warm today."
-              }
-            ]
-          }
-        ]
-      },
-      "2025-10-22": {
-        "start_time": "2025-10-23T14:52:30Z",
-        "conversations": [
-          {
-            "timestamp": "2025-10-23T14:52:30Z",
-            "timings": {
-              "speech_to_text": 1.0,
-              "llm_generation": 0.7,
-              "total": 1.7
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Tell me a joke"
-              },
-              {
-                "role": "assistant",
-                "content": "Why did the chicken cross the road?"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:52:51Z",
-            "timings": {
-              "speech_to_text": 1.0,
-              "llm_generation": 0.7,
-              "total": 1.7
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Tell me a joke"
-              },
-              {
-                "role": "assistant",
-                "content": "Why did the chicken cross the road?"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:53:04Z",
-            "timings": {
-              "speech_to_text": 1.0,
-              "llm_generation": 0.7,
-              "total": 1.7
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Tell me a joke"
-              },
-              {
-                "role": "assistant",
-                "content": "Why did the chicken cross the road?"
-              }
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "user-456": {
-    "user_name": "Bob",
-    "sessions": {
-      "2025-10-23": {
-        "start_time": "2025-10-23T14:52:30Z",
-        "conversations": [
-          {
-            "timestamp": "2025-10-23T14:52:30Z",
-            "timings": {
-              "speech_to_text": 1.3,
-              "llm_generation": 0.85,
-              "total": 2.15
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Hi there!"
-              },
-              {
-                "role": "assistant",
-                "content": "Hello Bob, how can I help you?"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:52:51Z",
-            "timings": {
-              "speech_to_text": 1.3,
-              "llm_generation": 0.85,
-              "total": 2.15
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Hi there!"
-              },
-              {
-                "role": "assistant",
-                "content": "Hello Bob, how can I help you?"
-              }
-            ]
-          },
-          {
-            "timestamp": "2025-10-23T14:53:04Z",
-            "timings": {
-              "speech_to_text": 1.3,
-              "llm_generation": 0.85,
-              "total": 2.15
-            },
-            "messages": [
-              {
-                "role": "user",
-                "content": "Hi there!"
-              },
-              {
-                "role": "assistant",
-                "content": "Hello Bob, how can I help you?"
+                "content": "I understand you’re referring to a presentation. I can help you with that! What specifically would you like to discuss about the presentation?"
               }
             ]
           }

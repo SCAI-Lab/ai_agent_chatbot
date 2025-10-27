@@ -108,7 +108,15 @@ def ensure_memobase_user(user_uuid: str) -> None:
     """
     if not user_uuid:
         return
-    existing = memobase_request("GET", f"/users/{user_uuid}", allow_404=True)
+    try:
+        existing = memobase_request("GET", f"/users/{user_uuid}", allow_404=True)
+    except MemoBaseAPIError as exc:
+        message = str(exc).lower()
+        # MemoBase returns errno!=0 with HTTP 200 when a user is missing; treat that as absent.
+        if "not found" in message or "404" in message:
+            existing = None
+        else:
+            raise
     if existing is not None:
         return
     memobase_request("POST", "/users", json_payload={"id": user_uuid, "data": None})
