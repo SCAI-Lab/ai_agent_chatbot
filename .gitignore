@@ -124,5 +124,6 @@ memory_cache.json
 memories.sqlite
 
 evaluate.md
+.gitignore
 app_new.py
 memory_cache.json
