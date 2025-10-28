@@ -120,10 +120,10 @@ config.yaml
 
 # Memory and cache files
 *.cache
-memory_cache.json
-memories.sqlite
+chatbot/memory_cache.json
+chatbot/memories.sqlite
 
 evaluate.md
-.gitignore
 app_new.py
 memory_cache.json
+memobase-old

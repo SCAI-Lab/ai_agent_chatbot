@@ -16,7 +16,7 @@ async def openai_complete(
     messages.append({"role": "user", "content": prompt})
 
     response = await openai_async_client.chat.completions.create(
-        model=model, messages=messages, timeout=12000, **kwargs # 12000changed for test
+        model=model, messages=messages, timeout=1200, **kwargs
     )
     cached_tokens = getattr(response.usage.prompt_tokens_details, "cached_tokens", None)
     LOG.info(

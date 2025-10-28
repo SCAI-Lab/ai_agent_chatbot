@@ -39,6 +39,6 @@ setuptools.setup(
         "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.10",
+    python_requires=">=3.11",
     install_requires=deps,
 )

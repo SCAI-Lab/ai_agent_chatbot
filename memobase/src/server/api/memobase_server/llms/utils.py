@@ -15,7 +15,7 @@ def get_openai_async_client_instance() -> AsyncOpenAI:
             api_key=CONFIG.llm_api_key,
             default_query=CONFIG.llm_openai_default_query,
             default_headers=CONFIG.llm_openai_default_header,
-            timeout=Timeout(timeout=6000, connect=5.0), ##########
+            timeout=Timeout(timeout=6000, connect=5.0),
         )
     return _global_openai_async_client
 

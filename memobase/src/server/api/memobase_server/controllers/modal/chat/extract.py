@@ -1,5 +1,4 @@
-import logging
-from ....env import CONFIG, ContanstTable, TRACE_LOG, LOG
+from ....env import CONFIG, ContanstTable, TRACE_LOG
 from ....models.utils import Promise
 from ....models.response import AIUserProfiles, CODE, UserProfilesData
 from ....llms import llm_complete
@@ -41,38 +40,22 @@ async def extract_topics(
 
     project_profiles_slots = CURRENT_PROFILE_INFO["project_profile_slots"]
 
-    prompt_input = PROMPTS[USE_LANGUAGE]["extract"].pack_input(
-        CURRENT_PROFILE_INFO["already_topics_prompt"],
-        user_memo,
-        strict_mode=STRICT_MODE,
-    )
-    system_prompt = PROMPTS[USE_LANGUAGE]["extract"].get_prompt(
-        PROMPTS[USE_LANGUAGE]["profile"].get_prompt(project_profiles_slots)
-    )
-
-    if LOG.isEnabledFor(logging.DEBUG):
-        LOG.debug(
-            f"extract_profile prompt_input\n{prompt_input}"
-        )
-        LOG.debug(
-            f"extract_profile system_prompt\n{system_prompt}"
-        )
-
     p = await llm_complete(
         project_id,
-        prompt_input,
-        system_prompt=system_prompt,
+        PROMPTS[USE_LANGUAGE]["extract"].pack_input(
+            CURRENT_PROFILE_INFO["already_topics_prompt"],
+            user_memo,
+            strict_mode=STRICT_MODE,
+        ),
+        system_prompt=PROMPTS[USE_LANGUAGE]["extract"].get_prompt(
+            PROMPTS[USE_LANGUAGE]["profile"].get_prompt(project_profiles_slots)
+        ),
         temperature=0.2,  # precise
         **PROMPTS[USE_LANGUAGE]["extract"].get_kwargs(),
     )
     if not p.ok():
         return p
     results = p.data()
-
-    if LOG.isEnabledFor(logging.DEBUG):
-        LOG.debug(
-            f"extract_profile raw_response\n{results}"
-        )
     # print(
     #     PROMPTS[USE_LANGUAGE]["extract"].pack_input(
     #         CURRENT_PROFILE_INFO["already_topics_prompt"],
@@ -84,9 +67,6 @@ async def extract_topics(
     # print(results)
     parsed_facts: AIUserProfiles = parse_string_into_profiles(results)
     new_facts: list[FactResponse] = parsed_facts.model_dump()["facts"]
-
-    if LOG.isEnabledFor(logging.DEBUG):
-        LOG.debug("extract_profile parsed_facts %s", new_facts)
     if not len(new_facts):
         TRACE_LOG.info(
             project_id,

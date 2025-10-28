@@ -1,6 +1,5 @@
-import logging
 import asyncio
-from ....env import CONFIG, LOG
+from ....env import CONFIG
 from ....models.utils import Promise
 from ....models.blob import Blob, BlobType
 from ....llms import llm_complete
@@ -41,28 +40,18 @@ async def entry_chat_summary(
         project_profiles_slots
     )
     blob_strs = tag_chat_blobs_in_order_xml(blobs)
-    prompt_input = prompt.pack_input(CURRENT_PROFILE_INFO["already_topics_prompt"], blob_strs)
-    system_prompt = prompt.get_prompt(
-        profile_topics_str,
-        event_attriubtes_str,
-        additional_requirements=event_summary_theme,
-    )
-
-    if LOG.isEnabledFor(logging.DEBUG):
-        LOG.debug("summary_entry_chats prompt_input\n%s", prompt_input)
-        LOG.debug("summary_entry_chats system_prompt\n%s", system_prompt)
-
     r = await llm_complete(
         project_id,
-        prompt_input,
-        system_prompt=system_prompt,
+        prompt.pack_input(CURRENT_PROFILE_INFO["already_topics_prompt"], blob_strs),
+        system_prompt=prompt.get_prompt(
+            profile_topics_str,
+            event_attriubtes_str,
+            additional_requirements=event_summary_theme,
+        ),
         temperature=0.2,  # precise
         model=CONFIG.summary_llm_model,
         **prompt.get_kwargs(),
     )
-
-    if LOG.isEnabledFor(logging.DEBUG) and r.ok():
-        LOG.debug("summary_entry_chats raw_response\n%s", r.data())
 
     # print(
     #     prompt.pack_input(CURRENT_PROFILE_INFO["already_topics_prompt"], blob_strs),

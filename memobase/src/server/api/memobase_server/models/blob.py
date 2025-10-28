@@ -1,10 +1,4 @@
-try:
-    from enum import StrEnum
-except ImportError:  # Python < 3.11
-    from enum import Enum
-
-    class StrEnum(str, Enum):  # Minimal backport to support Python 3.10
-        pass
+from enum import StrEnum
 from datetime import datetime
 from typing import Literal, Optional
 from pydantic import BaseModel

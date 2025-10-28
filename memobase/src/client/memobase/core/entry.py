@@ -3,7 +3,7 @@ import json
 import time
 import httpx
 from collections import defaultdict
-from typing import Optional, Literal, Union
+from typing import Optional, Literal
 from pydantic import HttpUrl, ValidationError
 from dataclasses import dataclass
 from urllib.parse import quote_plus
@@ -31,7 +31,6 @@ class MemoBaseClient:
     api_key: Optional[str] = None
     api_version: str = "api/v1"
     project_url: str = "https://api.memobase.dev"
-    timeout: Union[float, httpx.Timeout] = 60
 
     def __post_init__(self):
         self.api_key = self.api_key or os.getenv("MEMOBASE_API_KEY")
@@ -45,7 +44,7 @@ class MemoBaseClient:
             headers={
                 "Authorization": f"Bearer {self.api_key}",
             },
-            timeout=self.timeout,
+            timeout=60,
         )
 
     @property
@@ -320,32 +319,32 @@ class User:
     ) -> list[UserEventData]:
         """
         Search user events by tags.
-        
+
         Args:
             tags: List of tag names that events must have (AND condition)
             tag_values: Dict of tag=value pairs for exact matches (AND condition)
             topk: Number of events to retrieve, default is 10
-        
+
         Examples:
             - search_event_by_tags(tags=["emotion", "romance"])
               Returns events that have both 'emotion' AND 'romance' tags (with any value)
-            
+
             - search_event_by_tags(tag_values={"emotion": "happy", "topic": "work"})
               Returns events where emotion tag equals 'happy' AND topic tag equals 'work'
-            
+
             - search_event_by_tags(tags=["emotion"], tag_values={"topic": "work"})
               Returns events that have 'emotion' tag (any value) AND topic tag equals 'work'
         """
         params = f"?topk={topk}"
-        
+
         if tags:
             tags_str = ",".join(tags)
             params += f"&tags={tags_str}"
-        
+
         if tag_values:
             tag_values_str = ",".join([f"{k}={v}" for k, v in tag_values.items()])
             params += f"&tag_values={tag_values_str}"
-        
+
         r = unpack_response(
             self.project_client.client.get(
                 f"/users/event_tags/search/{self.user_id}{params}"
@@ -365,6 +364,7 @@ class User:
         chats: list[OpenAICompatibleMessage] = None,
         event_similarity_threshold: float = None,
         customize_context_prompt: str = None,
+        time_range_in_days: int = None,
         full_profile_and_only_search_event: bool = None,
         fill_window_with_events: bool = None,
     ) -> str:
@@ -381,6 +381,8 @@ class User:
             params += f"&topic_limits_json={json.dumps(topic_limits)}"
         if profile_event_ratio:
             params += f"&profile_event_ratio={profile_event_ratio}"
+        if time_range_in_days:
+            params += f"&time_range_in_days={time_range_in_days}"
         if require_event_summary is not None:
             params += (
                 f"&require_event_summary={'true' if require_event_summary else 'false'}"
