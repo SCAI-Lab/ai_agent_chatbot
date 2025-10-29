@@ -2,19 +2,15 @@
 import argparse
 import json
 import logging
-import os
 from typing import Any, Dict, List
 
-from modules.config import MEMORY_CACHE_FILE
+from modules.config import MEMORY_CACHE_FILE, MEMORY_CACHE_BATCH_SIZE
 from modules.memory import ensure_memobase_user, memobase_request
 
 
 # Configure logging for this script
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
-
-
-MEMORY_CACHE_BATCH_SIZE = int(os.getenv("MEMORY_CACHE_BATCH_SIZE", "10"))
 
 
 def insert_memobase_chat(user_uuid: str, user_text: str, assistant_text: str, sync: bool = False) -> None:
@@ -60,6 +56,8 @@ def load_cache_entries(cache_file: str) -> List[Dict[str, Any]]:
     Returns:
         List of cache entries in flat format for processing.
     """
+    import os
+
     if not os.path.exists(cache_file):
         return []
 
@@ -112,6 +110,8 @@ def persist_remaining_entries(cache_file: str, entries: List[Dict[str, Any]]) ->
         cache_file: Path to cache file.
         entries: List of entries to persist.
     """
+    import os
+
     if not entries:
         if os.path.exists(cache_file):
             os.remove(cache_file)

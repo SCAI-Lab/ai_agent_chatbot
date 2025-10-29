@@ -60,7 +60,7 @@ def store_personality_traits(speaker_name: str, predictions: List[float], sessio
     Args:
         speaker_name: Name of the speaker.
         predictions: List of 5 personality trait values [EXT, NEU, AGR, CON, OPN].
-        session: SQLAlchemy session.
+        session: SQLAlchemy session (unused, kept for compatibility).
     """
     if not speaker_name:
         logger.warning("No speaker name provided. Skipping Big Five persistence.")
@@ -75,10 +75,13 @@ def store_personality_traits(speaker_name: str, predictions: List[float], sessio
     try:
         with sqlite3.connect(DB_PATH) as conn:
             c = conn.cursor()
+
+            # Check if user exists
             c.execute("SELECT id FROM user WHERE name = ?", (speaker_name,))
             row = c.fetchone()
 
             if row:
+                # Update existing user
                 c.execute(
                     """
                     UPDATE user
@@ -88,6 +91,7 @@ def store_personality_traits(speaker_name: str, predictions: List[float], sessio
                     (openness, conscientiousness, extraversion, agreeableness, neuroticism, speaker_name),
                 )
             else:
+                # Insert new user
                 c.execute(
                     """
                     INSERT INTO user (name, openness, conscientiousness, extraversion, agreeableness, neuroticism)

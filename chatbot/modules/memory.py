@@ -249,6 +249,156 @@ def prepare_recent_chats(messages: List[Dict[str, str]], max_items: int = 6) -> 
     return filtered[-max_items:]
 
 
+def _load_cache_data() -> Dict[str, Dict[str, Any]]:
+    """Load existing cache data from file.
+
+    Returns:
+        Cache data dictionary or empty dict if file doesn't exist or is invalid.
+    """
+    import os
+
+    if not os.path.exists(MEMORY_CACHE_FILE):
+        return {}
+
+    try:
+        with open(MEMORY_CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            return data
+        logger.error("Unexpected cache format; resetting to session-based structure.")
+    except (json.JSONDecodeError, OSError) as exc:
+        logger.error("Failed to read cache file; creating new. %s", exc)
+
+    return {}
+
+
+def _save_cache_data(cache_data: Dict[str, Dict[str, Any]]) -> None:
+    """Save cache data to file.
+
+    Args:
+        cache_data: Cache data to save.
+    """
+    import os
+
+    cache_dir = os.path.dirname(MEMORY_CACHE_FILE)
+    if cache_dir:
+        os.makedirs(cache_dir, exist_ok=True)
+
+    with open(MEMORY_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache_data, f, ensure_ascii=False, indent=2)
+
+
+def get_recent_history(user_uuid: str, max_messages: int = 10) -> List[Dict[str, str]]:
+    """Get recent conversation history from cache file.
+
+    Args:
+        user_uuid: UUID of the user.
+        max_messages: Maximum number of messages to retrieve (user + assistant pairs).
+
+    Returns:
+        List of recent messages in format [{"role": "user", "content": "..."}, ...]
+    """
+    cache_data = _load_cache_data()
+
+    if user_uuid not in cache_data:
+        return []
+
+    user_data = cache_data[user_uuid]
+    sessions = user_data.get("sessions", {})
+
+    # Collect all conversations from all sessions, with timestamps
+    all_conversations = []
+    for session_id, session_data in sessions.items():
+        conversations = session_data.get("conversations", [])
+        for conv in conversations:
+            timestamp = conv.get("timestamp", "")
+            messages = conv.get("messages", [])
+            all_conversations.append({
+                "timestamp": timestamp,
+                "messages": messages
+            })
+
+    # Sort by timestamp (most recent first)
+    all_conversations.sort(key=lambda x: x["timestamp"], reverse=True)
+
+    # Extract messages from most recent conversations
+    recent_messages = []
+    for conv in all_conversations:
+        messages = conv["messages"]
+        # Add messages in reverse order (since we're going from newest to oldest)
+        for msg in reversed(messages):
+            recent_messages.insert(0, msg)
+            if len(recent_messages) >= max_messages:
+                break
+        if len(recent_messages) >= max_messages:
+            break
+
+    # Return only the last max_messages
+    return recent_messages[-max_messages:]
+
+
+def append_message_to_cache(
+    user_uuid: str,
+    user_name: str,
+    role: str,
+    content: str,
+    session_id: str = None,
+) -> None:
+    """Append a single message to the cache file immediately.
+
+    Args:
+        user_uuid: UUID of the user.
+        user_name: Name of the user.
+        role: Message role ("user" or "assistant").
+        content: Message content.
+        session_id: Session ID (defaults to current date).
+    """
+    if not user_uuid or not content:
+        return
+
+    # Generate session ID if not provided (format: YYYY-MM-DD)
+    if session_id is None:
+        session_id = datetime.utcnow().strftime("%Y-%m-%d")
+
+    # Load existing cache
+    cache_data = _load_cache_data()
+
+    # Initialize user if not exists
+    if user_uuid not in cache_data:
+        cache_data[user_uuid] = {
+            "user_name": user_name,
+            "sessions": {}
+        }
+
+    # Initialize session if not exists
+    if session_id not in cache_data[user_uuid]["sessions"]:
+        cache_data[user_uuid]["sessions"][session_id] = {
+            "start_time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "conversations": []
+        }
+
+    # Get or create current conversation entry
+    conversations = cache_data[user_uuid]["sessions"][session_id]["conversations"]
+
+    # Check if we need to create a new conversation entry or append to the last one
+    if not conversations or "messages" not in conversations[-1]:
+        # Create new conversation entry
+        conversations.append({
+            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "messages": []
+        })
+
+    # Append message to the last conversation
+    conversations[-1]["messages"].append({
+        "role": role,
+        "content": content
+    })
+    conversations[-1]["timestamp"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    # Save cache immediately
+    _save_cache_data(cache_data)
+
+
 def append_chat_to_cache(
     user_uuid: str,
     user_name: str,
@@ -269,8 +419,6 @@ def append_chat_to_cache(
         llm_duration: Time taken for LLM generation.
         session_id: Session ID (defaults to current date).
     """
-    import os
-
     if not user_uuid or (not user_text and not assistant_text):
         return
 
@@ -278,16 +426,13 @@ def append_chat_to_cache(
     if session_id is None:
         session_id = datetime.utcnow().strftime("%Y-%m-%d")
 
-    speech_duration = round(speech_duration, 2)
-    llm_duration = round(llm_duration, 2)
-    total_duration = round(speech_duration + llm_duration, 2)
-
+    # Create conversation entry
     entry = {
         "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "timings": {
-            "speech_to_text": speech_duration,
-            "llm_generation": llm_duration,
-            "total": total_duration,
+            "speech_to_text": round(speech_duration, 2),
+            "llm_generation": round(llm_duration, 2),
+            "total": round(speech_duration + llm_duration, 2),
         },
         "messages": [
             {"role": "user", "content": user_text},
@@ -295,22 +440,8 @@ def append_chat_to_cache(
         ],
     }
 
-    cache_dir = os.path.dirname(MEMORY_CACHE_FILE)
-    if cache_dir:
-        os.makedirs(cache_dir, exist_ok=True)
-
-    # Load existing cache (session-based structure)
-    cache_data: Dict[str, Dict[str, Any]] = {}
-    if os.path.exists(MEMORY_CACHE_FILE):
-        try:
-            with open(MEMORY_CACHE_FILE, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if isinstance(data, dict):
-                cache_data = data
-            else:
-                logger.error("Unexpected cache format; resetting to session-based structure.")
-        except (json.JSONDecodeError, OSError) as exc:
-            logger.error("Failed to read cache file; creating new. %s", exc)
+    # Load existing cache
+    cache_data = _load_cache_data()
 
     # Initialize user if not exists
     if user_uuid not in cache_data:
@@ -330,5 +461,4 @@ def append_chat_to_cache(
     cache_data[user_uuid]["sessions"][session_id]["conversations"].append(entry)
 
     # Save cache
-    with open(MEMORY_CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(cache_data, f, ensure_ascii=False, indent=2)
+    _save_cache_data(cache_data)

@@ -37,6 +37,7 @@ DEFAULT_MAX_CONTEXT_SIZE = 1000
 
 # Memory cache configuration
 MEMORY_CACHE_FILE = os.getenv("MEMORY_CACHE_FILE", os.path.join(BASE_DIR, "memory_cache.json"))
+MEMORY_CACHE_BATCH_SIZE = int(os.getenv("MEMORY_CACHE_BATCH_SIZE", "10"))
 
 # Ollama configuration
 OLLAMA_BASE_URL = "http://localhost:11434/v1"
@@ -47,6 +48,24 @@ OLLAMA_MAX_TOKENS = 256
 
 # Personality model paths
 PERSONALITY_MODELS_DIR = os.path.join(BASE_DIR, "data", "models")
+
+# TTS (Text-to-Speech) configuration
+TTS_RATE = 200  # Speech rate (words per minute)
+TTS_VOLUME = 0.8  # Volume level (0.0 to 1.0)
+
+# Audio recording configuration
+AUDIO_TIMEOUT_MARGIN = 2.0  # Extra seconds to wait beyond duration before timeout
+AUDIO_MAX_RETRIES = 2  # Maximum number of retry attempts on recording failure
+
+# Greeting messages
+GREETING_MESSAGES = [
+    "Give me a sec to think about that.",
+    "Let me process that real quick.",
+    "Just a moment, I'm working on it.",
+    "Let me figure this out for you.",
+    "Hold on, I'll get right back to you.",
+    "One moment while I put this together.",
+]
 
 # Logging configuration
 # Set to INFO to see audio debugging information, ERROR to suppress

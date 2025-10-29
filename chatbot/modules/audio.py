@@ -9,7 +9,15 @@ import pyttsx3
 import sounddevice as sd
 import scipy.io.wavfile as wavfile
 
-from .config import SAMPLE_RATE, RECORD_DURATION, AUDIO_FILE
+from .config import (
+    SAMPLE_RATE,
+    RECORD_DURATION,
+    AUDIO_FILE,
+    TTS_RATE,
+    TTS_VOLUME,
+    AUDIO_TIMEOUT_MARGIN,
+    AUDIO_MAX_RETRIES,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +34,8 @@ class TTSEngine:
         """Initialize pyttsx3 engine with configuration."""
         try:
             self.engine = pyttsx3.init()
-            self.engine.setProperty('rate', 200)
-            self.engine.setProperty('volume', 0.8)
+            self.engine.setProperty('rate', TTS_RATE)
+            self.engine.setProperty('volume', TTS_VOLUME)
             voices = self.engine.getProperty('voices')
             if len(voices) > 1:
                 self.engine.setProperty('voice', voices[0].id)
@@ -109,7 +117,7 @@ def record_audio(
     duration: int = RECORD_DURATION,
     sample_rate: int = SAMPLE_RATE,
     output_file: str = AUDIO_FILE,
-    timeout_margin: float = 2.0,
+    timeout_margin: float = AUDIO_TIMEOUT_MARGIN,
 ) -> bool:
     """Record audio from microphone.
 
@@ -240,7 +248,7 @@ def validate_device_capabilities(device_index: Optional[int], sample_rate: int =
         return False
 
 
-def toggle_recording(max_retries: int = 2) -> bool:
+def toggle_recording(max_retries: int = AUDIO_MAX_RETRIES) -> bool:
     """Interactive audio recording with device selection and retry logic.
 
     Args:

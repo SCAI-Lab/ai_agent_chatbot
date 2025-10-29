@@ -4,8 +4,8 @@ import json
 import random
 import time as time_module
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
-
+from typing import Any, Dict, List,Optional
+import time
 import pandas as pd
 import torch
 
@@ -13,24 +13,16 @@ from modules.config import (
     DEFAULT_SPEAKER,
     DEFAULT_HISTORY_WINDOW,
     AUDIO_FILE,
+    GREETING_MESSAGES,
     logger,
 )
-from modules.audio import TTSEngine, toggle_recording, cleanup_audio_file, select_input_device
-from modules.database import init_db, store_personality_traits, fetch_user_data
+from modules.audio import TTSEngine, cleanup_audio_file, select_input_device, record_audio
+from modules.database import init_db, store_personality_traits
 from modules.llm import chat
 from modules.memory import append_chat_to_cache, format_short_term_memory
 from modules.personality import predict_personality, load_personality_model
 from modules.speech import load_whisper_pipeline, transcribe_whisper
-from modules.timing import timing, timing_context, clear_timings, print_timings
-
-
-# Global state
-current_speaker = DEFAULT_SPEAKER
-preferences: dict[str, Any] = {}
-history_window_size = DEFAULT_HISTORY_WINDOW
-whisper_pipeline = None  # Global Whisper pipeline
-selected_device_index = None  # Remember selected audio input device
-debug_mode = False  # Toggle verbose prompt logging
+from modules.timing import timing, timing_context, clear_timings, print_timings, _record_timing
 
 
 @dataclass
@@ -40,23 +32,29 @@ class ConversationState:
     greeting_played: bool = False
 
 
-conversation_states: Dict[str, ConversationState] = {}
+@dataclass
+class ApplicationState:
+    """Global application state."""
+    current_speaker: str = DEFAULT_SPEAKER
+    preferences: Dict[str, Any] = field(default_factory=dict)
+    history_window_size: int = DEFAULT_HISTORY_WINDOW
+    whisper_pipeline: Any = None
+    selected_device_index: Optional[int] = None
+    debug_mode: bool = False
+    conversation_states: Dict[str, ConversationState] = field(default_factory=dict)
 
+    def get_conversation_state(self, speaker_key: str) -> ConversationState:
+        """Get or create conversation state for a speaker.
 
-def get_conversation_state(speaker_key: str) -> ConversationState:
-    """Get or create conversation state for a speaker.
+        Args:
+            speaker_key: Speaker identifier.
 
-    Args:
-        speaker_key: Speaker identifier.
-
-    Returns:
-        ConversationState for the speaker.
-    """
-    state = conversation_states.get(speaker_key)
-    if state is None:
-        state = ConversationState()
-        conversation_states[speaker_key] = state
-    return state
+        Returns:
+            ConversationState for the speaker.
+        """
+        if speaker_key not in self.conversation_states:
+            self.conversation_states[speaker_key] = ConversationState()
+        return self.conversation_states[speaker_key]
 
 
 @timing("greeting_tts")
@@ -67,30 +65,21 @@ def say_greeting(tts_engine: TTSEngine, speaker: str):
         tts_engine: TTS engine instance
         speaker: Current speaker name
     """
-    GREETINGS = [
-        "Give me a sec to think about that.",
-        "Let me process that real quick.",
-        "Just a moment, I'm working on it.",
-        "Let me figure this out for you.",
-        "Hold on, I'll get right back to you.",
-        "One moment while I put this together.",
-    ]
-
     greeting = (
-        f"Hello {speaker}. {random.choice(GREETINGS)}"
+        f"Hello {speaker}. {random.choice(GREETING_MESSAGES)}"
         if speaker
-        else f"Sorry, I couldn't recognize you. {random.choice(GREETINGS)}"
+        else f"Sorry, I couldn't recognize you. {random.choice(GREETING_MESSAGES)}"
     )
-
     tts_engine.say(greeting)
 
 
 @timing("transcription")
-def transcribe_audio_file(audio_file: str) -> str:
+def transcribe_audio_file(audio_file: str, whisper_pipeline: Any) -> str:
     """Transcribe audio file to text.
 
     Args:
         audio_file: Path to audio file
+        whisper_pipeline: Whisper pipeline instance
 
     Returns:
         Transcribed text
@@ -98,7 +87,6 @@ def transcribe_audio_file(audio_file: str) -> str:
     Raises:
         ValueError: If transcription is empty
     """
-    global whisper_pipeline
     transcription = transcribe_whisper(audio_file, whisper_pipeline)
     text = transcription.strip()
 
@@ -122,45 +110,45 @@ def analyze_personality(text: str) -> pd.DataFrame:
     return pd.DataFrame({"r": predictions, "theta": ["EXT", "NEU", "AGR", "CON", "OPN"]})
 
 
-def build_prompt_context(text: str, personality_df: pd.DataFrame, history: List[Dict[str, str]]) -> List[Dict[str, str]]:
+def build_prompt_context(
+    text: str,
+    personality_df: pd.DataFrame,
+    history: List[Dict[str, str]],
+    preferences: Dict[str, Any],
+    history_window_size: int,
+) -> List[Dict[str, str]]:
     """Build chat prompt with context.
 
     Args:
         text: User input text
         personality_df: Personality analysis dataframe
         history: Conversation history
+        preferences: User preferences
+        history_window_size: Number of conversation rounds to include
 
     Returns:
         List of chat messages
     """
-    import time
-    from modules.timing import _record_timing
-
-    global preferences, history_window_size
 
     overall_start = time.perf_counter()
 
     # Extract recent history
     recent_history = history[-2 * history_window_size:] if history_window_size > 0 else history
 
-    # Format personality context
+    # Format contexts
     personality_context = personality_df.to_string()
-
-    # Format preferences
     preferences_context = json.dumps(preferences) if preferences else "None."
-
-    # Format short-term memory
     memory_context = format_short_term_memory(recent_history)
 
     # Build system prompt
     system_prompt = "\n\n".join([
         "You are Hackcelerate, a helpful healthcare assistant.",
         memory_context,
-        "--# USER PERSONALITY TRAITS #--\nBig Five Personality traits inferred for the user (use them when necessary):\n" + personality_context + "\n--# END OF PERSONALITY TRAITS #--",
-        "--# USER PREFERENCES #--\nKnown user preferences:\n" + preferences_context + "\n--# END OF PREFERENCES #--",
+        f"--# USER PERSONALITY TRAITS #--\nBig Five Personality traits inferred for the user (use them when necessary):\n{personality_context}\n--# END OF PERSONALITY TRAITS #--",
+        f"--# USER PREFERENCES #--\nKnown user preferences:\n{preferences_context}\n--# END OF PREFERENCES #--",
     ])
 
-    # Record overall memory_and_context time
+    # Record timing
     _record_timing("memory_and_context", time.perf_counter() - overall_start)
 
     return [
@@ -169,7 +157,11 @@ def build_prompt_context(text: str, personality_df: pd.DataFrame, history: List[
     ]
 
 
-def get_llm_response(chat_messages: List[Dict[str, str]], speaker: str) -> tuple:
+def get_llm_response(
+    chat_messages: List[Dict[str, str]],
+    speaker: str,
+    debug_mode: bool = False,
+) -> tuple:
     """Get LLM response.
 
     Note: Timing is handled inside llm.chat() for detailed TTFT metrics.
@@ -177,13 +169,11 @@ def get_llm_response(chat_messages: List[Dict[str, str]], speaker: str) -> tuple
     Args:
         chat_messages: Chat messages
         speaker: Current speaker
+        debug_mode: Enable verbose prompt logging
 
     Returns:
         Tuple of (response_content, user_uuid)
     """
-    import time
-    from modules.timing import _record_timing
-
     start = time.perf_counter()
     response_content, user_uuid = chat(
         chat_messages,
@@ -239,55 +229,74 @@ def say_response(tts_engine: TTSEngine, response: str):
     tts_engine.say(response)
 
 
-def process_audio(audio_file: str, tts_engine: TTSEngine, db_session):
+def process_audio(
+    audio_file: str,
+    tts_engine: TTSEngine,
+    db_session,
+    app_state: ApplicationState,
+):
     """Process audio file through the full pipeline.
 
     Args:
         audio_file: Path to audio file.
         tts_engine: TTS engine instance.
         db_session: Database session.
+        app_state: Application state object.
     """
-    global current_speaker
-
     # Clear previous session timing
     clear_timings()
 
-    # Get conversation state (first, so greeting depends on it)
-    speaker_key = current_speaker or "anonymous"
-    state = get_conversation_state(speaker_key)
+    # Get conversation state
+    speaker_key = app_state.current_speaker or "anonymous"
+    state = app_state.get_conversation_state(speaker_key)
 
     # Say greeting only once per speaker/session
     if not state.greeting_played:
-        say_greeting(tts_engine, current_speaker)
+        say_greeting(tts_engine, app_state.current_speaker)
         state.greeting_played = True
 
     try:
         # Transcribe audio
-        text = transcribe_audio_file(audio_file)
+        text = transcribe_audio_file(audio_file, app_state.whisper_pipeline)
         print("Q:", text)
 
         # Analyze personality
         personality_df = analyze_personality(text)
 
-        history = state.history
-
         # Build context and get LLM response
-        chat_messages = build_prompt_context(text, personality_df, history)
-        response_content, user_uuid = get_llm_response(chat_messages, current_speaker)
+        chat_messages = build_prompt_context(
+            text,
+            personality_df,
+            state.history,
+            app_state.preferences,
+            app_state.history_window_size,
+        )
+        response_content, user_uuid = get_llm_response(
+            chat_messages,
+            app_state.current_speaker,
+            app_state.debug_mode,
+        )
 
         # Save to database
         predictions = personality_df["r"].tolist()
-        save_conversation_data(current_speaker, predictions, user_uuid, text, response_content, db_session)
+        save_conversation_data(
+            app_state.current_speaker,
+            predictions,
+            user_uuid,
+            text,
+            response_content,
+            db_session,
+        )
 
         # Update conversation history
         with timing_context("history_update"):
-            history.append({"role": "user", "content": text})
-            history.append({"role": "assistant", "content": response_content})
+            state.history.append({"role": "user", "content": text})
+            state.history.append({"role": "assistant", "content": response_content})
 
-            if history_window_size > 0:
-                max_items = 2 * history_window_size
-                if len(history) > max_items:
-                    del history[:-max_items]
+            if app_state.history_window_size > 0:
+                max_items = 2 * app_state.history_window_size
+                if len(state.history) > max_items:
+                    del state.history[:-max_items]
 
         # Print processing time (before TTS)
         from modules.timing import get_timings
@@ -348,9 +357,11 @@ def main():
     )
     args = parser.parse_args()
 
-    global history_window_size, whisper_pipeline, selected_device_index, debug_mode
-    history_window_size = max(0, args.history_window)
-    debug_mode = args.debug
+    # Initialize application state
+    app_state = ApplicationState(
+        history_window_size=max(0, args.history_window),
+        debug_mode=args.debug,
+    )
 
     # Track initialization timings
     init_timings = {}
@@ -381,7 +392,7 @@ def main():
     start = time_module.perf_counter()
     try:
         logger.info(f"Loading Whisper pipeline (GPU: {use_gpu})...")
-        whisper_pipeline = load_whisper_pipeline(use_gpu)
+        app_state.whisper_pipeline = load_whisper_pipeline(use_gpu)
         logger.info("Whisper pipeline loaded successfully")
         init_timings["Whisper speech-to-text model"] = time_module.perf_counter() - start
     except Exception as e:
@@ -413,20 +424,17 @@ def main():
                 break
 
             if command == 'r':
-                global current_speaker, selected_device_index
-
                 # Select device only on first recording
-                if selected_device_index is None:
+                if app_state.selected_device_index is None:
                     print("\nFirst time setup - please select your audio input device:")
-                    selected_device_index = select_input_device()
+                    app_state.selected_device_index = select_input_device()
                     print(f"Device selected. This will be used for all recordings in this session.\n")
 
                 # Use the remembered device for recording
-                from modules.audio import record_audio
-                success = record_audio(device_index=selected_device_index)
+                success = record_audio(device_index=app_state.selected_device_index)
                 if success:
-                    current_speaker = DEFAULT_SPEAKER
-                    process_audio(AUDIO_FILE, tts_engine, db_session)
+                    app_state.current_speaker = DEFAULT_SPEAKER
+                    process_audio(AUDIO_FILE, tts_engine, db_session, app_state)
 
     except KeyboardInterrupt:
         pass
@@ -437,8 +445,8 @@ def main():
         db_session.close()
 
         # Cleanup Whisper pipeline
-        if whisper_pipeline is not None:
-            del whisper_pipeline
+        if app_state.whisper_pipeline is not None:
+            del app_state.whisper_pipeline
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
 

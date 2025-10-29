@@ -55,21 +55,24 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
 
 ```
 chatbot/
-├── app_new_refactored.py      # Main application entry point
-├── memory_cache_refactored.py # Memory cache utilities
-├── memories.sqlite            # SQLite database for user data
-├── memory_cache.json          # Conversation cache
+├── main.py                   # Main application entry point
+├── sync_memory_cache.py      # Utility to sync cache to MemoBase
+├── memories.sqlite           # SQLite database for user data
+├── memory_cache.json         # Conversation cache
 ├── modules/
-│   ├── audio.py              # Audio recording and TTS
-│   ├── config.py             # Configuration constants
-│   ├── database.py           # SQLAlchemy models and DB ops
-│   ├── llm.py                # Ollama LLM integration
-│   ├── memory.py             # MemoBase memory management
-│   ├── personality.py        # Big Five personality analysis
-│   ├── speech.py             # Whisper speech-to-text
-│   └── timing.py             # Performance monitoring
+│   ├── audio.py             # Audio recording and TTS
+│   ├── config.py            # Configuration constants
+│   ├── database.py          # SQLAlchemy models and DB ops
+│   ├── llm.py               # Ollama LLM integration
+│   ├── memory.py            # MemoBase memory management
+│   ├── personality.py       # Big Five personality analysis
+│   ├── speech.py            # Whisper speech-to-text
+│   └── timing.py            # Performance monitoring
+├── legacy/                   # Legacy/backup files
+│   ├── app_new_legacy.py    # Old monolithic version
+│   └── personality_old.py   # Old personality module
 └── data/
-    └── models/               # Personality model cache
+    └── models/              # Personality model cache
 ```
 ## TODOs
  - update personality analysis part
@@ -156,13 +159,25 @@ OLLAMA_MAX_TOKENS = 256
 ### Basic Usage
 
 ```bash
-python app_new_refactored.py
+python main.py
 ```
 
 ### With Custom History Window
 
 ```bash
-python app_new_refactored.py --history-window 10
+python main.py --history-window 10
+```
+
+### Debug Mode
+
+```bash
+python main.py --debug
+```
+
+### Sync Memory Cache to MemoBase
+
+```bash
+python sync_memory_cache.py --batch-size 10
 ```
 
 ### Interactive Commands
