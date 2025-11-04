@@ -22,6 +22,7 @@ from modules.llm import chat
 from modules.memory import append_chat_to_cache, format_short_term_memory
 from modules.personality import predict_personality, load_personality_model
 from modules.speech import load_whisper_pipeline, transcribe_whisper
+from modules.emotion import load_emotion_model, predict_emotion
 from modules.timing import timing, timing_context, clear_timings, print_timings, _record_timing
 
 
@@ -110,9 +111,28 @@ def analyze_personality(text: str) -> pd.DataFrame:
     return pd.DataFrame({"r": predictions, "theta": ["EXT", "NEU", "AGR", "CON", "OPN"]})
 
 
+@timing("emotion_analysis")
+def analyze_emotion(audio_file: str) -> Dict[str, float]:
+    """Analyze emotion from audio file.
+
+    Args:
+        audio_file: Path to audio file
+
+    Returns:
+        Dictionary with emotion probabilities
+    """
+    try:
+        return predict_emotion(audio_file)
+    except Exception as e:
+        logger.error(f"Emotion analysis failed: {e}")
+        # Return uniform distribution on error
+        return {emotion: 1.0/7 for emotion in ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']}
+
+
 def build_prompt_context(
     text: str,
     personality_df: pd.DataFrame,
+    emotion_dict: Dict[str, float],
     history: List[Dict[str, str]],
     preferences: Dict[str, Any],
     history_window_size: int,
@@ -122,6 +142,7 @@ def build_prompt_context(
     Args:
         text: User input text
         personality_df: Personality analysis dataframe
+        emotion_dict: Emotion probabilities from audio
         history: Conversation history
         preferences: User preferences
         history_window_size: Number of conversation rounds to include
@@ -140,11 +161,18 @@ def build_prompt_context(
     preferences_context = json.dumps(preferences) if preferences else "None."
     memory_context = format_short_term_memory(recent_history)
 
+    # Format emotion context
+    dominant_emotion = max(emotion_dict, key=emotion_dict.get)
+    emotion_confidence = emotion_dict[dominant_emotion]
+    emotion_context = f"Dominant emotion: {dominant_emotion} (confidence: {emotion_confidence:.2f})\n"
+    emotion_context += "All emotions: " + ", ".join([f"{k}: {v:.2f}" for k, v in sorted(emotion_dict.items(), key=lambda x: x[1], reverse=True)])
+
     # Build system prompt
     system_prompt = "\n\n".join([
         "You are Hackcelerate, a helpful healthcare assistant.",
         memory_context,
         f"--# USER PERSONALITY TRAITS #--\nBig Five Personality traits inferred for the user (use them when necessary):\n{personality_context}\n--# END OF PERSONALITY TRAITS #--",
+        f"--# USER EMOTIONAL STATE #--\nEmotional state detected from voice (use for empathetic responses):\n{emotion_context}\n--# END OF EMOTIONAL STATE #--",
         f"--# USER PREFERENCES #--\nKnown user preferences:\n{preferences_context}\n--# END OF PREFERENCES #--",
     ])
 
@@ -256,6 +284,11 @@ def process_audio(
         state.greeting_played = True
 
     try:
+        # Analyze emotion from audio (before transcription)
+        emotion_dict = analyze_emotion(audio_file)
+        dominant_emotion = max(emotion_dict, key=emotion_dict.get)
+        print(f"Detected emotion: {dominant_emotion} ({emotion_dict[dominant_emotion]:.2f})")
+
         # Transcribe audio
         text = transcribe_audio_file(audio_file, app_state.whisper_pipeline)
         print("Q:", text)
@@ -267,6 +300,7 @@ def process_audio(
         chat_messages = build_prompt_context(
             text,
             personality_df,
+            emotion_dict,
             state.history,
             app_state.preferences,
             app_state.history_window_size,
@@ -386,6 +420,16 @@ def main():
         init_timings["Big5 personality model & tokenizer (FAILED)"] = time_module.perf_counter() - start
         logger.error(f"Failed to load personality model: {e}")
         logger.warning("Continuing without personality analysis")
+
+    # Load emotion recognition model (one-time at startup)
+    start = time_module.perf_counter()
+    try:
+        load_emotion_model()
+        init_timings["Wav2Vec2 emotion recognition model"] = time_module.perf_counter() - start
+    except Exception as e:
+        init_timings["Wav2Vec2 emotion recognition model (FAILED)"] = time_module.perf_counter() - start
+        logger.error(f"Failed to load emotion model: {e}")
+        logger.warning("Continuing without emotion analysis")
 
     # Load Whisper pipeline (one-time at startup)
     use_gpu = torch.cuda.is_available()

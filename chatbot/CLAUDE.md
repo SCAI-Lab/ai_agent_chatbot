@@ -212,3 +212,7 @@ legacy/                        # Legacy/backup files
 tests/                         # Various test scripts (not automated suite)
 data/models/                   # Personality model cache directory
 ```
+## 注意
+
+代码不要过度封装,保持良好的可读性和可维护性
+除非用户要求，不要随便添加新的文件，包括.py和.md文件

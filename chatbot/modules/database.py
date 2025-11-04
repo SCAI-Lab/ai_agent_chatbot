@@ -25,6 +25,7 @@ class User(Base):
     agreeableness = Column(Numeric, nullable=True)
     neuroticism = Column(Numeric, nullable=True)
     name = Column(String, nullable=True)
+    measurement_count = Column(Integer, default=0, nullable=False)
 
 
 def init_db():
@@ -55,7 +56,10 @@ def init_db():
 
 
 def store_personality_traits(speaker_name: str, predictions: List[float], session) -> None:
-    """Persist Big Five personality traits for a speaker.
+    """Persist Big Five personality traits for a speaker using cumulative averaging.
+
+    Each new measurement is averaged with previous measurements to provide
+    increasingly accurate personality trait estimates over time.
 
     Args:
         speaker_name: Name of the speaker.
@@ -76,28 +80,74 @@ def store_personality_traits(speaker_name: str, predictions: List[float], sessio
         with sqlite3.connect(DB_PATH) as conn:
             c = conn.cursor()
 
-            # Check if user exists
-            c.execute("SELECT id FROM user WHERE name = ?", (speaker_name,))
+            # Check if user exists and get current values
+            c.execute(
+                """
+                SELECT extraversion, neuroticism, agreeableness, conscientiousness, openness, measurement_count
+                FROM user WHERE name = ?
+                """,
+                (speaker_name,)
+            )
             row = c.fetchone()
 
             if row:
-                # Update existing user
+                # User exists - calculate cumulative average
+                old_ext, old_neu, old_agr, old_con, old_opn, count = row
+
+                # Handle NULL values (treat as 0.5 neutral if no previous data)
+                old_ext = float(old_ext) if old_ext is not None else 0.5
+                old_neu = float(old_neu) if old_neu is not None else 0.5
+                old_agr = float(old_agr) if old_agr is not None else 0.5
+                old_con = float(old_con) if old_con is not None else 0.5
+                old_opn = float(old_opn) if old_opn is not None else 0.5
+                count = int(count) if count is not None else 0
+
+                # Calculate new averages: new_avg = (old_avg * count + new_value) / (count + 1)
+                new_count = count + 1
+                new_extraversion = (old_ext * count + extraversion) / new_count
+                new_neuroticism = (old_neu * count + neuroticism) / new_count
+                new_agreeableness = (old_agr * count + agreeableness) / new_count
+                new_conscientiousness = (old_con * count + conscientiousness) / new_count
+                new_openness = (old_opn * count + openness) / new_count
+
+                logger.info(
+                    f"Updating personality for {speaker_name} "
+                    f"(measurement #{new_count}): "
+                    f"EXT {old_ext:.3f}->{new_extraversion:.3f}, "
+                    f"NEU {old_neu:.3f}->{new_neuroticism:.3f}, "
+                    f"AGR {old_agr:.3f}->{new_agreeableness:.3f}, "
+                    f"CON {old_con:.3f}->{new_conscientiousness:.3f}, "
+                    f"OPN {old_opn:.3f}->{new_openness:.3f}"
+                )
+
+                # Update with averaged values
                 c.execute(
                     """
                     UPDATE user
-                    SET openness = ?, conscientiousness = ?, extraversion = ?, agreeableness = ?, neuroticism = ?
+                    SET extraversion = ?, neuroticism = ?, agreeableness = ?,
+                        conscientiousness = ?, openness = ?, measurement_count = ?
                     WHERE name = ?
                     """,
-                    (openness, conscientiousness, extraversion, agreeableness, neuroticism, speaker_name),
+                    (new_extraversion, new_neuroticism, new_agreeableness,
+                     new_conscientiousness, new_openness, new_count, speaker_name),
                 )
             else:
-                # Insert new user
+                # Insert new user with first measurement (count = 1)
+                logger.info(
+                    f"Creating new user {speaker_name} with first measurement: "
+                    f"EXT {extraversion:.3f}, NEU {neuroticism:.3f}, "
+                    f"AGR {agreeableness:.3f}, CON {conscientiousness:.3f}, "
+                    f"OPN {openness:.3f}"
+                )
+
                 c.execute(
                     """
-                    INSERT INTO user (name, openness, conscientiousness, extraversion, agreeableness, neuroticism)
-                    VALUES (?, ?, ?, ?, ?, ?)
+                    INSERT INTO user (name, extraversion, neuroticism, agreeableness,
+                                     conscientiousness, openness, measurement_count)
+                    VALUES (?, ?, ?, ?, ?, ?, 1)
                     """,
-                    (speaker_name, openness, conscientiousness, extraversion, agreeableness, neuroticism),
+                    (speaker_name, extraversion, neuroticism, agreeableness,
+                     conscientiousness, openness),
                 )
             conn.commit()
 
