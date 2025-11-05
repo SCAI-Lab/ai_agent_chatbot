@@ -5,7 +5,7 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
 ## Features
 
 - **Voice Interaction**: Real-time audio recording and speech-to-text using OpenAI Whisper
-- **Dual-Source Emotion Analysis**: Combines speech-based (Wav2Vec2) and text-based (DeBERTa) emotion detection with configurable fusion
+- **Dual-Source Emotion Analysis**: Combines speech-based (Transformer+CNN) and text-based (DeBERTa) emotion detection with configurable fusion
 - **Personality Analysis**: Big Five personality trait detection using BERT-based models
 - **Long-term Memory**: MemoBase integration for persistent conversation context
 - **Text-to-Speech**: Natural voice responses using pyttsx3
@@ -28,7 +28,7 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
          ▼                          ▼
 ┌─────────────────┐      ┌──────────────────┐
 │ Speech Emotion  │      │  Whisper Model   │
-│ (Wav2Vec2 CNN)  │      │  (Large-v3-Turbo)│
+│ (Transf + CNN)  │      │  (Large-v3-Turbo)│
 └────────┬────────┘      └────────┬─────────┘
          │                        │ Transcribed Text
          │                        │
@@ -49,10 +49,10 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
                   │                                     │
                   │                                     │
                   │                                     │
-  ┌───────────────┴──────────┬──────────────────────────┴───────────────┐
-  │                          │                                          │
-  │ Fused Emotion            │ Big5                                     │
-  │                          │                                          │
+  ┌───────────────┴──────────┬──────────────────────────┴──────────────┐
+  │                          │                                         │
+  │ Fused Emotion            │ Big5                                    │
+  │                          │                                         │
   │                  ┌───────┴────────┐        ┌─────────────────────┐ │
   │                  │  MemoBase API  │        │  Short-term Memory  │ │
   │                  │  (Long-term)   │        │  (Conv History)     │ │
@@ -100,7 +100,7 @@ chatbot/
 │   ├── memory.py            # MemoBase memory management
 │   ├── personality.py       # Big Five personality analysis (BERT)
 │   ├── speech2text.py       # Whisper speech-to-text
-│   ├── speech2emotion.py    # Speech-based emotion (Wav2Vec2 CNN)
+│   ├── speech2emotion.py    # Speech-based emotion (Transformer+CNN)
 │   ├── text2emotion.py      # Text-based emotion (DeBERTa-v3-Large)
 │   └── timing.py            # Performance monitoring
 ├── models/                   # Downloaded model cache
@@ -269,7 +269,7 @@ A: I'm doing great! How can I help you?
 The system analyzes emotions from two independent sources and fuses them:
 
 **Speech-based Emotion** (`modules/speech2emotion.py`):
-- Model: Wav2Vec2 + CNN + Transformer
+- Model: Transformer + CNN
 - Analyzes acoustic features (prosody, tone, pitch)
 - 7 emotion classes: anger, disgust, fear, happy, neutral, sad, surprise
 
@@ -392,7 +392,7 @@ Enhanced audio handling with:
 
 - **OpenAI Whisper Large-v3-Turbo**: Speech recognition model
 - **Minej/bert-base-personality**: Big Five personality BERT model
-- **Wav2Vec2-based emotion model**: Speech emotion recognition
+- **Transformer+CNN emotion model**: Speech emotion recognition
 - **Tanneru/Emotion-Classification-DeBERTa-v3-Large**: Text emotion classification
 - **Ollama**: Local LLM inference
 - **MemoBase**: Long-term memory system
