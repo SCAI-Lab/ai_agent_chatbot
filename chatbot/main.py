@@ -142,7 +142,7 @@ def build_prompt_context(
     Args:
         text: User input text
         personality_df: Personality analysis dataframe
-        emotion_dict: Emotion probabilities from audio
+        emotion_dict: Emotion probabilities (already normalized)
         history: Conversation history
         preferences: User preferences
         history_window_size: Number of conversation rounds to include
@@ -162,10 +162,15 @@ def build_prompt_context(
     memory_context = format_short_term_memory(recent_history)
 
     # Format emotion context
-    dominant_emotion = max(emotion_dict, key=emotion_dict.get)
-    emotion_confidence = emotion_dict[dominant_emotion]
-    emotion_context = f"Dominant emotion: {dominant_emotion} (confidence: {emotion_confidence:.2f})\n"
-    emotion_context += "All emotions: " + ", ".join([f"{k}: {v:.2f}" for k, v in sorted(emotion_dict.items(), key=lambda x: x[1], reverse=True)])
+    sorted_emotions = sorted(emotion_dict.items(), key=lambda item: item[1], reverse=True)
+    dominant_emotion, emotion_confidence = sorted_emotions[0]
+    emotion_lines = "\n".join([f"- {label}: {prob:.4f}" for label, prob in sorted_emotions])
+
+    emotion_context = (
+        f"Dominant emotion: {dominant_emotion} (confidence: {emotion_confidence:.4f})\n"
+        f"All emotions:\n"
+        f"{emotion_lines}"
+    )
 
     # Build system prompt
     system_prompt = "\n\n".join([
@@ -284,16 +289,12 @@ def process_audio(
         state.greeting_played = True
 
     try:
-        # Analyze emotion from audio (before transcription)
-        emotion_dict = analyze_emotion(audio_file)
-        dominant_emotion = max(emotion_dict, key=emotion_dict.get)
-        print(f"Detected emotion: {dominant_emotion} ({emotion_dict[dominant_emotion]:.2f})")
-
-        # Transcribe audio
+        # Step 1: Transcribe audio first (priority)
         text = transcribe_audio_file(audio_file, app_state.whisper_pipeline)
         print("Q:", text)
 
-        # Analyze personality
+        # Step 2: Parallel emotion analysis and personality analysis
+        emotion_dict = analyze_emotion(audio_file)
         personality_df = analyze_personality(text)
 
         # Build context and get LLM response
