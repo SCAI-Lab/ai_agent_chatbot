@@ -69,14 +69,15 @@ def load_whisper_pipeline(use_gpu: bool = None) -> Any:
         pipeline_kwargs: Dict[str, Any] = {
             "task": "automatic-speech-recognition",
             "model": WHISPER_MODEL_PATH,
-            "dtype": torch_dtype,
+            "torch_dtype": torch_dtype,
             "device": pipeline_device,
             "model_kwargs": {
                 "attn_implementation": "sdpa",
+                "low_cpu_mem_usage": False,  # PyTorch 2.7+ compatibility
             },
             "generate_kwargs": {
-                "task": "transcribe",  # Explicit task instead of forced_decoder_ids
-                "language": "en",  # English transcription
+                "task": "transcribe",
+                "language": "en",
             },
         }
         pipe = pipeline(**pipeline_kwargs)

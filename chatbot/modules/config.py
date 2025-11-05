@@ -57,6 +57,10 @@ TTS_VOLUME = 0.8  # Volume level (0.0 to 1.0)
 AUDIO_TIMEOUT_MARGIN = 2.0  # Extra seconds to wait beyond duration before timeout
 AUDIO_MAX_RETRIES = 2  # Maximum number of retry attempts on recording failure
 
+# Emotion fusion configuration
+SPEECH_EMOTION_WEIGHT = float(os.getenv("SPEECH_EMOTION_WEIGHT", "0.6"))  # Weight for speech-based emotion (0.0-1.0, 0=disabled)
+TEXT_EMOTION_WEIGHT = float(os.getenv("TEXT_EMOTION_WEIGHT", "0.4"))  # Weight for text-based emotion (0.0-1.0, 0=disabled)
+
 # Greeting messages
 GREETING_MESSAGES = [
     "Give me a sec to think about that.",

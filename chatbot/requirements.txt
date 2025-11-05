@@ -1,0 +1,25 @@
+# Core ML/DL frameworks
+torch>=2.0.0
+transformers>=4.30.0
+
+# Audio processing
+sounddevice>=0.4.6
+scipy>=1.10.0
+numpy>=1.24.0
+
+# Text-to-Speech
+pyttsx3>=2.90
+
+# Database
+sqlalchemy>=2.0.0
+
+# Data processing
+pandas>=2.0.0
+
+# LLM and API clients
+openai>=1.0.0
+requests>=2.31.0
+httpx>=0.24.0
+
+# Additional utilities
+sentencepiece>=0.1.99  # For some tokenizers

@@ -10,7 +10,7 @@ AI Voice Chatbot with personality analysis and long-term memory. Combines speech
 
 ### Running the Application
 ```bash
-# Basic usage
+# Basic usage (default: 60% speech + 40% text emotion)
 python main.py
 
 # With custom conversation history window
@@ -20,6 +20,33 @@ python main.py --history-window 10
 python main.py --debug
 ```
 
+### Emotion Analysis Control
+
+The application supports dual-source emotion analysis with configurable weighting:
+
+```bash
+# Use only speech-based emotion (faster, audio-only)
+python main.py --speech-emotion-weight 1.0 --text-emotion-weight 0.0
+
+# Use only text-based emotion (text content only)
+python main.py --speech-emotion-weight 0.0 --text-emotion-weight 1.0
+
+# Custom weighted fusion (e.g., 70% speech, 30% text)
+python main.py --speech-emotion-weight 0.7 --text-emotion-weight 0.3
+```
+
+**Weight Configuration:**
+- `--speech-emotion-weight`: 0.0-1.0 (default: 0.6, set to 0 to disable loading)
+- `--text-emotion-weight`: 0.0-1.0 (default: 0.4, set to 0 to disable loading)
+
+**Fusion Method:**
+- Simple probability averaging: `p = λ * p_speech + (1-λ) * p_text`
+- Weights are automatically normalized
+- Output probabilities sum to 1.0
+
+**Emotion Classes (7 total):**
+- anger, disgust, fear, happy, neutral, sad, surprise
+
 ### Syncing Memory Cache to MemoBase
 ```bash
 # Sync cached conversations to MemoBase
@@ -27,12 +54,16 @@ python sync_memory_cache.py --batch-size 10
 ```
 
 ### Dependencies
-The project requires manual installation of dependencies (no requirements.txt at root):
+```bash
+pip install -r requirements.txt
+```
+
+Or manually:
 ```bash
 pip install torch transformers
 pip install sounddevice scipy numpy
 pip install pyttsx3 sqlalchemy pandas
-pip install openai requests
+pip install openai requests httpx sentencepiece
 ```
 
 ### External Services

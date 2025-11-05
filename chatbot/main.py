@@ -3,9 +3,11 @@ import argparse
 import json
 import random
 import time as time_module
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
-from typing import Any, Dict, List,Optional
+from typing import Any, Dict, List, Optional
 import time
+import numpy as np
 import pandas as pd
 import torch
 
@@ -14,6 +16,8 @@ from modules.config import (
     DEFAULT_HISTORY_WINDOW,
     AUDIO_FILE,
     GREETING_MESSAGES,
+    SPEECH_EMOTION_WEIGHT,
+    TEXT_EMOTION_WEIGHT,
     logger,
 )
 from modules.audio import TTSEngine, cleanup_audio_file, select_input_device, record_audio
@@ -21,8 +25,9 @@ from modules.database import init_db, store_personality_traits
 from modules.llm import chat
 from modules.memory import append_chat_to_cache, format_short_term_memory
 from modules.personality import predict_personality, load_personality_model
-from modules.speech import load_whisper_pipeline, transcribe_whisper
-from modules.emotion import load_emotion_model, predict_emotion
+from modules.speech2text import load_whisper_pipeline, transcribe_whisper
+from modules.speech2emotion import load_emotion_model, predict_emotion
+from modules.text2emotion import load_text_emotion_model, predict_text_emotion, TEXT_EMOTION_LABELS
 from modules.timing import timing, timing_context, clear_timings, print_timings, _record_timing
 
 
@@ -43,6 +48,8 @@ class ApplicationState:
     selected_device_index: Optional[int] = None
     debug_mode: bool = False
     conversation_states: Dict[str, ConversationState] = field(default_factory=dict)
+    speech_emotion_weight: float = SPEECH_EMOTION_WEIGHT
+    text_emotion_weight: float = TEXT_EMOTION_WEIGHT
 
     def get_conversation_state(self, speaker_key: str) -> ConversationState:
         """Get or create conversation state for a speaker.
@@ -58,7 +65,6 @@ class ApplicationState:
         return self.conversation_states[speaker_key]
 
 
-@timing("greeting_tts")
 def say_greeting(tts_engine: TTSEngine, speaker: str):
     """Say greeting message.
 
@@ -108,25 +114,96 @@ def analyze_personality(text: str) -> pd.DataFrame:
         DataFrame with personality scores
     """
     predictions = predict_personality(text)
-    return pd.DataFrame({"r": predictions, "theta": ["EXT", "NEU", "AGR", "CON", "OPN"]})
+    return pd.DataFrame({
+        "r": predictions,
+        "theta": ["Extraversion", "Neuroticism", "Agreeableness", "Conscientiousness", "Openness"]
+    })
 
 
-@timing("emotion_analysis")
-def analyze_emotion(audio_file: str) -> Dict[str, float]:
-    """Analyze emotion from audio file.
+@timing("speech2emotion_analysis")
+def analyze_speech_emotion(audio_file: str, return_logits: bool = False) -> Dict[str, float]:
+    """Analyze emotion from speech audio.
 
     Args:
         audio_file: Path to audio file
+        return_logits: If True, return logits instead of probabilities
 
     Returns:
-        Dictionary with emotion probabilities
+        Dictionary with emotion logits or probabilities
     """
     try:
-        return predict_emotion(audio_file)
+        return predict_emotion(audio_file, return_logits=return_logits)
     except Exception as e:
-        logger.error(f"Emotion analysis failed: {e}")
-        # Return uniform distribution on error
-        return {emotion: 1.0/7 for emotion in ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']}
+        logger.error(f"Speech emotion analysis failed: {e}")
+        if return_logits:
+            return {label: 0.0 for label in TEXT_EMOTION_LABELS}
+        else:
+            uniform = 1.0 / len(TEXT_EMOTION_LABELS)
+            return {label: uniform for label in TEXT_EMOTION_LABELS}
+
+
+@timing("text2emotion_analysis")
+def analyze_text_emotion(text: str, return_logits: bool = False) -> Dict[str, float]:
+    """Analyze emotion from text content.
+
+    Args:
+        text: Input text
+        return_logits: If True, return logits instead of probabilities
+
+    Returns:
+        Dictionary with emotion logits or probabilities
+    """
+    try:
+        return predict_text_emotion(text, return_logits=return_logits)
+    except Exception as e:
+        logger.error(f"Text emotion analysis failed: {e}")
+        if return_logits:
+            return {label: 0.0 for label in TEXT_EMOTION_LABELS}
+        else:
+            uniform = 1.0 / len(TEXT_EMOTION_LABELS)
+            return {label: uniform for label in TEXT_EMOTION_LABELS}
+
+
+def fuse_emotions(
+    speech_emotion: Dict[str, float],
+    text_emotion: Dict[str, float],
+    speech_weight: float,
+    text_weight: float,
+) -> Dict[str, float]:
+    """Fuse speech and text emotions using probability averaging: p = λ * p_speech + (1-λ) * p_text
+
+    Args:
+        speech_emotion: Speech emotion logits
+        text_emotion: Text emotion logits
+        speech_weight: Weight for speech emotion (0.0-1.0)
+        text_weight: Weight for text emotion (0.0-1.0)
+
+    Returns:
+        Fused emotion probabilities (normalized, sum=1.0)
+    """
+    # Normalize weights
+    total_weight = speech_weight + text_weight
+    if total_weight == 0:
+        # If both weights are 0, return uniform distribution
+        uniform = 1.0 / len(TEXT_EMOTION_LABELS)
+        return {label: uniform for label in TEXT_EMOTION_LABELS}
+
+    lambda_speech = speech_weight / total_weight
+    lambda_text = text_weight / total_weight
+
+    # Convert logits to probabilities via softmax
+    speech_logits_array = np.array([speech_emotion[label] for label in TEXT_EMOTION_LABELS])
+    speech_exp = np.exp(speech_logits_array - np.max(speech_logits_array))
+    speech_probs = speech_exp / np.sum(speech_exp)
+
+    text_logits_array = np.array([text_emotion[label] for label in TEXT_EMOTION_LABELS])
+    text_exp = np.exp(text_logits_array - np.max(text_logits_array))
+    text_probs = text_exp / np.sum(text_exp)
+
+    # Weighted average
+    fused_probs = lambda_speech * speech_probs + lambda_text * text_probs
+
+    return {TEXT_EMOTION_LABELS[i]: float(fused_probs[i]) for i in range(len(TEXT_EMOTION_LABELS))}
 
 
 def build_prompt_context(
@@ -150,39 +227,27 @@ def build_prompt_context(
     Returns:
         List of chat messages
     """
-
-    overall_start = time.perf_counter()
-
     # Extract recent history
     recent_history = history[-2 * history_window_size:] if history_window_size > 0 else history
 
     # Format contexts
-    personality_context = personality_df.to_string()
+    personality_traits = ", ".join([f"{row['theta']}: {row['r']:.2f}" for _, row in personality_df.iterrows()])
+    personality_context = f"user's personality: {personality_traits}"
     preferences_context = json.dumps(preferences) if preferences else "None."
     memory_context = format_short_term_memory(recent_history)
 
     # Format emotion context
-    sorted_emotions = sorted(emotion_dict.items(), key=lambda item: item[1], reverse=True)
-    dominant_emotion, emotion_confidence = sorted_emotions[0]
-    emotion_lines = "\n".join([f"- {label}: {prob:.4f}" for label, prob in sorted_emotions])
-
-    emotion_context = (
-        f"Dominant emotion: {dominant_emotion} (confidence: {emotion_confidence:.4f})\n"
-        f"All emotions:\n"
-        f"{emotion_lines}"
-    )
+    emotion_lines = ", ".join([f"{label}: {prob:.2f}" for label, prob in sorted(emotion_dict.items())])
+    emotion_context = f"user's detected emotion: {emotion_lines}"
 
     # Build system prompt
     system_prompt = "\n\n".join([
         "You are Hackcelerate, a helpful healthcare assistant.",
         memory_context,
-        f"--# USER PERSONALITY TRAITS #--\nBig Five Personality traits inferred for the user (use them when necessary):\n{personality_context}\n--# END OF PERSONALITY TRAITS #--",
-        f"--# USER EMOTIONAL STATE #--\nEmotional state detected from voice (use for empathetic responses):\n{emotion_context}\n--# END OF EMOTIONAL STATE #--",
+        f"--# USER PERSONALITY TRAITS #--\n{personality_context}\n--# END OF PERSONALITY TRAITS #--",
+        f"--# USER EMOTIONAL STATE #--\n{emotion_context}\n--# END OF EMOTIONAL STATE #--",
         f"--# USER PREFERENCES #--\nKnown user preferences:\n{preferences_context}\n--# END OF PREFERENCES #--",
     ])
-
-    # Record timing
-    _record_timing("memory_and_context", time.perf_counter() - overall_start)
 
     return [
         {"role": "system", "content": system_prompt},
@@ -223,7 +288,6 @@ def get_llm_response(
     return response_content, user_uuid
 
 
-@timing("database_storage")
 def save_conversation_data(speaker: str, predictions: List[float], user_uuid: str,
                           user_text: str, response: str, db_session):
     """Save conversation data to database.
@@ -289,13 +353,41 @@ def process_audio(
         state.greeting_played = True
 
     try:
+        # Start measuring total processing time (from audio input to TTS output)
+        total_processing_start = time.perf_counter()
+
         # Step 1: Transcribe audio first (priority)
         text = transcribe_audio_file(audio_file, app_state.whisper_pipeline)
         print("Q:", text)
 
-        # Step 2: Parallel emotion analysis and personality analysis
-        emotion_dict = analyze_emotion(audio_file)
-        personality_df = analyze_personality(text)
+        # Step 2: Parallel emotion + personality analysis
+        parallel_start = time.perf_counter()
+        with ThreadPoolExecutor(max_workers=3) as executor:
+            # Submit all tasks
+            speech_emotion_future = executor.submit(
+                analyze_speech_emotion, audio_file, return_logits=True
+            )
+            text_emotion_future = executor.submit(
+                analyze_text_emotion, text, return_logits=True
+            )
+            personality_future = executor.submit(analyze_personality, text)
+
+            # Wait for results
+            speech_emotion = speech_emotion_future.result()
+            text_emotion = text_emotion_future.result()
+            personality_df = personality_future.result()
+
+        # Record parallel block wall clock time
+        _record_timing("[Parallel] Analysis (speech2emotion + text2emotion + personality)",
+                      time.perf_counter() - parallel_start)
+
+        # Step 3: Fuse emotions
+        emotion_dict = fuse_emotions(
+            speech_emotion,
+            text_emotion,
+            app_state.speech_emotion_weight,
+            app_state.text_emotion_weight,
+        )
 
         # Build context and get LLM response
         chat_messages = build_prompt_context(
@@ -324,20 +416,17 @@ def process_audio(
         )
 
         # Update conversation history
-        with timing_context("history_update"):
-            state.history.append({"role": "user", "content": text})
-            state.history.append({"role": "assistant", "content": response_content})
+        state.history.append({"role": "user", "content": text})
+        state.history.append({"role": "assistant", "content": response_content})
 
-            if app_state.history_window_size > 0:
-                max_items = 2 * app_state.history_window_size
-                if len(state.history) > max_items:
-                    del state.history[:-max_items]
+        if app_state.history_window_size > 0:
+            max_items = 2 * app_state.history_window_size
+            if len(state.history) > max_items:
+                del state.history[:-max_items]
 
-        # Print processing time (before TTS)
-        from modules.timing import get_timings
-        processing_timings = get_timings()
-        processing_total = sum(processing_timings.values())
-        print(f"\n[Processing completed in {processing_total:.4f}s]")
+        # Calculate total wall clock time from audio input to TTS start
+        total_processing_time = time.perf_counter() - total_processing_start
+        print(f"\n[Processing completed in {total_processing_time:.4f}s (time to first speech)]")
 
         # Speak response
         say_response(tts_engine, response_content)
@@ -368,7 +457,10 @@ def print_startup_timings(timings: Dict[str, float]):
     total = 0.0
     for name, duration in timings.items():
         print(f"{name:<40} {duration:>9.4f}s")
-        total += duration
+
+        # Only add to total if not a parallel sub-task (sub-tasks start with "  ├─")
+        if not name.startswith("  ├─"):
+            total += duration
 
     print("-" * 60)
     print(f"{'TOTAL INITIALIZATION TIME':<40} {total:>9.4f}s")
@@ -390,29 +482,43 @@ def main():
         action="store_true",
         help="Print the complete prompt payload sent to the LLM each round.",
     )
+    parser.add_argument(
+        "--speech-emotion-weight",
+        type=float,
+        default=SPEECH_EMOTION_WEIGHT,
+        help=f"Weight for speech-based emotion analysis (0.0-1.0, default: {SPEECH_EMOTION_WEIGHT}).",
+    )
+    parser.add_argument(
+        "--text-emotion-weight",
+        type=float,
+        default=TEXT_EMOTION_WEIGHT,
+        help=f"Weight for text-based emotion analysis (0.0-1.0, default: {TEXT_EMOTION_WEIGHT}).",
+    )
     args = parser.parse_args()
 
     # Initialize application state
     app_state = ApplicationState(
         history_window_size=max(0, args.history_window),
         debug_mode=args.debug,
+        speech_emotion_weight=args.speech_emotion_weight,
+        text_emotion_weight=args.text_emotion_weight,
     )
 
     # Track initialization timings
     init_timings = {}
 
-    # Initialize database
+    # Sequential: Database initialization (fast)
     start = time_module.perf_counter()
     Session = init_db()
     db_session = Session()
     init_timings["Database initialization"] = time_module.perf_counter() - start
 
-    # Initialize TTS
+    # Sequential: TTS engine initialization (fast)
     start = time_module.perf_counter()
     tts_engine = TTSEngine()
     init_timings["TTS engine initialization"] = time_module.perf_counter() - start
 
-    # Load personality model (one-time at startup)
+    # Sequential: Load personality model (has issues with parallel loading)
     start = time_module.perf_counter()
     try:
         load_personality_model()
@@ -422,17 +528,66 @@ def main():
         logger.error(f"Failed to load personality model: {e}")
         logger.warning("Continuing without personality analysis")
 
-    # Load emotion recognition model (one-time at startup)
-    start = time_module.perf_counter()
-    try:
-        load_emotion_model()
-        init_timings["Wav2Vec2 emotion recognition model"] = time_module.perf_counter() - start
-    except Exception as e:
-        init_timings["Wav2Vec2 emotion recognition model (FAILED)"] = time_module.perf_counter() - start
-        logger.error(f"Failed to load emotion model: {e}")
-        logger.warning("Continuing without emotion analysis")
+    # Parallel: Load emotion models only (speech2emotion + text2emotion)
+    parallel_tasks = []
+    parallel_task_timings = {}
 
-    # Load Whisper pipeline (one-time at startup)
+    def speech_emotion_task():
+        """Load speech emotion model."""
+        task_start = time_module.perf_counter()
+        try:
+            load_emotion_model()
+            return True, time_module.perf_counter() - task_start
+        except Exception as e:
+            logger.error(f"Failed to load speech emotion model: {e}")
+            logger.warning("Continuing without speech emotion analysis")
+            return False, time_module.perf_counter() - task_start
+
+    def text_emotion_task():
+        """Load text emotion model."""
+        task_start = time_module.perf_counter()
+        try:
+            load_text_emotion_model()
+            return True, time_module.perf_counter() - task_start
+        except Exception as e:
+            logger.error(f"Failed to load text emotion model: {e}")
+            logger.warning("Continuing without text emotion analysis")
+            return False, time_module.perf_counter() - task_start
+
+    # Conditionally load emotion models based on weights
+    if app_state.speech_emotion_weight > 0:
+        parallel_tasks.append(("Speech2Emotion recognition model", speech_emotion_task))
+
+    if app_state.text_emotion_weight > 0:
+        parallel_tasks.append(("Text2Emotion DeBERTa model", text_emotion_task))
+
+    # Execute parallel tasks and measure wall clock time
+    if parallel_tasks:
+        parallel_block_start = time_module.perf_counter()
+        with ThreadPoolExecutor(max_workers=len(parallel_tasks)) as executor:
+            futures = {name: executor.submit(task) for name, task in parallel_tasks}
+
+            # Wait for all tasks to complete and collect individual timings
+            for name, future in futures.items():
+                try:
+                    success, duration = future.result()
+                    if success:
+                        parallel_task_timings[name] = duration
+                    else:
+                        parallel_task_timings[f"{name} (FAILED)"] = duration
+                except Exception as e:
+                    parallel_task_timings[f"{name} (FAILED)"] = 0.0
+                    logger.error(f"Failed to load {name}: {e}")
+
+        # Record actual wall clock time for the parallel block
+        parallel_block_duration = time_module.perf_counter() - parallel_block_start
+        init_timings["[Parallel] Emotion models (speech + text)"] = parallel_block_duration
+
+        # Also store individual timings for detailed view
+        for name, duration in parallel_task_timings.items():
+            init_timings[f"  ├─ {name}"] = duration
+
+    # Sequential: Load Whisper pipeline (large model, avoid GPU conflicts)
     use_gpu = torch.cuda.is_available()
     start = time_module.perf_counter()
     try:
@@ -445,7 +600,7 @@ def main():
         logger.error(f"Failed to load Whisper pipeline: {e}")
         return
 
-    # Test Ollama connection (we can't control loading, but we can test it)
+    # Sequential: Test Ollama connection (fast check)
     start = time_module.perf_counter()
     try:
         from modules.llm import client

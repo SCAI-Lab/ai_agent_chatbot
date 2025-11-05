@@ -29,19 +29,22 @@ def load_personality_model():
 
         # Load tokenizer and model
         model_name = "Minej/bert-base-personality"
+        _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
         _tokenizer = BertTokenizer.from_pretrained(model_name)
-        _model = BertForSequenceClassification.from_pretrained(model_name)
+        # Load model (PyTorch 2.7+ compatible - disable low_cpu_mem_usage to avoid meta tensor issues)
+        _model = BertForSequenceClassification.from_pretrained(
+            model_name,
+            low_cpu_mem_usage=False
+        )
 
         logger.info(f"Model: {model_name}")
         logger.info(f"Tokenizer vocab size: {_tokenizer.vocab_size}")
         logger.info(f"Model parameters: {sum(p.numel() for p in _model.parameters()) / 1e6:.1f}M")
 
-        # Set to evaluation mode
-        _model.eval()
-
-        # Use GPU if available
-        _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # Move to device and set eval mode
         _model = _model.to(_device)
+        _model.eval()
 
         # Enable optimizations for GPU
         if torch.cuda.is_available():
