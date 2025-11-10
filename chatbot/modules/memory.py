@@ -249,6 +249,11 @@ def prepare_recent_chats(messages: List[Dict[str, str]], max_items: int = 6) -> 
     return filtered[-max_items:]
 
 
+# In-memory cache to avoid repeated file I/O
+_memory_cache: Optional[Dict[str, Dict[str, Any]]] = None
+_cache_dirty: bool = False
+
+
 def _load_cache_data() -> Dict[str, Dict[str, Any]]:
     """Load existing cache data from file.
 
@@ -257,35 +262,65 @@ def _load_cache_data() -> Dict[str, Dict[str, Any]]:
     """
     import os
 
+    # Return in-memory cache if already loaded
+    global _memory_cache
+    if _memory_cache is not None:
+        return _memory_cache
+
     if not os.path.exists(MEMORY_CACHE_FILE):
-        return {}
+        _memory_cache = {}
+        return _memory_cache
 
     try:
         with open(MEMORY_CACHE_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
         if isinstance(data, dict):
-            return data
+            _memory_cache = data
+            return _memory_cache
         logger.error("Unexpected cache format; resetting to session-based structure.")
     except (json.JSONDecodeError, OSError) as exc:
         logger.error("Failed to read cache file; creating new. %s", exc)
 
-    return {}
+    _memory_cache = {}
+    return _memory_cache
 
 
-def _save_cache_data(cache_data: Dict[str, Dict[str, Any]]) -> None:
+def _save_cache_data(cache_data: Dict[str, Dict[str, Any]], force_write: bool = False) -> None:
     """Save cache data to file.
 
     Args:
         cache_data: Cache data to save.
+        force_write: If True, write immediately; otherwise mark as dirty for later write.
     """
     import os
 
-    cache_dir = os.path.dirname(MEMORY_CACHE_FILE)
-    if cache_dir:
-        os.makedirs(cache_dir, exist_ok=True)
+    global _memory_cache, _cache_dirty
 
-    with open(MEMORY_CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(cache_data, f, ensure_ascii=False, indent=2)
+    # Update in-memory cache
+    _memory_cache = cache_data
+    _cache_dirty = True
+
+    # Only write to disk if forced (e.g., on shutdown)
+    if force_write:
+        cache_dir = os.path.dirname(MEMORY_CACHE_FILE)
+        if cache_dir:
+            os.makedirs(cache_dir, exist_ok=True)
+
+        with open(MEMORY_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(cache_data, f, ensure_ascii=False, indent=2)
+        _cache_dirty = False
+
+
+def flush_cache_to_disk() -> None:
+    """Force write the in-memory cache to disk if dirty.
+
+    Call this on shutdown or periodically to persist changes.
+    """
+    global _memory_cache, _cache_dirty
+
+    if _cache_dirty and _memory_cache is not None:
+        _save_cache_data(_memory_cache, force_write=True)
+        logger.info("Cache flushed to disk")
 
 
 def get_recent_history(user_uuid: str, max_messages: int = 10) -> List[Dict[str, str]]:
@@ -395,8 +430,8 @@ def append_message_to_cache(
     })
     conversations[-1]["timestamp"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Save cache immediately
-    _save_cache_data(cache_data)
+    # Update in-memory cache (no disk write for performance)
+    _save_cache_data(cache_data, force_write=False)
 
 
 def append_chat_to_cache(
@@ -460,5 +495,5 @@ def append_chat_to_cache(
     # Append conversation to session
     cache_data[user_uuid]["sessions"][session_id]["conversations"].append(entry)
 
-    # Save cache
-    _save_cache_data(cache_data)
+    # Update in-memory cache (no disk write for performance)
+    _save_cache_data(cache_data, force_write=False)

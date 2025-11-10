@@ -58,6 +58,12 @@ def load_text_emotion_model() -> None:
     _text_model = _text_model.to(_text_device)
     _text_model.eval()
 
+    # Enable GPU optimizations
+    if torch.cuda.is_available():
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+        logger.info("TF32 optimization enabled for text emotion model")
+
     logger.info("Text emotion model loaded on %s", _text_device)
 
 

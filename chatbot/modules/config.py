@@ -29,7 +29,7 @@ DEFAULT_HISTORY_WINDOW = 5  # short-term window size
 MEMOBASE_PROJECT_URL = os.getenv("MEMOBASE_PROJECT_URL", "http://localhost:8019")
 MEMOBASE_API_KEY = os.getenv("MEMOBASE_API_KEY", "secret")
 MEMOBASE_API_VERSION = os.getenv("MEMOBASE_API_VERSION", "api/v1")
-MEMOBASE_TIMEOUT = int(os.getenv("MEMOBASE_TIMEOUT", "600"))
+MEMOBASE_TIMEOUT = int(os.getenv("MEMOBASE_TIMEOUT", "5"))  # Reduced from 600s to 5s to prevent hangs
 MEMOBASE_BASE_URL = f"{MEMOBASE_PROJECT_URL.rstrip('/')}/{MEMOBASE_API_VERSION.strip('/')}"
 
 DEFAULT_MEMORY_PROMPT = "Only refer to the memory if it's relevant to user's input."
