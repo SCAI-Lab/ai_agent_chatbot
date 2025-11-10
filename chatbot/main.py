@@ -23,7 +23,7 @@ from modules.config import (
 from modules.audio import TTSEngine, cleanup_audio_file, select_input_device, record_audio
 from modules.database import init_db, store_personality_traits
 from modules.llm import chat
-from modules.memory import append_chat_to_cache, format_short_term_memory
+from modules.memory import append_chat_to_cache, format_short_term_memory, flush_cache_to_disk
 from modules.personality import predict_personality, load_personality_model
 from modules.speech2text import load_whisper_pipeline, transcribe_whisper
 from modules.speech2emotion import load_emotion_model, predict_emotion
@@ -356,30 +356,36 @@ def process_audio(
         # Start measuring total processing time (from audio input to TTS output)
         total_processing_start = time.perf_counter()
 
-        # Step 1: Transcribe audio first (priority)
-        text = transcribe_audio_file(audio_file, app_state.whisper_pipeline)
-        print("Q:", text)
-
-        # Step 2: Parallel emotion + personality analysis
-        parallel_start = time.perf_counter()
-        with ThreadPoolExecutor(max_workers=3) as executor:
-            # Submit all tasks
+        # Step 1: Start Whisper transcription AND speech emotion analysis in parallel
+        # This overlaps the two most time-consuming tasks
+        parallel_audio_start = time.perf_counter()
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            # Both work on the same audio file simultaneously
+            transcription_future = executor.submit(
+                transcribe_audio_file, audio_file, app_state.whisper_pipeline
+            )
             speech_emotion_future = executor.submit(
                 analyze_speech_emotion, audio_file, return_logits=True
             )
+
+            # Wait for transcription to complete (needed for text-based analysis)
+            text = transcription_future.result()
+            print("Q:", text)
+
+            # Start text-based analysis while speech emotion may still be running
             text_emotion_future = executor.submit(
                 analyze_text_emotion, text, return_logits=True
             )
             personality_future = executor.submit(analyze_personality, text)
 
-            # Wait for results
+            # Wait for all results
             speech_emotion = speech_emotion_future.result()
             text_emotion = text_emotion_future.result()
             personality_df = personality_future.result()
 
         # Record parallel block wall clock time
-        _record_timing("[Parallel] Analysis (speech2emotion + text2emotion + personality)",
-                      time.perf_counter() - parallel_start)
+        _record_timing("[Parallel] Audio processing (Whisper + speech2emotion + text2emotion + personality)",
+                      time.perf_counter() - parallel_audio_start)
 
         # Step 3: Fuse emotions
         emotion_dict = fuse_emotions(
@@ -640,6 +646,9 @@ def main():
         pass
 
     finally:
+        # Flush memory cache to disk before exit
+        flush_cache_to_disk()
+
         # Cleanup resources
         tts_engine.cleanup()
         db_session.close()
