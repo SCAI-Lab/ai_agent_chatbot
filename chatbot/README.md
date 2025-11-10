@@ -83,6 +83,35 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
                     └──────────────────┘
 ```
 
+## Parallel Timeline
+
+The diagram below mirrors the execution order inside [`chatbot/main.py`](main.py), highlighting how startup model loading and per-request inference overlap. Durations use relative units purely for visualization.
+
+```mermaid
+gantt
+  title Startup + Inference Parallelism
+  dateFormat  X
+  axisFormat  %L
+
+  section Startup (Model Loading)
+    DB init (SQLAlchemy)           :db,            0, 1
+    TTS engine init                :tts,           after db, 1
+    Big5 personality model         :big5,          after tts, 2
+    Speech2Emotion model           :s2e,           after big5, 3
+    Text2Emotion model             :t2e,           after big5, 3
+    Whisper speech-to-text pipeline:whisper,       after big5, 4
+    Ollama connectivity check      :ollama,        after whisper, 1
+
+  section Runtime Inference (per audio clip)
+    Whisper transcription          :inf_trans,     0, 5
+    Speech emotion logits          :inf_speech,    0, 5
+    Text emotion logits            :inf_text,      after inf_trans, 3
+    Big5 personality analysis      :inf_persona,   after inf_trans, 3
+    Emotion fusion                 :inf_fusion,    after inf_text, 1
+    Prompt build + LLM response    :inf_llm,       after inf_persona, 4
+    TTS playback                   :inf_tts,       after inf_llm, 2
+```
+
 ## Project Structure
 
 ```
@@ -398,6 +427,5 @@ Enhanced audio handling with:
 - **MemoBase**: Long-term memory system
 
 ## License
-
 
 
