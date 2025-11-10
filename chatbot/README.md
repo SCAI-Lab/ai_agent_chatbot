@@ -85,7 +85,7 @@ An intelligent voice-powered chatbot that combines speech recognition, personali
 
 ## Parallel Timeline
 
-The diagram below mirrors the execution order inside [`chatbot/main.py`](main.py), highlighting how startup model loading and per-request inference overlap. Durations use relative units purely for visualization.
+The diagram below mirrors the execution order inside [`chatbot/main.py`](main.py), highlighting how startup model loading and per-request inference overlap. Emotion models load in parallel right after the Big5 model, and the milestone shows that Whisper waits for both to finish. During inference, Whisper transcription and speech-emotion logits start together, while text-emotion and personality tasks only begin after transcription completes. Durations use relative units purely for visualization.
 
 ```mermaid
 gantt
@@ -96,19 +96,20 @@ gantt
   section Startup (Model Loading)
     DB init (SQLAlchemy)           :db,            0, 1
     TTS engine init                :tts,           after db, 1
-    Big5 personality model         :big5,          after tts, 2
-    Speech2Emotion model           :s2e,           after big5, 3
+    Big5 personality model         :big5,          after tts, 3
+    Speech2Emotion model           :s2e,           after big5, 4
     Text2Emotion model             :t2e,           after big5, 3
-    Whisper speech-to-text pipeline:whisper,       after big5, 4
+    Emotion models ready           :milestone,     after s2e, 0
+    Whisper speech-to-text pipeline:whisper,       after s2e, 4
     Ollama connectivity check      :ollama,        after whisper, 1
 
   section Runtime Inference (per audio clip)
-    Whisper transcription          :inf_trans,     0, 5
-    Speech emotion logits          :inf_speech,    0, 5
+    Whisper transcription          :inf_trans,     0, 4
+    Speech emotion logits          :inf_speech,    0, 6
     Text emotion logits            :inf_text,      after inf_trans, 3
     Big5 personality analysis      :inf_persona,   after inf_trans, 3
-    Emotion fusion                 :inf_fusion,    after inf_text, 1
-    Prompt build + LLM response    :inf_llm,       after inf_persona, 4
+    Emotion fusion                 :inf_fusion,    after inf_speech, 1
+    Prompt build + LLM response    :inf_llm,       after inf_fusion, 4
     TTS playback                   :inf_tts,       after inf_llm, 2
 ```
 
@@ -427,5 +428,3 @@ Enhanced audio handling with:
 - **MemoBase**: Long-term memory system
 
 ## License
-
-
